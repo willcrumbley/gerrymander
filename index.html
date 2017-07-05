@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="./gerry.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <link href="../lib/css/d3.geomap.css" rel="stylesheet">
+        <script src="./node_modules/d3/build/d3.js"></script>
+        <script src="./node_modules/d3-geo-projection/build/d3-geo-projection.js"></script>
+        <script src="./node_modules/topojson/dist/topojson.js"></script>
+        <script src="./lib/js/d3.geomap.js"></script>
+        <script src="./node_modules/base-64/base64.js"></script>
+    </head>
+    <body>
+        <div id='main' class='container'>
+            <div class="row m-4">
+                <h1>How can we measure partisan gerrymandering?</h1>
+            </div>
+            <div class='row m-4'>
+                <div class='col-6'>
+                    <div class="row">
+                        <h2>US States By Calculated Metric</h2>
+                        <div id="map"></div>
+                    </div>
+                </div>
+                <div id='code' class='col-6'>
+                    <form>
+                        <div> 
+                            var gerry_metric = function(state) { <br>
+                            <textarea name="metric-function" id="metric-function" rows=30 cols=80></textarea><br>
+                        &nbsp;&nbsp;return return_val;<br>
+                            }
+                        </div>
+                        <div class="text-center">
+                            <button type="button" id='calculate-metric' class="btn btn-primary">Calculate My Metric</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id='states' class='row'>
+                <div class='row'>
+                    <h2>US States, Ranked by Calculated Metric</h2>
+                </div>
+                <div id='states-ranked'>
+                </div>
+            </div>
+            <div id='notes' class='row'>
+                <p>Notes:</p>
+                <ul>
+                    <li>Data is from 2016 US House Election Results</li>
+                    <li>ADD DISCLAIMER ABOUT SECURITY</li>
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script type="text/javascript" src="gerry.js"></script>
+    </body>
+</html>
