@@ -10,22 +10,27 @@ function getUrlParameter(name) {
 gerry_app.default_metric = `// This is the efficiency gap metric, as defined in 
 // Stephanopoulos and McGhee, "Partisan Gerrymandering and the Efficiency Gap", 2014.
 // See: http://chicagounbound.uchicago.edu/cgi/viewcontent.cgi?article=1946&context=public_law_and_legal_theory
+var state = options.state;
 var total_state_votes = 0;
 var dem_wasted_votes = 0;
 var rep_wasted_votes = 0;
-for (let district of state["house_districts"]) {
-    var total_votes = district["dem_votes"] + district["rep_votes"];
+for (let district of state.house_districts) {
+    var total_votes = district.dem_votes + district.rep_votes;
     total_state_votes += total_votes;
-    if (district["dem_votes"] > district["rep_votes"]) {
-        dem_wasted_votes += (district["dem_votes"] - total_votes / 2);
-        rep_wasted_votes += district["rep_votes"];
+    if (district.dem_votes > district.rep_votes) {
+        dem_wasted_votes += (district.dem_votes - total_votes / 2);
+        rep_wasted_votes += district.rep_votes;
     }
     else {
-        rep_wasted_votes += (district["rep_votes"] - total_votes / 2);
-        dem_wasted_votes += district["dem_votes"];
+        rep_wasted_votes += (district.rep_votes - total_votes / 2);
+        dem_wasted_votes += district.dem_votes;
     }
 };
-return_val = (rep_wasted_votes - dem_wasted_votes) / total_state_votes;
+include = state.house_districts.length >= 8 ? true : false;
+return_obj = {
+    metric: (rep_wasted_votes - dem_wasted_votes) / total_state_votes,
+    include: include
+}
 `
 
 gerry_app.update_metric_url = function(metric_function) {
@@ -33,24 +38,29 @@ gerry_app.update_metric_url = function(metric_function) {
     history.pushState({}, null, encoded_function_param);
 }
 
-gerry_app.calculate_state_metric = function(state) {
+gerry_app.calculate_state_metric = function(options) {
     var metric_function = $('#metric-function').val();
     eval(metric_function);
-    return return_val.toFixed(2);
+    return return_obj;
 }
 
 gerry_app.sort_by_metric = function(states) {
     states.sort(function(a, b) {
         return parseFloat(b.metric) - parseFloat(a.metric);
     });
-    gerry_app.display_state_metrics(states);
+}
+
+gerry_app.filter_states = function(states) {
+    return states.filter(function(state) {
+        return state.include;
+    })    
 }
 
 gerry_app.display_state_metrics = function(states) {
     $('#states-ranked').children().remove();
     for (let state of states) {
-        var metric = "<span>" + state['name'] + ": " + state["metric"] + "</span>";
-        var state_div = "<div id='" + state['code'] + "''>"+ metric + "</div>";
+        var metric = "<span>" + state.name + ": " + state.metric + "</span>";
+        var state_div = "<div id='" + state.code + "''>"+ metric + "</div>";
         $('#states-ranked').append(state_div);
     }
     var map = d3.geomap.choropleth()
@@ -72,9 +82,13 @@ gerry_app.display_state_metrics = function(states) {
 gerry_app.calculate_metrics = function() {
     var states = gerry_app.house_json["states"];
     for (let state of states) {
-        state["metric"] = gerry_app.calculate_state_metric(state);
+        var state_result = gerry_app.calculate_state_metric({"state": state});
+        state.metric = state_result.metric.toFixed(2);
+        state.include = state_result.include;
     }
     gerry_app.sort_by_metric(states);
+    var filtered_states = gerry_app.filter_states(states);
+    gerry_app.display_state_metrics(filtered_states);
     var metric_function = $('#metric-function').val();
     gerry_app.update_metric_url(metric_function);    
 }
