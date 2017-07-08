@@ -93,7 +93,7 @@ gerry_app.set_metric_function = function() {
 
 $(function() {
     gerry_app.set_metric_function();
-    $.getJSON("./house_by_state.json", function(house_json) {
+    $.getJSON("../data/house_by_state.json", function(house_json) {
         gerry_app.house_json = house_json;
         var calculate_button = $('#calculate-metric');
         calculate_button.click(gerry_app.calculate_metrics);
