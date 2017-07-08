@@ -16,23 +16,24 @@
     <body>
         <div id='main' class='container'>
             <div class="row m-4">
-                <h1>Measures of partisan gerrymandering</h1>
+                <h1>An exploration of the efficiency gap and other measures of partisan gerrymandering.</h1>
             </div>
             <div class='row m-4'>
-                <div class='col-6'>
-                    <div class="row">
-                        <h2>US States By Calculated Metric</h2>
-                        <div id="map"></div>
-                        <span>Excluded states shown in grey.</span>
-                    </div>
+                <div class="row">
+                    <h2>US States By Calculated Metric</h2>
+                    <div id="map"></div>
+                    <span>Excluded states shown in grey.</span>
                 </div>
-                <div class='col-6'>
+                <div class='row'>
                     <form>
                         <div class='code'> 
-                            var gerry_metric = function(options) { <br>
-                            <textarea name="metric-function" id="metric-function" rows=30 cols=80></textarea><br>
-                        &nbsp;&nbsp;return return_val;<br>
+                            function(options) { <br>
+                            <textarea name="metric-function" id="metric-function" rows=30 cols=120></textarea><br>
+                        &nbsp;&nbsp;return return_obj;<br>
                             }
+                        </div>
+                        <div class="alert alert-warning">
+                            <h2>Warning! Clicking the button below will execute the JavaScript in the black textarea above. If you have any uncertainty about what the above code will do, please do not execute it!</h2>
                         </div>
                         <div class="text-center">
                             <button type="button" id='calculate-metric' class="btn btn-primary">Calculate My Metric</button>
@@ -62,16 +63,59 @@
                         <th>Metric</th>
                         <th>US House Seats Flipped</th>
                         <th>Total US House Districts</th>
+                        <th>Actual Dem House Seats, 2016</th>
+                        <th>Actual Rep House Seats, 2016</th>
                         <th>Map</th>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
             </div>
+            <div id='links' class='row'>
+                <div>
+                    <h2>Notable Algorithms</h2>
+                </div>
+                <table>
+                    <thead>
+                        <td>Name</td>
+                        <td>Description</td>
+                        <td>Assumptions and Constraints</td>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href=''>Efficiency Gap, 2016 House Results, 2-Party, Missing Values Imputed by Presidential Votes</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href=''>Efficiency Gap, 2014 House Results, 2-Party, Missing Values Imputed by Presidential Votes</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href=''>Efficiency Gap, 2012 House Results, 2-Party, Missing Values Imputed by  Presidential Votes</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href='http://localhost:8000/?metric=Ly8gVGhpcyBpcyB0aGUgZWZmaWNpZW5jeSBnYXAgbWV0cmljLCBhcyBkZWZpbmVkIGluIAovLyBTdGVwaGFub3BvdWxvcyBhbmQgTWNHaGVlLCAiUGFydGlzYW4gR2VycnltYW5kZXJpbmcgYW5kIHRoZSBFZmZpY2llbmN5IEdhcCIsIDIwMTQuCi8vIFNlZTogaHR0cDovL2NoaWNhZ291bmJvdW5kLnVjaGljYWdvLmVkdS9jZ2kvdmlld2NvbnRlbnQuY2dpP2FydGljbGU9MTk0NiZjb250ZXh0PXB1YmxpY19sYXdfYW5kX2xlZ2FsX3RoZW9yeQp2YXIgc3RhdGUgPSBvcHRpb25zLnN0YXRlOwp2YXIgdG90YWxfc3RhdGVfdm90ZXMgPSAwOwp2YXIgZGVtX3dhc3RlZF92b3RlcyA9IDA7CnZhciByZXBfd2FzdGVkX3ZvdGVzID0gMDsKZm9yIChsZXQgZGlzdHJpY3Qgb2Ygc3RhdGUuaG91c2VfZGlzdHJpY3RzKSB7CiAgICB2YXIgZGVtX3ZvdGVzID0gKGRpc3RyaWN0LnZvdGVzLnkyMDE2LmRlbV92b3Rlc19ob3VzZSArIGRpc3RyaWN0LnZvdGVzLnkyMDE0LmRlbV92b3Rlc19ob3VzZSArIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRpc3RyaWN0LnZvdGVzLnkyMDEyLmRlbV92b3Rlc19ob3VzZSkvMwogICAgdmFyIHJlcF92b3RlcyA9IChkaXN0cmljdC52b3Rlcy55MjAxNi5yZXBfdm90ZXNfaG91c2UgKyBkaXN0cmljdC52b3Rlcy55MjAxNC5yZXBfdm90ZXNfaG91c2UgKyAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXN0cmljdC52b3Rlcy55MjAxMi5yZXBfdm90ZXNfaG91c2UpLzMKICAgIHZhciB0b3RhbF92b3RlcyA9IGRlbV92b3RlcyArIHJlcF92b3RlczsKICAgIHRvdGFsX3N0YXRlX3ZvdGVzICs9IHRvdGFsX3ZvdGVzOwogICAgaWYgKGRlbV92b3RlcyA+IHJlcF92b3RlcykgewogICAgICAgIGRlbV93YXN0ZWRfdm90ZXMgKz0gKGRlbV92b3RlcyAtIHRvdGFsX3ZvdGVzIC8gMik7CiAgICAgICAgcmVwX3dhc3RlZF92b3RlcyArPSByZXBfdm90ZXM7CiAgICB9CiAgICBlbHNlIHsKICAgICAgICByZXBfd2FzdGVkX3ZvdGVzICs9IChyZXBfdm90ZXMgLSB0b3RhbF92b3RlcyAvIDIpOwogICAgICAgIGRlbV93YXN0ZWRfdm90ZXMgKz0gZGVtX3ZvdGVzOwogICAgfQp9OwppbmNsdWRlID0gc3RhdGUuaG91c2VfZGlzdHJpY3RzLmxlbmd0aCA+PSA4ID8gdHJ1ZSA6IGZhbHNlOwptZXRyaWMgPSAocmVwX3dhc3RlZF92b3RlcyAtIGRlbV93YXN0ZWRfdm90ZXMpIC8gdG90YWxfc3RhdGVfdm90ZXM7CnJldHVybl9vYmogPSB7CiAgICBtZXRyaWM6IG1ldHJpYywKICAgIGluY2x1ZGU6IGluY2x1ZGUsCiAgICBzZWF0c19mbGlwcGVkOiBtZXRyaWMgKiBzdGF0ZS5ob3VzZV9kaXN0cmljdHMubGVuZ3RoCn0K'>Efficiency Gap, Average Votes 2012-2016 House Results, 2-Party, Missing Values Imputed by Most Recent Presidential Votes</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class='row'> 
+                <div>
+                    <h2>Explore the State Data Used for Input</h2>
+                </div>
+                <div class='code'>
+                    <textarea name="state-data" id="state-data" rows=30 cols=120></textarea>
+                </div>
+            </div>
             <div id='notes' class='row'>
-                <p>Notes:</p>
+                <h2>Notes:</h2>
                 <ul>
-                    <li>ADD DISCLAIMER ABOUT SECURITY</li>
+                    <li>Security Disclaimer: This site allows the user to run arbitrary JavaScript from the textarea
+                    above.
+                    If you believe that this site introduces any unaddressed security vulnerabilities, please file an issue at <a href='https://github.com/willcrumbley/gerrymander'>https://github.com/willcrumbley/gerrymander</a> and we will address the issue.</li>
+                    <ul>
+                        <li>XSS: This entire site consists of static files, with no server endpoints, no server logic, and no account data, so we are not aware of any security concerns around cross-site scripting (XSS).</li>
+                        <li>Malicious JS: We are aware of the potential danger of sharing links with malicious 
+                        JavaScript encoded, so the site does not automatically execute the decoded JavaScript, instead asking users to inspect the decoded script and execute it themselves.</li>
+                    </ul>
                     <li>Data source: "115th Congress Members Guide with Elections and Demographic Data by District", <a href="https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit">https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit</a></li>
                 </ul>
             </div>
