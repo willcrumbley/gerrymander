@@ -27,9 +27,11 @@ for (let district of state.house_districts) {
     }
 };
 include = state.house_districts.length >= 8 ? true : false;
+metric = (rep_wasted_votes - dem_wasted_votes) / total_state_votes;
 return_obj = {
-    metric: (rep_wasted_votes - dem_wasted_votes) / total_state_votes,
-    include: include
+    metric: metric,
+    include: include,
+    seats_flipped: metric * state.house_districts.length
 }
 `
 
@@ -46,7 +48,7 @@ gerry_app.calculate_state_metric = function(options) {
 
 gerry_app.sort_by_metric = function(states) {
     states.sort(function(a, b) {
-        return parseFloat(b.metric) - parseFloat(a.metric);
+        return parseFloat(Math.abs(b.metric)) - parseFloat(Math.abs(a.metric));
     });
 }
 
@@ -57,11 +59,21 @@ gerry_app.filter_states = function(states) {
 }
 
 gerry_app.display_state_metrics = function(states) {
-    $('#states-ranked').children().remove();
+    $('#states-table tbody').children().remove();
+    var pdf_link_prefix = "https://www2.census.gov/geo/maps/cong_dist/cd114/st_based/CD114_";
+    var map_url_prefix = "https://nationalmap.gov/small_scale/printable/images/preview/congdist/pagecgd113_";
     for (let state of states) {
-        var metric = "<span>" + state.name + ": " + state.metric + "</span>";
-        var state_div = "<div id='" + state.code + "''>"+ metric + "</div>";
-        $('#states-ranked').append(state_div);
+        var name = "<td>" + state.name + "</td>";
+        var metric = "<td>" + state.metric + "</td>";
+        var seats_flipped = "<td>" + state.seats_flipped + "</td>";
+        var districts = "<td>" + state.house_districts.length + "</td>";
+        var map_image = "<img class='state-map' src='" + map_url_prefix + state.code.toLowerCase() + ".gif'>";
+        var map = "<td><a href = 'https://nationalmap.gov/small_scale/printable/congress.html' target='_blank'>" + 
+            map_image + "</a></td>";
+        var pdf = "<td><a href = '" + pdf_link_prefix + state.code + ".pdf' target='_blank'> (Census Bureau pdf) </a></td>";
+        var state_row = "<tr id='" + state.fips + "''>"+ name + metric + seats_flipped + 
+            districts + map + pdf + "</tr>";
+        $('#states-table tbody').append(state_row);
     }
     var map = d3.geomap.choropleth()
         .geofile('./lib/topojson/countries/USA.json')
@@ -73,7 +85,7 @@ gerry_app.display_state_metrics = function(states) {
         .legend(true)
         .width(500)
         .height(400)
-        .domain([-0.5,0.5])
+        .domain([-0.25,0.25])
         .zoomFactor(1);
     $('#map').children().remove();
     map.draw(d3.select("#map").datum(states));
@@ -85,6 +97,7 @@ gerry_app.calculate_metrics = function() {
         var state_result = gerry_app.calculate_state_metric({"state": state});
         state.metric = state_result.metric.toFixed(2);
         state.include = state_result.include;
+        state.seats_flipped = state_result.seats_flipped.toFixed(1);
     }
     gerry_app.sort_by_metric(states);
     var filtered_states = gerry_app.filter_states(states);

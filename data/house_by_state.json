@@ -3,6 +3,7 @@
     "states": [{
             "name": "Alabama",
             "fips": "US01",
+            "code": "AL",
             "house_districts": [{
                     "number": 1,
                     "dem_votes": 0,
@@ -50,6 +51,7 @@
         {
             "name": "Alaska",
             "fips": "US02",
+            "code": "AL",
             "house_districts": [{
                 "number": "AL",
                 "dem_votes": 111019,
@@ -60,6 +62,7 @@
         {
             "name": "Arizona",
             "fips": "US04",
+            "code": "AZ",
             "house_districts": [{
                     "number": 1,
                     "dem_votes": 142219,
@@ -119,6 +122,7 @@
         {
             "name": "Arkansas",
             "fips": "US05",
+            "code": "AR",
             "house_districts": [{
                     "number": 1,
                     "dem_votes": 0,
@@ -148,6 +152,7 @@
         {
             "name": "California",
             "fips": "US06",
+            "code": "CA",
             "house_districts": [{
                     "number": 1,
                     "dem_votes": 128588,
@@ -472,6 +477,7 @@
         {
             "name": "Colorado",
             "fips": "US08",
+            "code": "CO",
             "house_districts": [{
                     "number": 1,
                     "dem_votes": 257254,
@@ -519,6 +525,7 @@
         {
             "name": "Connecticut",
             "fips": "US09",
+            "code": "CT",
             "house_districts": [{
                     "number": 1,
                     "dem_votes": 200686,
@@ -554,6 +561,7 @@
         {
             "name": "Delaware",
             "fips": "US10",
+            "code": "DE",
             "house_districts": [{
                 "number": "AL",
                 "dem_votes": 233554,
@@ -564,6 +572,7 @@
         {
             "name": "Florida",
             "fips": "US12",
+            "code": "FL",
             "house_districts": [{
                     "number": 1,
                     "dem_votes": 114079,
@@ -749,6 +758,7 @@
         {
             "name": "Georgia",
             "fips": "US13",
+            "code": "GA",
             "house_districts": [{
                     "name": "Georgia",
                     "number": 1,
@@ -852,6 +862,7 @@
         {
             "name": "Hawaii",
             "fips": "US15",
+            "code": "HI",
             "house_districts": [{
                     "name": "Hawaii",
                     "number": 1,
@@ -871,6 +882,7 @@
         {
             "name": "Idaho",
             "fips": "US16",
+            "code": "ID",
             "house_districts": [{
                     "name": "Idaho",
                     "number": 1,
@@ -890,6 +902,7 @@
         {
             "name": "Illinois",
             "fips": "US17",
+            "code": "IL",
             "house_districts": [{
                     "name": "Illinois",
                     "number": 1,
@@ -1021,6 +1034,7 @@
         {
             "name": "Indiana",
             "fips": "US18",
+            "code": "IN",
             "house_districts": [{
                     "name": "Indiana",
                     "number": 1,
@@ -1089,6 +1103,7 @@
         {
             "name": "Iowa",
             "fips": "US19",
+            "code": "IA",
             "house_districts": [{
                     "name": "Iowa",
                     "number": 1,
@@ -1122,6 +1137,7 @@
         {
             "name": "Kansas",
             "fips": "US20",
+            "code": "KS",
             "house_districts": [{
                     "name": "Kansas",
                     "number": 1,
@@ -1155,6 +1171,7 @@
         {
             "name": "Kentucky",
             "fips": "US21",
+            "code": "KY",
             "house_districts": [{
                     "name": "Kentucky",
                     "number": 1,
@@ -1202,6 +1219,7 @@
         {
             "name": "Louisiana",
             "fips": "US22",
+            "code": "LA",
             "house_districts": [{
                     "name": "Louisiana",
                     "number": 1,
@@ -1249,6 +1267,7 @@
         {
             "name": "Maine",
             "fips": "US23",
+            "code": "ME",
             "house_districts": [{
                     "name": "Maine",
                     "number": 1,
@@ -1268,6 +1287,7 @@
         {
             "name": "Maryland",
             "fips": "US24",
+            "code": "MD",
             "house_districts": [{
                     "name": "Maryland",
                     "number": 1,
@@ -1329,6 +1349,7 @@
         {
             "name": "Massachusetts",
             "fips": "US25",
+            "code": "MA",
             "house_districts": [{
                     "name": "Massachusetts",
                     "number": 1,
@@ -1397,6 +1418,7 @@
         {
             "name": "Michigan",
             "fips": "US26",
+            "code": "MI",
             "house_districts": [{
                     "name": "Michigan",
                     "number": 1,
@@ -1500,6 +1522,7 @@
         {
             "name": "Minnesota",
             "fips": "US27",
+            "code": "MN",
             "house_districts": [{
                     "name": "Minnesota",
                     "number": 1,
@@ -1561,6 +1584,7 @@
         {
             "name": "Mississippi",
             "fips": "US28",
+            "code": "MS",
             "house_districts": [{
                     "name": "Mississippi",
                     "number": 1,
@@ -1594,6 +1618,7 @@
         {
             "name": "Missouri",
             "fips": "US29",
+            "code": "MO",
             "house_districts": [{
                     "name": "Missouri",
                     "number": 1,
@@ -1655,6 +1680,7 @@
         {
             "name": "Montana",
             "fips": "US30",
+            "code": "MT",
             "house_districts": [{
                 "name": "Montana",
                 "number": "AL",
@@ -1666,6 +1692,7 @@
         {
             "name": "Nebraska",
             "fips": "US31",
+            "code": "NE",
             "house_districts": [{
                     "name": "Nebraska",
                     "number": 1,
@@ -1692,6 +1719,7 @@
         {
             "name": "Nevada",
             "fips": "US32",
+            "code": "NV",
             "house_districts": [{
                     "name": "Nevada",
                     "number": 1,
@@ -1725,6 +1753,7 @@
         {
             "name": "New Hampshire",
             "fips": "US33",
+            "code": "NH",
             "house_districts": [{
                     "name": "New Hampshire",
                     "number": 1,
@@ -1744,6 +1773,7 @@
         {
             "name": "New Jersey",
             "fips": "US34",
+            "code": "NJ",
             "house_districts": [{
                     "name": "New Jersey",
                     "number": 1,
@@ -1833,6 +1863,7 @@
         {
             "name": "New Mexico",
             "fips": "US35",
+            "code": "NM",
             "house_districts": [{
                     "name": "New Mexico",
                     "number": 1,
@@ -1859,6 +1890,7 @@
         {
             "name": "New York",
             "fips": "US36",
+            "code": "NY",
             "house_districts": [{
                     "name": "New York",
                     "number": 1,
@@ -2053,6 +2085,7 @@
         {
             "name": "North Carolina",
             "fips": "US37",
+            "code": "NC",
             "house_districts": [{
                     "name": "North Carolina",
                     "number": 1,
@@ -2149,6 +2182,7 @@
         {
             "name": "North Dakota",
             "fips": "US38",
+            "code": "ND",
             "house_districts": [{
                 "name": "North Dakota",
                 "number": "AL",
@@ -2160,6 +2194,7 @@
         {
             "name": "Ohio",
             "fips": "US39",
+            "code": "OH",
             "house_districts": [{
                     "name": "Ohio",
                     "number": 1,
@@ -2277,6 +2312,7 @@
         {
             "name": "Oklahoma",
             "fips": "US40",
+            "code": "OK",
             "house_districts": [{
                     "name": "Oklahoma",
                     "number": 1,
@@ -2317,6 +2353,7 @@
         {
             "name": "Oregon",
             "fips": "US41",
+            "code": "OR",
             "house_districts": [{
                     "name": "Oregon",
                     "number": 1,
@@ -2357,6 +2394,7 @@
         {
             "name": "Pennsylvania",
             "fips": "US42",
+            "code": "PA",
             "house_districts": [{
                     "name": "Pennsylvania",
                     "number": 1,
@@ -2488,6 +2526,7 @@
         {
             "name": "Rhode Island",
             "fips": "US44",
+            "code": "RI",
             "house_districts": [{
                     "name": "Rhode Island",
                     "number": 1,
@@ -2507,6 +2546,7 @@
         {
             "name": "South Carolina",
             "fips": "US45",
+            "code": "SC",
             "house_districts": [{
                     "name": "South Carolina",
                     "number": 1,
@@ -2561,6 +2601,7 @@
         {
             "name": "South Dakota",
             "fips": "US46",
+            "code": "SD",
             "house_districts": [{
                 "name": "South Dakota",
                 "number": "AL",
@@ -2572,6 +2613,7 @@
         {
             "name": "Tennessee",
             "fips": "US47",
+            "code": "TN",
             "house_districts": [{
                     "name": "Tennessee",
                     "number": 1,
@@ -2640,6 +2682,7 @@
         {
             "name": "Texas",
             "fips": "US48",
+            "code": "TX",
             "house_districts": [{
                     "name": "Texas",
                     "number": 1,
@@ -2897,6 +2940,7 @@
         {
             "name": "Utah",
             "fips": "US49",
+            "code": "UT",
             "house_districts": [{
                     "name": "Utah",
                     "number": 1,
@@ -2930,6 +2974,7 @@
         {
             "name": "Vermont",
             "fips": "US50",
+            "code": "VT",
             "house_districts": [{
                 "name": "Vermont",
                 "number": "AL",
@@ -2941,6 +2986,7 @@
         {
             "name": "Virginia",
             "fips": "US51",
+            "code": "VA",
             "house_districts": [{
                     "name": "Virginia",
                     "number": 1,
@@ -3023,6 +3069,7 @@
         {
             "name": "Washington",
             "fips": "US53",
+            "code": "WA",
             "house_districts": [{
                     "name": "Washington",
                     "number": 1,
@@ -3098,6 +3145,7 @@
         {
             "name": "West Virginia",
             "fips": "US54",
+            "code": "WV",
             "house_districts": [{
                     "name": "West Virginia",
                     "number": 1,
@@ -3124,6 +3172,7 @@
         {
             "name": "Wisconsin",
             "fips": "US55",
+            "code": "WI",
             "house_districts": [{
                     "number": 1,
                     "dem_votes": 107003,
@@ -3177,6 +3226,7 @@
         {
             "name": "Wyoming",
             "fips": "US56",
+            "code": "WY",
             "house_districts": [{
                 "number": "AL",
                 "dem_votes": 75466,

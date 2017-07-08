@@ -39,24 +39,34 @@
                         </div>
                         <span>
                             <p>The preceding JavaScript function should calculate a metric of partisan gerrymandering, 
-                                and set return_obj to an object containing that value and true/false for whether the state should be evaluated.
+                                and set return_obj to an object containing 1) that value, 2) true/false for whether the state should be evaluated, and 3) an estimate for the number of US House seats that were flipped to the other party through gerrymandering.
                             </p>
                         <p>Example return object:</p></span>
                         <span class='code'>
                         var return_obj = {<br>
                         &nbsp;&nbsp;metric: 1234,<br>
-                        &nbsp;&nbsp;include: true<br>
+                        &nbsp;&nbsp;include: true,<br>
+                        &nbsp;&nbsp;seats_flipped: 2<br>
                         }
                         </span>
                     </form>
                 </div>
             </div>
-            <div id='states' class='row'>
-                <div class='row'>
-                    <h2>US States, Ranked by Calculated Metric</h2>
+            <div id='state-data' class='row'>
+                <div>
+                    <h2>US States, Ranked by Absolute Value of Calculated Metric</h2>
                 </div>
-                <div id='states-ranked'>
-                </div>
+                <table id='states-table' class='table table-striped'>
+                    <thead>
+                        <th>State</th>
+                        <th>Metric</th>
+                        <th>US House Seats Flipped</th>
+                        <th>Total US House Districts</th>
+                        <th>Map</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
             <div id='notes' class='row'>
                 <p>Notes:</p>
