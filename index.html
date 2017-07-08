@@ -16,7 +16,7 @@
     <body>
         <div id='main' class='container'>
             <div class="row m-4">
-                <h1>How can we measure partisan gerrymandering?</h1>
+                <h1>Measures of partisan gerrymandering</h1>
             </div>
             <div class='row m-4'>
                 <div class='col-6'>
@@ -25,9 +25,9 @@
                         <div id="map"></div>
                     </div>
                 </div>
-                <div id='code' class='col-6'>
+                <div class='col-6'>
                     <form>
-                        <div> 
+                        <div class='code'> 
                             var gerry_metric = function(state) { <br>
                             <textarea name="metric-function" id="metric-function" rows=30 cols=80></textarea><br>
                         &nbsp;&nbsp;return return_val;<br>
@@ -36,6 +36,17 @@
                         <div class="text-center">
                             <button type="button" id='calculate-metric' class="btn btn-primary">Calculate My Metric</button>
                         </div>
+                        <span>
+                            <p>The preceding JavaScript function should calculate a metric of partisan gerrymandering, 
+                                and set return_val to an object containing that value and true/false for whether the state should be evaluated.
+                            </p>
+                        <p>Example return object:</p></span>
+                        <span class='code'>
+                        var return_val = {<br>
+                        &nbsp;&nbsp;metric: 1234,<br>
+                        &nbsp;&nbsp;include: true<br>
+                        }
+                        </span>
                     </form>
                 </div>
             </div>
