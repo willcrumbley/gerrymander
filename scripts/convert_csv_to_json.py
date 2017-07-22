@@ -9,6 +9,7 @@ for district in records:
         state = { key: district[key] for key in ["name", "code"] }
         state["fips"] = "US{}".format(district["fips"].zfill(2))
         state["house_districts"] = []
+        state["metric"] = 0;
         states[district["code"]] = state
     for key in district.keys():
         district[key] = district[key].replace(',', '')
