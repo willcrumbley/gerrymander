@@ -1,3 +1,6 @@
+body {
+    margin: 5%;
+}
 .code {
   font-family: monospace; 
 }
@@ -10,4 +13,40 @@
 }
 .state-map {
     max-width: 200px;
+}
+.alert-warning {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+/* TODO INTEGRATE THIS WITH EVERYTHING ELSE */
+/* navigation */
+#nav-stick {
+    min-width: 157px;
+}
+
+nav.stick {
+    position: fixed;
+    top: 0;
+    z-index: 10000;
+    margin-top:12px;
+}
+
+nav ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+nav li {
+
+}
+
+nav li a {
+    color:rgb(50,50,50);
+    font-weight:700;
+}
+
+a.nav-active {
+    color:#ccc;
 }

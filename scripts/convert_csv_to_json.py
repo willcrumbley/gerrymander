@@ -1,6 +1,6 @@
 import csv, json;
 
-with open('./data/by_congressional_district.csv', mode='r') as infile:
+with open('./data/by_congressional_district_v3.csv', mode='r') as infile:
     records = list(csv.DictReader(infile))
 
 states = {}
@@ -9,14 +9,29 @@ for district in records:
         state = { key: district[key] for key in ["name", "code"] }
         state["fips"] = "US{}".format(district["fips"].zfill(2))
         state["house_districts"] = []
+        state["metric"] = 0;
         states[district["code"]] = state
     for key in district.keys():
         district[key] = district[key].replace(',', '')
+    votes = {
+        "y2016": {},
+        "y2014": {},
+        "y2012": {},
+        "y2008": {}
+    }
+    for race in ["house", "pres"]:
+        year_list = ["2016", "2014", "2012"] if race == "house" else ["2016", "2012", "2008"]
+        for year in year_list:
+            year_string = "y{}".format(year)
+            for party in ["dem", "rep", "other"]:
+                try:
+                    vote_count = int(district["_".join([year, race, party])])
+                except ValueError:
+                    vote_count = None # Encode missing data as None
+                votes[year_string]["{0}_votes_{1}".format(party, race)] = vote_count
     states[district["code"]]["house_districts"].append({
         "number": district["number"],
-        "dem_votes": int(district["2016_house_dem"]),
-        "rep_votes": int(district["2016_house_rep"]),
-        "other_votes": int(district["2016_house_other"])
+        "votes": votes
     })
 
 states_list = []
