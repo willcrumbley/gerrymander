@@ -1,0 +1,14 @@
+<script>
+    window.addEventListener('message', function (e) {
+        var mainWindow = e.source;
+        var states = e.data.states
+        for (let statex of states) {
+            var options = {"state": statex}
+            eval(e.data.algorithm);
+            statex.metric = return_obj.metric.toFixed(2);
+            statex.include = return_obj.include;
+            statex.seats_flipped = return_obj.seats_flipped.toFixed(1);
+        }
+        mainWindow.postMessage(states, event.origin);
+    });
+</script>

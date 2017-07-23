@@ -19,6 +19,13 @@ body {
     margin-right: 10%;
 }
 
+ #js-sandbox {
+    border: 0; 
+    width: 0px; 
+    height: 0px;
+}
+    
+
 /* TODO INTEGRATE THIS WITH EVERYTHING ELSE */
 /* navigation */
 #nav-stick {
