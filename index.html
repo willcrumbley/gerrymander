@@ -1,15 +1,12 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <script src="./node_modules/jquery/dist/jquery.js"></script>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval'; img-src 'self' nationalmap.gov">
         <script src="./node_modules/tether/dist/js/tether.js"></script>
-        <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
         <script src="./node_modules/d3/build/d3.js"></script>
         <script src="./node_modules/d3-geo-projection/build/d3-geo-projection.js"></script>
         <script src="./node_modules/topojson/dist/topojson.js"></script>
         <script src="./lib/js/d3.geomap.js"></script>
-        <script src="./node_modules/base-64/base64.js"></script>
-        <script src="./node_modules/jquery.scrollTo/jquery.scrollTo.js"></script>
         <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="../lib/css/d3.geomap.css">
         <link href="./static/gerry.css" rel="stylesheet">
@@ -27,7 +24,7 @@
                             <ul>
                               <li class="active"><a href="#map-row">Map</a></li>
                               <li><a href="#code">Active Algorithm</a></li>
-                              <li><a href="#state-table">Table</a></li>
+                              <li><a href="#state-table">States</a></li>
                               <li><a href="#links">Notable Algorithms</a></li>
                               <li><a href="#state-data">Data</a></li>
                               <li><a href="#notes">Notes</a></li>
@@ -39,7 +36,7 @@
                     <div class="row m-5" id="map-row">
                         <h2>US States By Calculated Metric</h2>
                         <div id="map"></div>
-                        <span>Excluded states shown in grey.</span>
+                        <div id='map-disclaimer' class='alert alert-info'>For security reasons, the map will not display the metric until you review the algorithm and click the 'Calculate' button below.</div>
                     </div>
                     <div class="row m-5" id="code">
                         <h2>Algorithm to Calculate Gerrymandering Metric</h2>
@@ -75,19 +72,7 @@
                         <div>
                             <h2>US States, Ranked by Absolute Value of Calculated Metric</h2>
                         </div>
-                        <table id='states-table' class='table table-striped'>
-                            <thead>
-                                <th>State</th>
-                                <th>Metric</th>
-                                <th>US House Seats Flipped</th>
-                                <th>Total US House Districts</th>
-                                <th>Actual Dem House Seats, 2016</th>
-                                <th>Actual Rep House Seats, 2016</th>
-                                <th>Map</th>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                        <div id='states-table'></div>
                     </div>
                     <div id='links' class='row m-5'>
                         <div>
@@ -124,22 +109,20 @@
                         </div>
                     </div>
                     <div id='notes' class='row m-5'>
-                        <h2>Notes</h2>
-                        <h3>Is this safe?</h3>
-                        <span>This site allows the user to run arbitrary JavaScript from the textarea
-                        above. If you believe that this site introduces any unaddressed security vulnerabilities, please file an issue at <a href='https://github.com/willcrumbley/gerrymander'>https://github.com/willcrumbley/gerrymander</a> and we will address the issue.</span>
-                        <h4>What about Cross-site scripting (XSS)?</h4>
-                        <span>This entire site consists of static files, with no server endpoints, no server logic, no cookies, and no account data, so we are not aware of any security concerns around cross-site scripting.</span>
-                        <h4>What about other kinds of malicious JavaScript?</h4>
-                        <span>We are aware of the potential danger of sharing links with malicious 
-                        JavaScript encoded, so the site does not automatically execute the decoded JavaScript, instead asking users to inspect the decoded script and execute it themselves.</span>
-                        <h3>Data source</h3>
-                        <span>"115th Congress Members Guide with Elections and Demographic Data by District", <a href="https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit">https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit</a></span>
+                        <h2>Is this safe?</h2>
+                        <p>This site allows the user to run arbitrary JavaScript from the textarea
+                        above. If you believe that this site introduces any unaddressed security vulnerabilities, please file an issue at <a href='https://github.com/willcrumbley/gerrymander'>https://github.com/willcrumbley/gerrymander</a> and we will address the issue.</p>
+                        <h2>What about XSS and other kinds of malicious JavaScript?</h2>
+                        <p>We are aware of the potential danger of sharing links with malicious 
+                        JavaScript encoded, so (except for the default algorithm) the site does not automatically execute the decoded JavaScript, instead asking users to inspect the decoded script and execute it themselves. JavaScript
+                        is also executed in a sandboxed iframe, and this page has a strict Content Security Policy.</p>
+                        <h2>Data source</h2>
+                        <p>"115th Congress Members Guide with Elections and Demographic Data by District", <a href="https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit">https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
-        <script type="text/javascript" src="./static/gerry.js"></script>
+        <iframe sandbox="allow-scripts" id="js-sandbox" src="./js-sandbox.html"></iframe>
+        <script src="./static/bin/bundle.js" type="text/javascript"></script>
     </body>
 </html>

@@ -1,58 +1,32 @@
+"use strict";
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var base64 = require('base-64');
+var $ = require('jquery');
+var default_metric = require('./default_metric.js')
+var scroll
+
 window.gerry_app = {};
 
-gerry_app.default_metric = `// This is the efficiency gap metric, as defined in 
-// Stephanopoulos and McGhee, "Partisan Gerrymandering and the Efficiency Gap", 2014.
-// See: http://chicagounbound.uchicago.edu/cgi/viewcontent.cgi?article=1946&context=public_law_and_legal_theory
-var state = options.state;
-var total_state_votes = 0;
-var dem_wasted_votes = 0;
-var rep_wasted_votes = 0;
-for (let district of state.house_districts) {
-    for (let year of ["y2016", "y2014", "y2012"]) {
-        for (let party of ["dem", "rep"]) {
-            if (district.votes[year][party + "_votes_house"] === null) {
-                if (year === "y2014") {
-                    district.votes[year][party + "_votes_house"] = district.votes.y2012[party + "_votes_pres"]
-                }
-                else {
-                    district.votes[year][party + "_votes_house"] = district.votes[year][party + "_votes_pres"]
-                }
-            }
-        }
-    }
-    var dem_votes_avg = (district.votes.y2016.dem_votes_house + district.votes.y2014.dem_votes_house + 
-                             district.votes.y2012.dem_votes_house)/3
-    var rep_votes_avg = (district.votes.y2016.rep_votes_house + district.votes.y2014.rep_votes_house + 
-                             district.votes.y2012.rep_votes_house)/3
-    var total_votes = dem_votes_avg + rep_votes_avg;
-    total_state_votes += total_votes;
-    if (dem_votes_avg > rep_votes_avg) {
-        dem_wasted_votes += (dem_votes_avg - total_votes / 2);
-        rep_wasted_votes += rep_votes_avg;
-    }
-    else {
-        rep_wasted_votes += (rep_votes_avg - total_votes / 2);
-        dem_wasted_votes += dem_votes_avg;
-    }
-};
-include = state.house_districts.length >= 8 ? true : false;
-metric = (rep_wasted_votes - dem_wasted_votes) / total_state_votes;
-return_obj = {
-    metric: metric,
-    include: include,
-    seats_flipped: metric * state.house_districts.length
-}
-`
 gerry_app.update_metric_url = function(metric_function) {
     var encoded_function_param = "?metric=" + base64.encode(metric_function);
     history.pushState({}, null, encoded_function_param);
 }
 
-gerry_app.calculate_state_metric = function(options) {
-    var metric_function = $('#metric-function').val();
-    eval(metric_function);
-    return return_obj;
-}
+window.addEventListener('message',
+    function (e) {
+      var frame = document.getElementById('js-sandbox');
+      if (e.origin === "null" && e.source === frame.contentWindow) {
+        var states = e.data;
+        gerry_app.sort_by_metric(states);
+        var filtered_states = gerry_app.filter_states(states);
+        gerry_app.display_state_metrics(filtered_states);
+        var metric_function = $('#metric-function').val();
+        gerry_app.update_metric_url(metric_function);    
+        $('#map-disclaimer').text('Excluded states shown in grey.')
+        }
+    });
 
 gerry_app.sort_by_metric = function(states) {
     states.sort(function(a, b) {
@@ -82,45 +56,78 @@ gerry_app.render_map = function(states) {
     map.draw(d3.select("#map").datum(states));
 }
 
-gerry_app.display_state_metrics = function(states) {
-    $('#states-table tbody').children().remove();
-    var pdf_link_prefix = "https://www2.census.gov/geo/maps/cong_dist/cd114/st_based/CD114_";
-    var map_url_prefix = "https://nationalmap.gov/small_scale/printable/images/preview/congdist/pagecgd113_";
-    for (let state of states) {
-        var name = "<td>" + state.name + "</td>";
-        var metric = "<td>" + state.metric + "</td>";
-        var seats_flipped = "<td>" + state.seats_flipped + "</td>";
-        var districts = "<td>" + state.house_districts.length + "</td>";
+var pdf_link_prefix = "https://www2.census.gov/geo/maps/cong_dist/cd114/st_based/CD114_";
+var map_url_prefix = "https://nationalmap.gov/small_scale/printable/images/preview/congdist/pagecgd113_";
+class TableRow extends React.Component {
+    render() {
+        var state = this.props.state;
         var num_dem_seats = state.house_districts
             .filter(district => district.votes.y2016.dem_votes_house > district.votes.y2016.rep_votes_house).length;
         var num_rep_seats = state.house_districts
             .filter(district => district.votes.y2016.rep_votes_house > district.votes.y2016.dem_votes_house).length;
-        var dem_seats = "<td>" + num_dem_seats + "</td>";
-        var rep_seats = "<td>" + num_rep_seats + "</td>";
-        var map_image = "<img class='state-map' src='" + map_url_prefix + state.code.toLowerCase() + ".gif'>";
-        var map = "<td><a href = 'https://nationalmap.gov/small_scale/printable/congress.html' target='_blank'>" + 
-            map_image + "</a></td>";
-        var pdf = "<td><a href = '" + pdf_link_prefix + state.code + ".pdf' target='_blank'> (Census Bureau pdf) </a></td>";
-        var state_row = "<tr id='" + state.fips + "''>"+ name + metric + seats_flipped + 
-            districts + dem_seats + rep_seats + map + pdf + "</tr>";
-        $('#states-table tbody').append(state_row);
+        var map_url = map_url_prefix + state.code.toLowerCase() + ".gif";
+        var pdf_url = pdf_link_prefix + state.code + ".pdf";
+        return (
+            <tr id={state.fips}>
+                <td>{state.name}</td>
+                <td>{state.metric}</td>
+                <td>{state.seats_flipped}</td>
+                <td>{state.house_districts.length}</td>
+                <td>{num_dem_seats}</td>
+                <td>{num_rep_seats}</td>
+                <td>
+                    <a href = 'https://nationalmap.gov/small_scale/printable/congress.html' target='_blank'>
+                        <img className='state-map' src={map_url}/>
+                    </a>
+                </td>
+                <td>
+                    <a href={pdf_url} target='_blank'> (Census Bureau pdf) </a>
+                </td>
+            </tr>
+        );
     }
+}
+
+class StateTable extends React.Component {
+    render() {
+        var states = this.props.states.map(function (state, index) {
+          return (
+            <TableRow key={index} state={state}/>
+          );
+        });
+        return (
+            <table className='table table-striped'>
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Metric</th>
+                        <th>US House Seats Flipped</th>
+                        <th>Total US House Districts</th>
+                        <th>Actual Dem House Seats, 2016</th>
+                        <th>Actual Rep House Seats, 2016</th>
+                        <th>Map</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {states}
+                </tbody>
+            </table>
+        );
+    }
+}
+
+gerry_app.display_state_metrics = function(states) {
+    ReactDOM.render(<StateTable states={states} />, document.getElementById('states-table'));
     gerry_app.render_map(states);
 }
 
 gerry_app.calculate_metrics = function() {
-    var states = gerry_app.house_json["states"];
-    for (let state of states) {
-        var state_result = gerry_app.calculate_state_metric({"state": state});
-        state.metric = state_result.metric.toFixed(2);
-        state.include = state_result.include;
-        state.seats_flipped = state_result.seats_flipped.toFixed(1);
+    var frame = document.getElementById('js-sandbox');
+    var data = {
+        "states": gerry_app.house_json["states"],
+        "algorithm": $('#metric-function').val()
     }
-    gerry_app.sort_by_metric(states);
-    var filtered_states = gerry_app.filter_states(states);
-    gerry_app.display_state_metrics(filtered_states);
-    var metric_function = $('#metric-function').val();
-    gerry_app.update_metric_url(metric_function);    
+    frame.contentWindow.postMessage(data, '*');
 }
 
 gerry_app.set_metric_function = function() {
@@ -130,7 +137,7 @@ gerry_app.set_metric_function = function() {
         metric_function = base64.decode(metric_param);
     }
     else {
-        metric_function = gerry_app.default_metric
+        metric_function = default_metric
     }
     $('#metric-function').val(metric_function);    
 }
@@ -212,7 +219,7 @@ $(function() {
         calculate_button.click(gerry_app.calculate_metrics);
         gerry_app.render_map(house_json["states"]);
         gerry_app.display_input_data(house_json.states)
-        if (window.location.pathname === "/") {
+        if (window.location.search === "") {
             calculate_button.click();
         }
     });
