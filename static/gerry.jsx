@@ -4,14 +4,21 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var base64 = require('base-64');
 var $ = require('jquery');
-var default_metric = require('./default_metric.js')
-var scroll
+
+var default_metric = require('./default_metric.js');
+var shortener = require('./utils/shortener.js');
 
 window.gerry_app = {};
+
+gerry_app.update_short_url = function(short_url) {
+    $('#share').removeAttr('hidden');
+    $('#short_url').html("<a href='" + short_url + "'>" + short_url + "</a>");
+}
 
 gerry_app.update_metric_url = function(metric_function) {
     var encoded_function_param = "?metric=" + base64.encode(metric_function);
     history.pushState({}, null, encoded_function_param);
+    shortener.shorten(window.location.href, gerry_app.update_short_url);
 }
 
 window.addEventListener('message',

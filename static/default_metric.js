@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = `// This is the efficiency gap metric, as defined in 
 // Stephanopoulos and McGhee, "Partisan Gerrymandering and the Efficiency Gap", 2014.
 // See: http://chicagounbound.uchicago.edu/cgi/viewcontent.cgi?article=1946&context=public_law_and_legal_theory
