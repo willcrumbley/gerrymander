@@ -13,10 +13,13 @@ window.gerry_app = {};
 
 gerry_app.update_short_url = function(short_url) {
     $('#share').removeAttr('hidden');
-    $('#short_url').html("<a href='" + short_url + "'>" + short_url + "</a>");
+    $('#short-url').val(short_url);
     var share_buttons = document.getElementById('share-buttons');
     var tweet_text = 'A plausible algorithm to measure partisan gerrymandering?';
-    twttr.widgets.createShareButton(short_url, share_buttons, { text: tweet_text });
+    window.twttr.widgets.createShareButton(short_url, share_buttons, { text: tweet_text });
+    var fb = '<div class="fb-share-button" data-href="' + short_url + '" data-layout="button"></div>';
+    $(share_buttons).append(fb);
+    window.FB.XFBML.parse();
 }
 
 gerry_app.update_metric_url = function(metric_function) {
