@@ -1,7 +1,14 @@
 <html>
     <head>
+        <title>An exploration of the efficiency gap and other measures of partisan gerrymandering</title>
         <meta charset="utf-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval'; img-src 'self' nationalmap.gov">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' nationalmap.gov syndication.twitter.com www.facebook.com; script-src 'self' 'unsafe-eval' platform.twitter.com connect.facebook.net; style-src 'self' 'unsafe-inline'; frame-src 'self' platform.twitter.com staticxx.facebook.com www.facebook.com; connect-src 'self' www.googleapis.com"> 
+        <meta property="og:url"           content="http://www.efficiency-gap.com" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="An exploration of the efficiency gap and other measures of partisan gerrymandering" />
+        <meta property="og:description"   content="Create an interactive map-based visualization of the efficiency gap and other partisan gerrymandering measures and metrics using JavaScript" />
+        <meta property="og:image"         content="http://www.efficiency-gap.com/static/img/gerrymander-500.png" />
+        <meta name="description" content="Create an interactive map-based visualization of the efficiency gap and other partisan gerrymandering measures and metrics using JavaScript" />
         <script src="./node_modules/tether/dist/js/tether.js"></script>
         <script src="./node_modules/d3/build/d3.js"></script>
         <script src="./node_modules/d3-geo-projection/build/d3-geo-projection.js"></script>
@@ -14,7 +21,12 @@
     <body>
         <div id='main' class='container'>
             <div class="row m-5">
-                <h1>An exploration of the efficiency gap and other measures of partisan gerrymandering.</h1>
+                <div class="col-2">
+                    <img class='head-image' src='./static/img/gerrymander-500.png'>
+                </div>
+                <div class="col-10">
+                    <h1>An exploration of the efficiency gap and other measures of partisan gerrymandering.</h1>
+                </div>
             </div>
             <div class="row">
                 <div class="col-2 sidebar">
@@ -52,12 +64,6 @@
                             &nbsp;&nbsp;return return_obj;<br>
                                 }
                             </div>
-                            <div class="alert alert-warning row m-4">
-                                <p>Warning! Clicking this button will execute the JavaScript in the black text area above. If you have any uncertainty about what this code will do, please do not execute it!</p>
-                            </div>
-                            <div class="text-center row m-4">
-                                <button type="button" id='calculate-metric' class="btn btn-primary">Calculate My Metric</button>
-                            </div>
                             <div class="row m-4">
                                 <p>The preceding JavaScript function should calculate a metric of partisan gerrymandering, 
                                     and set return_obj to an object containing 1) that value, 2) true/false for whether the state should be evaluated, and 3) an estimate for the number of US House seats that were flipped to the other party through gerrymandering.
@@ -70,6 +76,23 @@
                                 &nbsp;&nbsp;include: true,<br>
                                 &nbsp;&nbsp;seats_flipped: 2<br>
                                 }
+                            </div>
+                            <div class="alert alert-warning row m-4">
+                                <p>Warning! Clicking this button will execute the JavaScript in the black text area above. If you have any uncertainty about what this code will do, please do not execute it!</p>
+                                <button type="button" id='calculate-metric' class="btn btn-primary">
+                                    Calculate the Metric
+                                </button>
+                            </div>
+                            <div id="share" class="row m-4" hidden>
+                                <div class="col col-12">
+                                    <h3>Share this Algorithm</h3>
+                                    <div id="share-buttons" class="row m-2">
+                                    </div>
+                                    <div class="row m-2">
+                                        <span>Or, copy this link to show others your algorithm:&nbsp;</span>
+                                        <input id="short-url" class="code" readonly></span>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -88,7 +111,9 @@
                         </div>
                     </div>
                     <div id='notes' class='row m-5'>
-                        <h2>Is this safe?</h2>
+                        <div class="row">
+                            <h2>Is this safe?</h2>
+                        </div>
                         <p>This site allows the user to run arbitrary JavaScript from the textarea
                         above. If you believe that this site introduces any unaddressed security vulnerabilities, please file an issue at <a href='https://github.com/willcrumbley/gerrymander'>https://github.com/willcrumbley/gerrymander</a> and we will address the issue.</p>
                         <h2>What about XSS and other kinds of malicious JavaScript?</h2>
@@ -102,6 +127,9 @@
             </div>
         </div>
         <iframe sandbox="allow-scripts" id="js-sandbox" src="./js-sandbox.html"></iframe>
+        <script src="https://platform.twitter.com/widgets.js" type="text/javascript"></script>
+        <div id="fb-root"></div>
+        <script src="https://connect.facebook.net/en_US/all.js#xfbml=1" type="text/javascript"></script>
         <script src="./static/bin/bundle.js" type="text/javascript"></script>
     </body>
 </html>
