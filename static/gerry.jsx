@@ -5,6 +5,7 @@ var ReactDOM = require('react-dom');
 var base64 = require('base-64');
 var $ = require('jquery');
 
+var house_data = require('../data/house_by_state.json')
 var default_metric = require('./default_metric.js');
 var shortener = require('./utils/shortener.js');
 
@@ -13,6 +14,9 @@ window.gerry_app = {};
 gerry_app.update_short_url = function(short_url) {
     $('#share').removeAttr('hidden');
     $('#short_url').html("<a href='" + short_url + "'>" + short_url + "</a>");
+    var share_buttons = document.getElementById('share-buttons');
+    var tweet_text = 'A plausible algorithm to measure partisan gerrymandering?';
+    twttr.widgets.createShareButton(short_url, share_buttons, { text: tweet_text });
 }
 
 gerry_app.update_metric_url = function(metric_function) {
@@ -131,7 +135,7 @@ gerry_app.display_state_metrics = function(states) {
 gerry_app.calculate_metrics = function() {
     var frame = document.getElementById('js-sandbox');
     var data = {
-        "states": gerry_app.house_json["states"],
+        "states": gerry_app.house_json.states,
         "algorithm": $('#metric-function').val()
     }
     frame.contentWindow.postMessage(data, '*');
@@ -220,15 +224,13 @@ gerry_app.set_scroll = function() {
 
 $(function() {
     gerry_app.set_metric_function();
-    $.getJSON("../data/house_by_state.json", function(house_json) {
-        gerry_app.house_json = house_json;
-        var calculate_button = $('#calculate-metric');
-        calculate_button.click(gerry_app.calculate_metrics);
-        gerry_app.render_map(house_json["states"]);
-        gerry_app.display_input_data(house_json.states)
-        if (window.location.search === "") {
-            calculate_button.click();
-        }
-    });
+    gerry_app.house_json = house_data;
+    var calculate_button = $('#calculate-metric');
+    calculate_button.click(gerry_app.calculate_metrics);
+    gerry_app.render_map(gerry_app.house_json.states);
+    gerry_app.display_input_data(gerry_app.house_json.states)
+    if (window.location.search === "") {
+        calculate_button.click();
+    }
     gerry_app.set_scroll();
 });
