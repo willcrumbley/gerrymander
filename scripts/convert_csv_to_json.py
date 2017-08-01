@@ -23,7 +23,7 @@ for district in records:
         year_list = ["2016", "2014", "2012"] if race == "house" else ["2016", "2012", "2008"]
         for year in year_list:
             year_string = "y{}".format(year)
-            for party in ["dem", "rep", "other"]:
+            for party in ["d", "r", "other"]:
                 try:
                     vote_count = int(district["_".join([year, race, party])])
                 except ValueError:
