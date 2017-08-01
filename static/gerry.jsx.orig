@@ -11,15 +11,23 @@ var shortener = require('./utils/shortener.js');
 
 window.gerry_app = {};
 
+<<<<<<< HEAD
 gerry_app.display_social_buttons = function(short_url) {
     var share_buttons = document.getElementById('share-buttons');
     while (share_buttons.firstChild) {
         share_buttons.removeChild(share_buttons.firstChild);
     }
+=======
+gerry_app.update_short_url = function(short_url) {
+    $('#share').removeAttr('hidden');
+    $('#short-url').val(short_url);
+    var share_buttons = document.getElementById('share-buttons');
+>>>>>>> a94d948541566289c5126ef967d183f15799280a
     var tweet_text = 'A plausible algorithm to measure partisan gerrymandering?';
     window.twttr.widgets.createShareButton(short_url, share_buttons, { text: tweet_text });
     var fb = '<div class="fb-share-button" data-href="' + short_url + '" data-layout="button"></div>';
     $(share_buttons).append(fb);
+<<<<<<< HEAD
     window.FB.XFBML.parse();    
 }
 
@@ -27,6 +35,9 @@ gerry_app.update_short_url = function(short_url) {
     $('#share').removeAttr('hidden');
     $('#short-url').val(short_url);
     gerry_app.display_social_buttons(short_url);
+=======
+    window.FB.XFBML.parse();
+>>>>>>> a94d948541566289c5126ef967d183f15799280a
 }
 
 gerry_app.update_metric_url = function(metric_function) {

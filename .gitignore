@@ -1,2 +1,4 @@
 node_modules
 deploy
+static/bin/bundle.js
+.DS_Store

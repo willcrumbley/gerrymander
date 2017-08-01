@@ -60,13 +60,15 @@
                         <form>
                             <div class='code'> 
                                 function(options) { <br>
-                                <textarea name="metric-function" id="metric-function" rows=30 cols=120></textarea><br>
+                                <textarea name="metric-function" id="metric-function" rows=30 cols=120 maxlength="1750"></textarea><br>
                             &nbsp;&nbsp;return return_obj;<br>
                                 }
                             </div>
                             <div class="row m-4">
-                                <p>The preceding JavaScript function should calculate a metric of partisan gerrymandering, 
-                                    and set return_obj to an object containing 1) that value, 2) true/false for whether the state should be evaluated, and 3) an estimate for the number of US House seats that were flipped to the other party through gerrymandering.
+                                <p>The preceding JavaScript function should calculate a metric of partisan gerrymandering and set return_obj to an object containing 1) that value, 2) true/false for whether the state should be evaluated, and 3) an estimate for the number of US House seats that were flipped to the other party through gerrymandering.
+                                </p>
+                                <p>
+                                Note that the algorithm is limited to 1750 characters so that it can be encoded into a unique link.
                                 </p>
                                 <p>Example return object:</p>
                             </div>
