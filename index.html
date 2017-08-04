@@ -20,29 +20,35 @@
     </head>
     <body>
         <div id='main' class='container'>
+            <div>
+                <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+                  <a class="navbar-brand" href="#">
+                    <img src='./static/img/gerrymander-500.png' width="30" height="30" alt="">
+                  </a>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#map-row">Map</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#code">Algorithm</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#state-table">States</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#state-data">Data</a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+            </div>
             <div class="row m-5">
-                <div class="col-2">
-                    <img class='head-image' src='./static/img/gerrymander-500.png'>
-                </div>
                 <div class="col-10">
                     <h1>An exploration of the efficiency gap and other measures of partisan gerrymandering.</h1>
                 </div>
             </div>
             <div class="row">
-                <div class="col-2 sidebar">
-                    <div class="container">
-                        <div id="nav-anchor"></div>
-                        <nav id='nav-stick'>
-                            <ul>
-                              <li class="active"><a href="#map-row">Map</a></li>
-                              <li><a href="#code">Active Algorithm</a></li>
-                              <li><a href="#state-table">States</a></li>
-                              <li><a href="#state-data">Data</a></li>
-                              <li><a href="#notes">Notes</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
                 <div class="col-10 content">
                     <div id="blurb" class="row m-5">
                         <p>In <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2457468">"Partisan Gerrymandering and the Efficiency Gap" (2014)</a>, Stephanopoulos and McGhee proposed the "efficiency gap" as a standard that could be used to measure the advantage a party has in the way a state's electoral districts are drawn.</p>
@@ -115,15 +121,15 @@
                     <div id='notes' class='row m-5'>
                         <div class="row">
                             <h2>Is this safe?</h2>
+                            <p>This site allows the user to run arbitrary JavaScript from the textarea
+                            above. If you believe that this site introduces any unaddressed security vulnerabilities, please file an issue at <a href='https://github.com/willcrumbley/gerrymander'>https://github.com/willcrumbley/gerrymander</a> and we will address the issue.</p>
+                            <h2>What about XSS and other kinds of malicious JavaScript?</h2>
+                            <p>We are aware of the potential danger of sharing links with malicious 
+                            JavaScript encoded, so (except for the default algorithm) the site does not automatically execute the decoded JavaScript, instead asking users to inspect the decoded script and execute it themselves. JavaScript
+                            is also executed in a sandboxed iframe, and this page has a strict Content Security Policy.</p>
+                            <h2>Data source</h2>
+                            <p>"115th Congress Members Guide with Elections and Demographic Data by District", <a href="https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit">https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit</a></p>
                         </div>
-                        <p>This site allows the user to run arbitrary JavaScript from the textarea
-                        above. If you believe that this site introduces any unaddressed security vulnerabilities, please file an issue at <a href='https://github.com/willcrumbley/gerrymander'>https://github.com/willcrumbley/gerrymander</a> and we will address the issue.</p>
-                        <h2>What about XSS and other kinds of malicious JavaScript?</h2>
-                        <p>We are aware of the potential danger of sharing links with malicious 
-                        JavaScript encoded, so (except for the default algorithm) the site does not automatically execute the decoded JavaScript, instead asking users to inspect the decoded script and execute it themselves. JavaScript
-                        is also executed in a sandboxed iframe, and this page has a strict Content Security Policy.</p>
-                        <h2>Data source</h2>
-                        <p>"115th Congress Members Guide with Elections and Demographic Data by District", <a href="https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit">https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit</a></p>
                     </div>
                 </div>
             </div>
