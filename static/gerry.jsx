@@ -4,12 +4,15 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var base64 = require('base-64');
 var $ = require('jquery');
+var wait_until = require('wait-until');
 
 var house_data = require('../data/house_by_state.json')
 var default_metric = require('./default_metric.js');
 var shortener = require('./utils/shortener.js');
 
-window.gerry_app = {};
+window.gerry_app = {
+    iframe_loaded: false
+};
 
 gerry_app.display_social_buttons = function(short_url) {
     var share_buttons = document.getElementById('share-buttons');
@@ -45,7 +48,7 @@ window.addEventListener('message',
         gerry_app.display_state_metrics(filtered_states);
         var metric_function = $('#metric-function').val();
         gerry_app.update_metric_url(metric_function);    
-        $('#map-disclaimer').text('Excluded states shown in grey.')
+        $('#map-disclaimer').text('Excluded states shown in grey.');
         }
     });
 
@@ -148,7 +151,15 @@ gerry_app.calculate_metrics = function() {
         "states": gerry_app.house_json.states,
         "algorithm": $('#metric-function').val()
     }
-    frame.contentWindow.postMessage(data, '*');
+    wait_until()
+        .interval(500)
+        .times(10)
+        .condition(function() {
+            return (gerry_app.iframe_loaded);
+        })
+        .done(function(result) {
+            frame.contentWindow.postMessage(data, '*');
+    });
 }
 
 gerry_app.set_metric_function = function() {
@@ -167,7 +178,19 @@ gerry_app.display_input_data = function(state_data) {
     $("#state-data-area").val(JSON.stringify(state_data, undefined, 4));
 }
 
+gerry_app.load_iframe = function() {
+    var iframe = document.createElement('iframe');
+    iframe.setAttribute('sandbox', 'allow-scripts');
+    iframe.id = 'js-sandbox';
+    iframe.onload = function() { 
+        gerry_app.iframe_loaded = true;
+    };
+    iframe.src = './js-sandbox.html'; 
+    document.body.appendChild(iframe);
+}
+
 $(function() {
+    gerry_app.load_iframe();
     gerry_app.set_metric_function();
     gerry_app.house_json = house_data;
     var calculate_button = $('#calculate-metric');

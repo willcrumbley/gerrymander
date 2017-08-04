@@ -22,7 +22,8 @@
     "tether": "^1.4.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "clipboard": "^1.7.1"
+    "clipboard": "^1.7.1",
+    "wait-until": "^0.0.2"
   },
   "devDependencies": {
     "webpack": "^3.3.0",
