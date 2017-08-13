@@ -2,7 +2,7 @@
     <head>
         <title>An exploration of the efficiency gap and other measures of partisan gerrymandering</title>
         <meta charset="utf-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' nationalmap.gov syndication.twitter.com www.facebook.com; script-src 'self' 'unsafe-eval' platform.twitter.com connect.facebook.net; style-src 'self' 'unsafe-inline'; frame-src 'self' platform.twitter.com staticxx.facebook.com www.facebook.com; connect-src 'self' www.googleapis.com"> 
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' nationalmap.gov syndication.twitter.com www.facebook.com; script-src 'self' 'unsafe-eval' platform.twitter.com connect.facebook.net; style-src 'self' 'unsafe-inline'; frame-src 'self' platform.twitter.com staticxx.facebook.com www.facebook.com; connect-src 'self' www.googleapis.com gist.githubusercontent.com"> 
         <meta property="og:url"           content="http://www.efficiency-gap.com" />
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="An exploration of the efficiency gap and other measures of partisan gerrymandering" />
@@ -66,9 +66,9 @@
                         <h2>Algorithm to Calculate Gerrymandering Metric</h2>
                         <form>
                             <div class='code'> 
-                                function(options) { <br>
-                                <textarea name="metric-function" id="metric-function" rows=30 cols=120 maxlength="1750"></textarea><br>
-                            &nbsp;&nbsp;return return_obj;<br>
+                                function(options) {
+                                <div id="metric-sandbox">
+                                </div>
                                 }
                             </div>
                             <div class="row m-4">
