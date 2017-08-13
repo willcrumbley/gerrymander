@@ -34,23 +34,16 @@ gerry_app.update_short_url = function(short_url) {
     gerry_app.display_social_buttons(short_url);
 }
 
-gerry_app.update_metric_url = function(metric_function) {
-    var encoded_function_param = "?metric=" + base64.encode(metric_function);
-    history.pushState({}, null, encoded_function_param);
-    shortener.shorten(window.location.href, gerry_app.update_short_url);
-}
-
 window.addEventListener('message',
     function (e) {
       var frame = document.getElementById('js-sandbox');
       if (e.origin === "null" && e.source === frame.contentWindow) {
         var states = e.data;
         gerry_app.sort_by_metric(states);
+
         var filtered_states = gerry_app.filter_states(states);
         gerry_app.display_state_metrics(filtered_states);
-        var metric_function = $('#metric-function').val();
-        // TODO Remove metric function
-        gerry_app.update_metric_url(metric_function);    
+
         $('#map-disclaimer').text('Excluded states shown in grey.');
       }
     });
