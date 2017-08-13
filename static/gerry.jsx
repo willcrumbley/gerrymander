@@ -34,19 +34,14 @@ gerry_app.update_short_url = function(short_url) {
     gerry_app.display_social_buttons(short_url);
 }
 
-window.addEventListener('message',
-    function (e) {
-      var frame = document.getElementById('js-sandbox');
-      if (e.origin === "null" && e.source === frame.contentWindow) {
-        var states = e.data;
-        gerry_app.sort_by_metric(states);
+gerry_app.updateWithMetricData = function (states) {
+  gerry_app.sort_by_metric(states);
 
-        var filtered_states = gerry_app.filter_states(states);
-        gerry_app.display_state_metrics(filtered_states);
+  var filtered_states = gerry_app.filter_states(states);
+  gerry_app.display_state_metrics(filtered_states);
 
-        $('#map-disclaimer').text('Excluded states shown in grey.');
-      }
-    });
+  $('#map-disclaimer').text('Excluded states shown in grey.');
+}
 
 gerry_app.sort_by_metric = function(states) {
     states.sort(function(a, b) {
@@ -180,7 +175,11 @@ gerry_app.display_input_data = function(state_data) {
 gerry_app.initialize_sandbox = function() {
   gerry_app.fetch_metric_function()
     .then((fn_string) => {
-      ReactDOM.render(<JavascriptSandbox fn_string={fn_string} />, document.getElementById('metric-sandbox'));
+      let component = <JavascriptSandbox
+                        states={gerry_app.house_json.states}
+                        fn_string={fn_string}
+                        onCalculate={gerry_app.updateWithMetricData} />
+      ReactDOM.render(component, document.getElementById('metric-sandbox'));
     })
 }
 

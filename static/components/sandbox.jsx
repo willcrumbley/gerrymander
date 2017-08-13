@@ -1,43 +1,65 @@
 const React = require('react')
+const ReactDOM = require('react-dom')
 
 
 /**
  * @props [String] fn_string - Function string to initialize with
+ * @props [Object] states - Array of states data
+ * @props [Function] onCalculate - Callback to be executed with the result of calculating the metric
  */
-function JavascriptSandbox(props) {
-  window.addEventListener('message', function (e) {
-      var mainWindow = e.source;
-      var states = e.data.states
-      for (let statex of states) {
-          var options = {"state": statex}
-          eval(e.data.algorithm);
-          statex.metric = return_obj.metric.toFixed(2);
-          statex.include = return_obj.include;
-          statex.seats_flipped = return_obj.seats_flipped.toFixed(1);
-      }
-      mainWindow.postMessage(states, event.origin);
-  });
+class JavascriptSandbox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fn_string: this.props.fn_string
+    }
 
-  let sandboxStyle = {
-    fontFamily: 'monospace',
-    backgroundColor: '#292929',
-    color: '#fff',
-    marginLeft: '20px',
-    fontSize: '.9em'
+    window.addEventListener('message', (e) => {
+      if(e.origin == 'null' && e.data.name == 'metric-results') {
+        this.props.onCalculate(e.data.states)
+      }
+    })
+
+    this.calculateMetric = this.calculateMetric.bind(this)
+    this.setFnString = this.setFnString.bind(this)
   }
 
-  return (
-    <html>
-        <head>
-            <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none'; connect-src 'none'"></meta>
-        </head>
-        <body>
-          <textarea rows={30} cols={120} style={sandboxStyle}>
-            {props.fn_string}
-          </textarea>
-        </body>
-    </html>
-  )
+  render() {
+    return (
+      <div>
+        <div>
+            <span className='code'>{'function(options) {'}</span>
+            <textarea value={this.state.fn_string} rows={30} cols={120}
+              className="metric-function" onChange={this.setFnString}/>
+            <br />
+            <span className='code'>}</span>
+        </div>
+        <div className="alert alert-warning row m-4">
+          <p>
+            Warning! Clicking this button will execute the JavaScript in the black text area above.
+            If you have any uncertainty about what this code will do, please do not execute it!
+          </p>
+          <button id='calculate-metric' type="button" className="btn btn-primary" onClick={this.calculateMetric}>
+            Calculate the Metric
+          </button>
+        </div>
+        <iframe id='js-sandbox' sandbox='allow-scripts' src='./js-sandbox.html' ref={(input) => {this.iframe = input;}}/>
+      </div>
+    )
+  }
+
+  calculateMetric() {
+    let data = {
+      algorithm: this.state.fn_string,
+      states: this.props.states,
+      name: 'calculate-metric'
+    }
+    this.iframe.contentWindow.postMessage(data, '*');
+  }
+
+  setFnString(e) {
+    this.setState({fn_string: e.target.value})
+  }
 }
 
 module.exports = {JavascriptSandbox}
