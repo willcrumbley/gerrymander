@@ -8,9 +8,9 @@ class TableRow extends React.Component {
     render() {
         var state = this.props.state;
         var num_dem_seats = state.house_districts
-            .filter(district => district.votes.y2016.dem_votes_house > district.votes.y2016.rep_votes_house).length;
+            .filter(district => district.votes.y2016.d_votes_house > district.votes.y2016.r_votes_house).length;
         var num_rep_seats = state.house_districts
-            .filter(district => district.votes.y2016.rep_votes_house > district.votes.y2016.dem_votes_house).length;
+            .filter(district => district.votes.y2016.r_votes_house > district.votes.y2016.d_votes_house).length;
         var map_url = map_url_prefix + state.code.toLowerCase() + ".gif";
         var pdf_url = pdf_link_prefix + state.code + ".pdf";
         return (
