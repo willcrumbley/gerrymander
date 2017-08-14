@@ -153,39 +153,68 @@ gerry_app.calculate_metrics = function() {
     });
 }
 
-gerry_app.fetch_metric_function = function() {
-  let uri = new URI(window.location.href)
-  let gist = uri.query(true).gist || 'pbhavsar/c228879badcf21eb42bad78ceb6f1e4b'
-  let gist_url = `https://gist.githubusercontent.com/${gist}/raw`
-
-  return fetch(gist_url, {mode: 'cors'})
-    .then((response) => {
-      if(response.ok) {
-        return response.text()
-      } else {
-        throw Error(response)
-      }
-    })
-}
-
 gerry_app.display_input_data = function(state_data) {
     $("#state-data-area").val(JSON.stringify(state_data, undefined, 4));
 }
 
 gerry_app.initialize_sandbox = function() {
-  gerry_app.fetch_metric_function()
-    .then((fn_string) => {
-      let component = <JavascriptSandbox
-                        states={gerry_app.house_json.states}
-                        fn_string={fn_string}
-                        onCalculate={gerry_app.updateWithMetricData} />
-      ReactDOM.render(component, document.getElementById('metric-sandbox'));
-    })
+  let component = <SandboxWrapper
+                    states={gerry_app.house_json.states}
+                    onCalculate={gerry_app.updateWithMetricData} />
+  ReactDOM.render(component, document.getElementById('metric-sandbox'));
+}
+
+
+class SandboxWrapper extends React.Component {
+  /**
+   * @props [Object] states - Array of states data
+   * @props [Function] onCalculate - Callback to be executed with the result of calculating the metric
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      fnString: ''
+    }
+  }
+
+  render() {
+    return (
+      <JavascriptSandbox
+        states={gerry_app.house_json.states}
+        fnString={this.state.fnString}
+        onCalculate={gerry_app.updateWithMetricData} />
+
+    )
+  }
+
+  componentWillMount() {
+    this.fetch_metric_function()
+      .then((fnString) => {
+        this.setState({fnString: fnString})
+      })
+  }
+
+
+  fetch_metric_function() {
+    let uri = new URI(window.location.href)
+    let gist = uri.query(true).gist || 'pbhavsar/c228879badcf21eb42bad78ceb6f1e4b'
+    let gist_url = `https://gist.githubusercontent.com/${gist}/raw`
+
+    return fetch(gist_url, {mode: 'cors'})
+      .then((response) => {
+        if(response.ok) {
+          return response.text()
+        } else {
+          throw Error(response)
+        }
+      })
+  }
+
 }
 
 $(function() {
-    gerry_app.initialize_sandbox();
     gerry_app.house_json = house_data;
+    gerry_app.initialize_sandbox();
 
     var calculate_button = $('#calculate-metric');
     calculate_button.click(gerry_app.calculate_metrics);

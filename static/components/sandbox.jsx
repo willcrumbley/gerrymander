@@ -3,7 +3,7 @@ const ReactDOM = require('react-dom')
 
 
 /**
- * @props [String] fn_string - Function string to initialize with
+ * @props [String] fnString - Function string to initialize with
  * @props [Object] states - Array of states data
  * @props [Function] onCalculate - Callback to be executed with the result of calculating the metric
  */
@@ -11,7 +11,7 @@ class JavascriptSandbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fn_string: this.props.fn_string
+      fnString: this.props.fnString
     }
 
     window.addEventListener('message', (e) => {
@@ -29,7 +29,7 @@ class JavascriptSandbox extends React.Component {
       <div>
         <div>
             <span className='code'>{'function(options) {'}</span>
-            <textarea value={this.state.fn_string} rows={30} cols={120}
+            <textarea value={this.state.fnString} rows={30} cols={120}
               className="metric-function" onChange={this.setFnString}/>
             <br />
             <span className='code'>}</span>
@@ -48,9 +48,15 @@ class JavascriptSandbox extends React.Component {
     )
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.fnString != undefined) {
+      this.setState({fnString: nextProps.fnString})
+    }
+  }
+
   calculateMetric() {
     let data = {
-      algorithm: this.state.fn_string,
+      algorithm: this.state.fnString,
       states: this.props.states,
       name: 'calculate-metric'
     }
@@ -58,7 +64,7 @@ class JavascriptSandbox extends React.Component {
   }
 
   setFnString(e) {
-    this.setState({fn_string: e.target.value})
+    this.setState({fnString: e.target.value})
   }
 }
 
