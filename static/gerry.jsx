@@ -5,12 +5,11 @@ const ReactDOM = require('react-dom');
 const base64 = require('base-64');
 const $ = require('jquery');
 const wait_until = require('wait-until');
-const URI = require('urijs')
 
 const house_data = require('../data/house_by_state.json')
 const default_metric = require('./default_metric.js');
 const shortener = require('./utils/shortener.js');
-const {JavascriptSandbox} = require('./components/sandbox.jsx')
+const {MetricFunctionSandbox} = require('./components/sandbox.jsx')
 
 window.gerry_app = {
     iframe_loaded: false
@@ -158,58 +157,10 @@ gerry_app.display_input_data = function(state_data) {
 }
 
 gerry_app.initialize_sandbox = function() {
-  let component = <SandboxWrapper
+  let component = <MetricFunctionSandbox
                     states={gerry_app.house_json.states}
                     onCalculate={gerry_app.updateWithMetricData} />
   ReactDOM.render(component, document.getElementById('metric-sandbox'));
-}
-
-
-class SandboxWrapper extends React.Component {
-  /**
-   * @props [Object] states - Array of states data
-   * @props [Function] onCalculate - Callback to be executed with the result of calculating the metric
-   */
-  constructor(props) {
-    super(props);
-    this.state = {
-      fnString: ''
-    }
-  }
-
-  render() {
-    return (
-      <JavascriptSandbox
-        states={gerry_app.house_json.states}
-        fnString={this.state.fnString}
-        onCalculate={gerry_app.updateWithMetricData} />
-
-    )
-  }
-
-  componentWillMount() {
-    this.fetch_metric_function()
-      .then((fnString) => {
-        this.setState({fnString: fnString})
-      })
-  }
-
-
-  fetch_metric_function() {
-    let uri = new URI(window.location.href)
-    let gist = uri.query(true).gist || 'pbhavsar/c228879badcf21eb42bad78ceb6f1e4b'
-    let gist_url = `https://gist.githubusercontent.com/${gist}/raw`
-
-    return fetch(gist_url, {mode: 'cors'})
-      .then((response) => {
-        if(response.ok) {
-          return response.text()
-        } else {
-          throw Error(response)
-        }
-      })
-  }
-
 }
 
 $(function() {

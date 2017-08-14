@@ -1,5 +1,5 @@
 const React = require('react')
-const ReactDOM = require('react-dom')
+const URI = require('urijs')
 
 
 /**
@@ -68,4 +68,54 @@ class JavascriptSandbox extends React.Component {
   }
 }
 
-module.exports = {JavascriptSandbox}
+
+/**
+ * Wrapper around JavascriptSandbox that fetches functions from Github
+ */
+class MetricFunctionSandbox extends React.Component {
+  /**
+   * @props [Object] states - Array of states data
+   * @props [Function] onCalculate - Callback to be executed with the result of calculating the metric
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      fnString: ''
+    }
+  }
+
+  render() {
+    return (
+      <JavascriptSandbox
+        states={this.props.states}
+        fnString={this.state.fnString}
+        onCalculate={this.onCalculate} />
+
+    )
+  }
+
+  componentWillMount() {
+    this.fetch_metric_function()
+      .then((fnString) => {
+        this.setState({fnString: fnString})
+      })
+  }
+
+
+  fetch_metric_function() {
+    let uri = new URI(window.location.href)
+    let gist = uri.query(true).gist || 'pbhavsar/c228879badcf21eb42bad78ceb6f1e4b'
+    let gist_url = `https://gist.githubusercontent.com/${gist}/raw`
+
+    return fetch(gist_url, {mode: 'cors'})
+      .then((response) => {
+        if(response.ok) {
+          return response.text()
+        } else {
+          throw Error(response)
+        }
+      })
+  }
+}
+
+module.exports = {JavascriptSandbox, MetricFunctionSandbox}
