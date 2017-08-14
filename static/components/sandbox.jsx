@@ -1,6 +1,8 @@
 const React = require('react')
 const URI = require('urijs')
 
+const default_metric = require('../default_metric.js')
+
 
 class JavascriptSandbox extends React.Component {
   /**
@@ -103,17 +105,25 @@ class MetricFunctionSandbox extends React.Component {
 
   fetch_metric_function() {
     let uri = new URI(window.location.href)
-    let gist = uri.query(true).gist || 'pbhavsar/c228879badcf21eb42bad78ceb6f1e4b'
-    let gist_url = `https://gist.githubusercontent.com/${gist}/raw`
+    let gist = uri.query(true).gist
 
-    return fetch(gist_url, {mode: 'cors'})
-      .then((response) => {
-        if(response.ok) {
-          return response.text()
-        } else {
-          throw Error(response)
-        }
+    if(gist) {
+      let gist_url = `https://gist.githubusercontent.com/${gist}/raw`
+
+      return fetch(gist_url, {mode: 'cors'})
+        .then((response) => {
+          if(response.ok) {
+            return response.text()
+          } else {
+            throw Error(response)
+          }
+        })
+    } else {
+      return new Promise((resolve) => {
+        debugger
+        resolve(default_metric)
       })
+    }
   }
 }
 
