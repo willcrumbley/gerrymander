@@ -34,3 +34,7 @@ body {
   width: 100px;
   height: 105px;
 }
+
+.modal-button {
+  margin: 5px;
+}
