@@ -10,6 +10,7 @@ const house_data = require('../data/house_by_state.json')
 const default_metric = require('./default_metric.js');
 const shortener = require('./utils/shortener.js');
 const {MetricFunctionSandbox} = require('./components/sandbox.jsx')
+const {ShareableLinkGenerator} = require('./components/link_generator.jsx')
 
 window.gerry_app = {
     iframe_loaded: false
@@ -163,9 +164,14 @@ gerry_app.initialize_sandbox = function() {
   ReactDOM.render(component, document.getElementById('metric-sandbox'));
 }
 
+gerry_app.initialize_link_generator = function() {
+  ReactDOM.render(<ShareableLinkGenerator />, document.getElementById('link-generator'));
+}
+
 $(function() {
     gerry_app.house_json = house_data;
     gerry_app.initialize_sandbox();
+    gerry_app.initialize_link_generator();
 
     var calculate_button = $('#calculate-metric');
     calculate_button.click(gerry_app.calculate_metrics);
