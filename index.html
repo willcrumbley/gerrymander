@@ -56,12 +56,6 @@
                         <p>The efficiency gap calculation is not intuitive, so this site exists to allow interested users to explore the <a href="/">algorithm underlying the efficiency gap</a>, and then to create and share their own variant.</p>
                         <p>To report problems, or to propose that we add new data to the input dataset, please log an issue (or even better, make a pull request) at the project's <a href="https://github.com/willcrumbley/gerrymander/issues">Github repo</a>.</p>
                     </div>
-                    <div class="row m-5" id="map-row">
-                        <h2>US States By Calculated Metric</h2>
-                        <h5>States in red are most gerrymandered to favor Republicans, states in blue are gerrymandered to favor Democrats.</h5>
-                        <div id="map"></div>
-                        <div id='map-disclaimer' class='alert alert-info'>For security reasons, the map will not display the metric until you review the algorithm and click the 'Calculate' button below.</div>
-                    </div>
                     <div class="row m-5" id="code">
                         <h2>Algorithm to Calculate Gerrymandering Metric</h2>
                         <form>
@@ -115,10 +109,13 @@
                             </div>
                         </form>
                     </div>
-                    <div id='state-table' class="row m-5">
-                        <div>
-                            <h2>US States, Ranked by Absolute Value of Calculated Metric</h2>
-                        </div>
+                    <div class="row m-5" id="map-row">
+                        <h2>US States By Calculated Metric</h2>
+                        <h5>States in red are most gerrymandered to favor Republicans, states in blue are gerrymandered to favor Democrats.</h5>
+                        <div id="map"></div>
+                        <div id='map-disclaimer' class='alert alert-info'>For security reasons, the map will not display the metric until you review the algorithm and click the 'Calculate' button below.</div>
+                    </div>
+                    <div id='state-table'>
                         <div id='states-table'></div>
                     </div>
                     <div class='row m-5' id='state-data'> 
