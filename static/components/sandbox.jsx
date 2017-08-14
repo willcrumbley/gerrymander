@@ -89,8 +89,7 @@ class MetricFunctionSandbox extends React.Component {
       <JavascriptSandbox
         states={this.props.states}
         fnString={this.state.fnString}
-        onCalculate={this.onCalculate} />
-
+        onCalculate={this.props.onCalculate} />
     )
   }
 
