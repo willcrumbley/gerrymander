@@ -2,12 +2,12 @@ const React = require('react')
 const URI = require('urijs')
 
 
-/**
- * @props [String] fnString - Function string to initialize with
- * @props [Object] states - Array of states data
- * @props [Function] onCalculate - Callback to be executed with the result of calculating the metric
- */
 class JavascriptSandbox extends React.Component {
+  /**
+   * @props [String] fnString - Function string to initialize with
+   * @props [Object] states - Array of states data
+   * @props [Function] onCalculate - Callback to be executed with the result of calculating the metric
+   */
   constructor(props) {
     super(props);
     this.state = {
