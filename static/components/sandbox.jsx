@@ -9,6 +9,7 @@ class JavascriptSandbox extends React.Component {
    * @props [String] fnString - Function string to initialize with
    * @props [Object] states - Array of states data
    * @props [Function] onCalculate - Callback to be executed with the result of calculating the metric
+   * @props [Boolean] runOnMount - If true, will calculate the function upon rendering
    */
   constructor(props) {
     super(props);
@@ -24,6 +25,7 @@ class JavascriptSandbox extends React.Component {
 
     this.calculateMetric = this.calculateMetric.bind(this);
     this.setFnString = this.setFnString.bind(this);
+    this.onIframeLoaded = this.onIframeLoaded.bind(this);
   }
 
   render() {
@@ -45,7 +47,7 @@ class JavascriptSandbox extends React.Component {
             Calculate the Metric
           </button>
         </div>
-        <iframe id='js-sandbox' sandbox='allow-scripts' src='./js-sandbox.html' ref={(input) => {this.iframe = input;}}/>
+        <iframe id='js-sandbox' sandbox='allow-scripts' src='./js-sandbox.html' onLoad={this.onIframeLoaded} ref={(input) => {this.iframe = input;}}/>
       </div>
     );
   }
@@ -53,6 +55,12 @@ class JavascriptSandbox extends React.Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.fnString != undefined) {
       this.setState({fnString: nextProps.fnString});
+    }
+  }
+
+  onIframeLoaded() {
+    if(this.props.runOnMount) {
+      this.calculateMetric();
     }
   }
 
@@ -82,7 +90,8 @@ class MetricFunctionSandbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fnString: ''
+      fnString: '',
+      runOnMount: false 
     };
   }
 
@@ -91,7 +100,9 @@ class MetricFunctionSandbox extends React.Component {
       <JavascriptSandbox
         states={this.props.states}
         fnString={this.state.fnString}
-        onCalculate={this.props.onCalculate} />
+        onCalculate={this.props.onCalculate}
+        runOnMount={this.state.runOnMount}
+      />
     );
   }
 
@@ -120,6 +131,7 @@ class MetricFunctionSandbox extends React.Component {
         })
     } else {
       return new Promise((resolve) => {
+        this.setState({runOnMount: true})
         resolve(default_metric);
       })
     }
