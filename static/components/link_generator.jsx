@@ -77,4 +77,4 @@ class ShareableLinkGenerator extends React.Component {
 }
 
 
-module.exports = {ShareableLinkGenerator}
+module.exports = ShareableLinkGenerator

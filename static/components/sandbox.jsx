@@ -120,11 +120,10 @@ class MetricFunctionSandbox extends React.Component {
         })
     } else {
       return new Promise((resolve) => {
-        debugger
         resolve(default_metric)
       })
     }
   }
 }
 
-module.exports = {JavascriptSandbox, MetricFunctionSandbox}
+module.exports = MetricFunctionSandbox
