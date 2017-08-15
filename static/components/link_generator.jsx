@@ -1,5 +1,5 @@
-const React = require('react')
-const URI = require('urijs')
+import React from 'react';
+import URI from 'urijs';
 
 
 class ShareableLinkGenerator extends React.Component {
@@ -61,20 +61,20 @@ class ShareableLinkGenerator extends React.Component {
     let match = value.match(gistPattern);
 
     if(match) {
-      let uri = new URI(window.location.href)
-      uri.query({gist: match[1]})
+      let uri = new URI(window.location.href);
+      uri.query({gist: match[1]});
       this.setState({
         shareableLink: uri.toString(),
         error: false
-      })
+      });
     } else {
       this.setState({
         shareableLink: null,
         error: true
-      })
+      });
     }
   }
 }
 
 
-module.exports = ShareableLinkGenerator
+module.exports = ShareableLinkGenerator;

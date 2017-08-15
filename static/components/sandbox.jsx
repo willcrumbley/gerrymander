@@ -1,7 +1,7 @@
-const React = require('react')
-const URI = require('urijs')
+import React from 'react';
+import URI from 'urijs';
 
-const default_metric = require('../default_metric.js')
+import default_metric from '../default_metric.js';
 
 
 class JavascriptSandbox extends React.Component {
@@ -14,16 +14,16 @@ class JavascriptSandbox extends React.Component {
     super(props);
     this.state = {
       fnString: this.props.fnString
-    }
+    };
 
     window.addEventListener('message', (e) => {
       if(e.origin == 'null' && e.data.name == 'metric-results') {
-        this.props.onCalculate(e.data.states)
+        this.props.onCalculate(e.data.states);
       }
     })
 
-    this.calculateMetric = this.calculateMetric.bind(this)
-    this.setFnString = this.setFnString.bind(this)
+    this.calculateMetric = this.calculateMetric.bind(this);
+    this.setFnString = this.setFnString.bind(this);
   }
 
   render() {
@@ -47,12 +47,12 @@ class JavascriptSandbox extends React.Component {
         </div>
         <iframe id='js-sandbox' sandbox='allow-scripts' src='./js-sandbox.html' ref={(input) => {this.iframe = input;}}/>
       </div>
-    )
+    );
   }
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.fnString != undefined) {
-      this.setState({fnString: nextProps.fnString})
+      this.setState({fnString: nextProps.fnString});
     }
   }
 
@@ -61,12 +61,12 @@ class JavascriptSandbox extends React.Component {
       algorithm: this.state.fnString,
       states: this.props.states,
       name: 'calculate-metric'
-    }
+    };
     this.iframe.contentWindow.postMessage(data, '*');
   }
 
   setFnString(e) {
-    this.setState({fnString: e.target.value})
+    this.setState({fnString: e.target.value});
   }
 }
 
@@ -83,7 +83,7 @@ class MetricFunctionSandbox extends React.Component {
     super(props);
     this.state = {
       fnString: ''
-    }
+    };
   }
 
   render() {
@@ -92,38 +92,38 @@ class MetricFunctionSandbox extends React.Component {
         states={this.props.states}
         fnString={this.state.fnString}
         onCalculate={this.props.onCalculate} />
-    )
+    );
   }
 
   componentWillMount() {
     this.fetch_metric_function()
       .then((fnString) => {
-        this.setState({fnString: fnString})
+        this.setState({fnString: fnString});
       })
   }
 
 
   fetch_metric_function() {
-    let uri = new URI(window.location.href)
-    let gist = uri.query(true).gist
+    let uri = new URI(window.location.href);
+    let gist = uri.query(true).gist;
 
     if(gist) {
-      let gist_url = `https://gist.githubusercontent.com/${gist}/raw`
+      let gist_url = `https://gist.githubusercontent.com/${gist}/raw`;
 
       return fetch(gist_url, {mode: 'cors'})
         .then((response) => {
           if(response.ok) {
-            return response.text()
+            return response.text();
           } else {
-            throw Error(response)
+            throw Error(response);
           }
         })
     } else {
       return new Promise((resolve) => {
-        resolve(default_metric)
+        resolve(default_metric);
       })
     }
   }
 }
 
-module.exports = MetricFunctionSandbox
+module.exports = MetricFunctionSandbox;
