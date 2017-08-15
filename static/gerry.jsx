@@ -11,7 +11,7 @@ import default_metric from './default_metric.js';
 import shortener from './utils/shortener.js';
 import Navigation from './components/navigation.jsx';
 import StateTable from './components/state_table.jsx';
-import render_map from './utils/render_map.js';
+import StateMap from './components/state_map.jsx';
 
 window.gerry_app = {
     iframe_loaded: false
@@ -69,7 +69,7 @@ gerry_app.filter_states = function(states) {
 
 gerry_app.display_state_metrics = function(states) {
     ReactDOM.render(<StateTable states={states} />, document.getElementById('states-table'));
-    render_map(states, '#map', 900);
+    ReactDOM.render(<StateMap states={states} width={900}/>, document.getElementById('map'));
 }
 
 gerry_app.calculate_metrics = function() {
@@ -122,7 +122,6 @@ $(function() {
     gerry_app.house_json = house_data;
     var calculate_button = $('#calculate-metric');
     calculate_button.click(gerry_app.calculate_metrics);
-    render_map(gerry_app.house_json.states, '#map', 900);
     gerry_app.display_input_data(gerry_app.house_json.states)
     if (window.location.search === "") {
         calculate_button.click();

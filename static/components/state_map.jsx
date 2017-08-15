@@ -1,56 +1,44 @@
-// "use strict";
+"use strict";
 
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// var topojson = require('topojson');
-// var MapChoropleth = require('react-d3-map-choropleth').MapChoropleth;
-// var unemploy = require('dsv-loader?delimiter=\t!../../data/unemployment.tsv');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// import css from './css/c.css';
-// import topodata from '../../data/us.json';
+class StateMap extends React.Component {
+    drawMap() {
+        var map = d3.geomap.choropleth()
+            .geofile('./lib/topojson/countries/USA.json')
+            .colors(colorbrewer.RdBu[9])
+            .projection(d3.geoAlbersUsa)
+            .column('metric')
+            .unitId('fips')
+            .scale(this.props.width)
+            .legend(true)
+            .width(this.props.width)
+            .domain([-0.25,0.25])
+            .zoomFactor(1);
+        map.draw(d3.select(this.refs.container).datum(this.props.states));
+    }
 
-// class StateMap extends React.Component {
-//   render() {
-//     var width = 960,
-//     height = 600;
+    componentDidMount() {
+        this.drawMap();
+    }
 
-//     // data should be a MultiLineString
-//     var dataStates = topojson.mesh(topodata, topodata.objects.states, function(a, b) { return a !== b; });
-//     /// data should be polygon
-//     var dataCounties = topojson.feature(topodata, topodata.objects.counties).features;
+    //this will remove the map from the dom when the react component is unmounted
+    componentWillReceiveProps() {
+        this.clear();
+    }
 
-//     // domain
-//     var domain = {
-//       scale: 'quantize',
-//       domain: [0, .15],
-//       range: d3.range(9).map(function(i) { return "q" + i + "-9"; })
-//     };
-//     var domainValue = function(d) { return parseInt(d.metric, 10); };
-//     var domainKey = function(d) {return parseInt(d.id, 10) };
-//     var mapKey = function(d) {return parseInt(d.id, 10) };
+    clear() {
+        const container = this.refs.container;
+        for (const child of Array.from(container.childNodes)) {
+            container.removeChild(child);
+        }
+    }
 
-//     var scale = this.props.scale;
-//     var translate = [width / 2, height / 2];
-//     var projection = 'albersUsa';
 
-//     return (
-//       <MapChoropleth
-//         width= {width}
-//         height= {height}
-//         dataPolygon= {dataCounties}
-//         dataMesh= {dataStates}
-//         scale= {scale}
-//         domain= {domain}
-//         domainData= {unemploy}
-//         domainValue= {domainValue}
-//         domainKey= {domainKey}
-//         mapKey = {mapKey}
-//         translate= {translate}
-//         projection= {projection}
-//         showGraticule= {false}
-//       />
-//     );
-//   }
-// }
+    render() {
+        return <div ref='container'></div>
+    }
+}
 
-// module.exports = StateMap;
+module.exports = StateMap;

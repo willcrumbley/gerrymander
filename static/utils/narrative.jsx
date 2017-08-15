@@ -1,5 +1,7 @@
 "use strict"
 
+import React from 'react';
+import StateMap from '../components/state_map.jsx';
 import renderHTML from 'react-render-html';
 
 module.exports = [
@@ -16,7 +18,7 @@ module.exports = [
                     "Partisan Gerrymandering and the Efficiency Gap" (2014)</a>, Stephanopoulos \
                     and McGhee proposed the "efficiency gap" as an impartial standard that could be used to \
                     measure the advantage a party has in the way a state\'s electoral districts are drawn.</p>'),
-        illustration: renderHTML('Map will go here'),
+        illustration: <StateMap states={[]} width={550}/>,
     },
     {
         context: renderHTML('<p>As measured by the efficiency gap, partisan gerrymandering has become \
@@ -39,19 +41,19 @@ module.exports = [
         context: renderHTML('<p>The efficiency gap calculation has gained significant attention, as a potential legal\
                     test for partisan gerrymandering, as it purports to calculate "all of the packing and cracking \
                     decisions that go into a district plan" used for gerrymandering.</p>'),
-        illustration: renderHTML('main gerrymandering map will go here (8+)')
+        illustration: <StateMap states={[]} width={550}/>
     },
     {
         context: renderHTML('<p>However, Stephanopoulos and McGhee limit their calculations to those states\
                     with at least eight Congressional districts, stating that "redistricting in smaller states has \
                     only a minor influence on the national balance of power".</p>'),
-        illustration: renderHTML('main gerrymandering map will go here (8+)')
+        illustration: <StateMap states={[]} width={550}/>
     },
     {
         context: renderHTML('<p>After calculating the efficiency gap for states with fewer than 8 Congressional \
                     districts, another concern is evident.</p><p>The efficiency gap is unpredictable for those \
                     smaller states.</p>'),
-        illustration: renderHTML('main gerrymandering map will go here (<8, >1)')
+        illustration: <StateMap states={[]} width={550}/>
     },
     {
         context: renderHTML('<p>Consider New Hampshire, with 2 Congressional districts.  Its efficiency gap, \
@@ -67,7 +69,7 @@ module.exports = [
         context: renderHTML('<p>This raises the concern that, if the Court were to name the efficiency gap as a \
                     test of the legality of partisan gerrymandering, some states would be ineligible to have their \
                     maps evaluated for legality.</p>'),
-        illustration: renderHTML('main gerrymandering map will go here (<8, >1)')
+        illustration: <StateMap states={[]} width={550}/>
     },
     {
         context: renderHTML('<p>We support the desire to rein in partisan gerrymandering, but we are concerned about \

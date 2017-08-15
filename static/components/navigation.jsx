@@ -22,7 +22,7 @@ class Navigation extends React.Component {
         return (
             <div>
                 <div id='modal'>
-                    <NarrativeModal show={true} onCloseModal={this.showNavbar}/>
+                    <NarrativeModal show={true} states={this.props.states} onCloseModal={this.showNavbar}/>
                 </div>
                 <div id='nav' hidden={this.state.hideNav}>
                     <nav className="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">

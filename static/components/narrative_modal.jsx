@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 
-import narrative from '../utils/narrative.js';
+import narrative from '../utils/narrative.jsx';
 
 class NarrativeModal extends React.Component {
     constructor(props) {
