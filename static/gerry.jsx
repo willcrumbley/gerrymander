@@ -6,7 +6,6 @@ import base64 from 'base-64';
 import $ from 'jquery';
 import wait_until from 'wait-until';
 
-import house_data from '../data/house_by_state.json';
 import default_metric from './default_metric.js';
 import shortener from './utils/shortener.js';
 import Navigation from './components/navigation.jsx';
@@ -117,16 +116,18 @@ gerry_app.load_iframe = function() {
 }
 
 $(function() {
-    gerry_app.load_iframe();
-    gerry_app.set_metric_function();
-    gerry_app.house_json = house_data;
-    var calculate_button = $('#calculate-metric');
-    calculate_button.click(gerry_app.calculate_metrics);
-    render_map(gerry_app.house_json.states, '#map', 900);
-    gerry_app.display_input_data(gerry_app.house_json.states)
-    if (window.location.search === "") {
-        calculate_button.click();
-    }
+    $.get('data/house_by_state.json').then(function(house_data) {
+        gerry_app.load_iframe();
+        gerry_app.set_metric_function();
+        gerry_app.house_json = house_data;
+        var calculate_button = $('#calculate-metric');
+        calculate_button.click(gerry_app.calculate_metrics);
+        render_map(gerry_app.house_json.states, '#map', 900);
+        gerry_app.display_input_data(gerry_app.house_json.states)
+        if (window.location.search === "") {
+            calculate_button.click();
+        }
+    });
 });
 
 ReactDOM.render(<Navigation />, document.getElementById('navigation'));
