@@ -6,7 +6,6 @@ import base64 from 'base-64';
 import $ from 'jquery';
 import wait_until from 'wait-until';
 
-import house_data from '../data/house_by_state.json';
 import default_metric from './default_metric.js';
 import shortener from './utils/shortener.js';
 import Navigation from './components/navigation.jsx';
@@ -59,7 +58,7 @@ gerry_app.sort_by_metric = function(states) {
 gerry_app.filter_states = function(states) {
     return states.filter(function(state) {
         return state.include;
-    })    
+    });
 }
 
 gerry_app.display_state_metrics = function(states) {
@@ -67,10 +66,10 @@ gerry_app.display_state_metrics = function(states) {
     ReactDOM.render(<StateMap states={states} width={900}/>, document.getElementById('map'));
 }
 
-gerry_app.calculate_metrics = function() {
+gerry_app.calculate_metrics = function(states) {
     var frame = document.getElementById('js-sandbox');
     var data = {
-        "states": gerry_app.house_json.states,
+        "states": states,
         "algorithm": $('#metric-function').val()
     }
     wait_until()
@@ -88,9 +87,9 @@ gerry_app.display_input_data = function(state_data) {
     $("#state-data-area").val(JSON.stringify(state_data, undefined, 4));
 }
 
-gerry_app.initialize_sandbox = function() {
+gerry_app.initialize_sandbox = function(house_data) {
   let component = <MetricFunctionSandbox
-                    states={gerry_app.house_json.states}
+                    states={house_data.states}
                     onCalculate={gerry_app.updateWithMetricData} />
   ReactDOM.render(component, document.getElementById('metric-sandbox'));
 }
@@ -100,16 +99,17 @@ gerry_app.initialize_link_generator = function() {
 }
 
 $(function() {
-    gerry_app.house_json = house_data;
-    gerry_app.initialize_sandbox();
-    gerry_app.initialize_link_generator();
+    $.get('data/house_by_state.json').then(function(house_data) {
+        gerry_app.initialize_sandbox(house_data);
+        gerry_app.initialize_link_generator();
 
-    var calculate_button = $('#calculate-metric');
-    calculate_button.click(gerry_app.calculate_metrics);
-    gerry_app.display_input_data(gerry_app.house_json.states)
-    if (window.location.search === "") {
-        calculate_button.click();
-    }
+        var calculate_button = $('#calculate-metric');
+        calculate_button.click(gerry_app.calculate_metrics);
+        gerry_app.display_input_data(house_data.states)
+        if (window.location.search === "") {
+            calculate_button.click();
+        }
+    });
 });
 
 ReactDOM.render(<Navigation />, document.getElementById('navigation'));

@@ -60,8 +60,10 @@ class NarrativeModal extends React.Component {
                             <h4>An exploration of the efficiency gap and other measures of partisan gerrymandering</h4>
                         </div>
                         <div className='row m-5'>
-                            <div className='col-3'>{narrative[this.state.index].context}</div>
-                            <div id='illustration' className='col-9'>{narrative[this.state.index].illustration}</div>
+                            <div className='col-3' 
+                                dangerouslySetInnerHTML={{__html: narrative[this.state.index].context}}></div>
+                            <div id='illustration' className='col-9' 
+                                dangerouslySetInnerHTML={{__html: narrative[this.state.index].illustration}}></div>
                         </div>
                         <div className='row float-left'>
                             <button onClick={this.handleCloseModal} className="btn btn btn-outline-secondary" 

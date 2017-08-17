@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var BUILD_DIR = path.resolve(__dirname, 'static/bin');
 var APP_DIR = path.resolve(__dirname, 'static');
@@ -22,7 +23,8 @@ var config = {
   },
   resolveLoader: {
     moduleExtensions: ['-loader']
-  }
+  },
+  plugins: [new BundleAnalyzerPlugin()]
 };
 
 module.exports = config;
