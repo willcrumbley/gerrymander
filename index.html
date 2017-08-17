@@ -2,7 +2,7 @@
     <head>
         <title>An exploration of the efficiency gap and other measures of partisan gerrymandering</title>
         <meta charset="utf-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' nationalmap.gov syndication.twitter.com www.facebook.com; script-src 'self' 'unsafe-eval' platform.twitter.com connect.facebook.net; style-src 'self' 'unsafe-inline'; frame-src 'self' platform.twitter.com staticxx.facebook.com www.facebook.com; connect-src 'self' www.googleapis.com"> 
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' nationalmap.gov syndication.twitter.com www.facebook.com; script-src 'self' 'unsafe-eval' platform.twitter.com connect.facebook.net; style-src 'self' 'unsafe-inline'; frame-src 'self' platform.twitter.com staticxx.facebook.com www.facebook.com; connect-src 'self' www.googleapis.com gist.githubusercontent.com"> 
         <meta property="og:url"           content="http://www.efficiency-gap.com" />
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="An exploration of the efficiency gap and other measures of partisan gerrymandering" />
@@ -41,57 +41,62 @@
                     </div>
                     <div class="row m-5" id="code">
                         <h2>Algorithm to Calculate Gerrymandering Metric</h2>
-                        <form>
-                            <div class='code'> 
-                                function(options) { <br>
-                                <textarea name="metric-function" id="metric-function" rows=30 cols=120 maxlength="1750"></textarea><br>
-                            &nbsp;&nbsp;return return_obj;<br>
-                                }
+                        <div class='row'>
+                            <div id="metric-sandbox">
                             </div>
                             <div class="row m-4">
-                                <p>The preceding JavaScript function should calculate a metric of partisan gerrymandering and set return_obj to an object containing 1) that value, 2) true/false for whether the state should be evaluated, and 3) an estimate for the number of US House seats that were flipped to the other party through gerrymandering.
-                                </p>
-                                <p>
-                                Note that the algorithm is limited to 1750 characters so that it can be encoded into a unique link.
-                                </p>
-                                <p>Example return object:</p>
+                              <p>
+                                The preceding JavaScript function should calculate a metric of partisan gerrymandering and return
+                                an object containing: 
+                                <table class='table table-striped table-bordered'>
+                                  <thead>
+                                    <tr>
+                                      <th>Key</key>
+                                      <th>Type</key>
+                                      <th>Description</key>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>metric</td>
+                                      <td><code>Float</code></td>
+                                      <td>The metric of partisan gerrymandering.</td>
+                                    </tr>
+                                    <tr>
+                                      <td>include</td>
+                                      <td><code>Boolean</code></td>
+                                      <td>Whether the state should be evaluated</td>
+                                    </tr>
+                                    <tr>
+                                      <td>seats_flipped</td>
+                                      <td><code>Integer</code></td>
+                                      <td>
+                                        An estimate for the number of US House seats that were flipped to the other
+                                        party through gerrymandering
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </p>
                             </div>
-                            <div class='code row m-4'>
-                                var return_obj = {<br>
-                                &nbsp;&nbsp;metric: 1234,<br>
-                                &nbsp;&nbsp;include: true,<br>
-                                &nbsp;&nbsp;seats_flipped: 2<br>
-                                }
-                            </div>
-                            <div class="alert alert-warning row m-4">
-                                <p>Warning! Clicking this button will execute the JavaScript in the black text area above. If you have any uncertainty about what this code will do, please do not execute it!</p>
-                                <button type="button" id='calculate-metric' class="btn btn-primary">
-                                    Calculate the Metric
-                                </button>
-                            </div>
-                            <div id="share" class="row m-4" hidden>
+                            <div id="share" class="row m-4" >
+                                <h3>Share your own Algorithm</h3>
                                 <div class="col col-12">
-                                    <h3>Share this Algorithm</h3>
-                                    <div id="share-buttons" class="row m-2">
-                                    </div>
                                     <div class="row m-2">
-                                        <span>Or, copy this link to show others your algorithm:&nbsp;</span>
-                                        <input id="short-url" class="code" readonly></span>
+                                        Create a&nbsp;<a target='_blank' href="https://gist.github.com/">Github gist</a>&nbsp;with just the body of
+                                        the function and enter its url below to generate a shareable link.
+                                        <a href="https://gist.github.com/pbhavsar/c228879badcf21eb42bad78ceb6f1e4b">Here's an example.</a>
                                     </div>
+                                    <div id='link-generator' class="row m-2"></div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div id='state-table' class="row m-5">
-                        <div>
-                            <h2>US States, Ranked by Absolute Value of Calculated Metric</h2>
                         </div>
+                    </div>
+                    <div id='state-table'>
                         <div id='states-table'></div>
                     </div>
                     <div class='row m-5' id='state-data'> 
-                        <div>
-                            <h2>Explore the State Data Used as Input</h2>
-                        </div>
+                        <h2>Explore the State Data Used as Input</h2>
                         <div class='code'>
                             <textarea name="state-data-area" id="state-data-area" rows=20 cols=100 readonly class="code"></textarea>
                         </div>

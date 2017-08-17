@@ -12,6 +12,8 @@ import shortener from './utils/shortener.js';
 import Navigation from './components/navigation.jsx';
 import StateTable from './components/state_table.jsx';
 import StateMap from './components/state_map.jsx';
+import MetricFunctionSandbox from './components/sandbox.jsx';
+import ShareableLinkGenerator from './components/link_generator.jsx';
 
 window.gerry_app = {
     iframe_loaded: false
@@ -35,25 +37,18 @@ gerry_app.update_short_url = function(short_url) {
     gerry_app.display_social_buttons(short_url);
 }
 
-gerry_app.update_metric_url = function(metric_function) {
-    var encoded_function_param = "?metric=" + base64.encode(metric_function);
-    history.pushState({}, null, encoded_function_param);
-    shortener.shorten(window.location.href, gerry_app.update_short_url);
-}
+gerry_app.updateWithMetricData = function (states) {
+  gerry_app.sort_by_metric(states);
 
-window.addEventListener('message',
-    function (e) {
-      var frame = document.getElementById('js-sandbox');
-      if (e.origin === "null" && e.source === frame.contentWindow) {
-            var states = e.data;
-            gerry_app.sort_by_metric(states);
-            var filtered_states = gerry_app.filter_states(states);
-            gerry_app.display_state_metrics(filtered_states);
-            var metric_function = $('#metric-function').val();
-            gerry_app.update_metric_url(metric_function);    
-            $('#map-disclaimer').text('Excluded states shown in grey.');
-        }
-    });
+  var filtered_states = gerry_app.filter_states(states);
+  gerry_app.display_state_metrics(filtered_states);
+
+  $('#map-disclaimer').text('Excluded states shown in grey.');
+  // Scroll to the map
+  $('html, body').animate({
+    scrollTop: $("#map-row").offset().top
+  }, 1000);
+}
 
 gerry_app.sort_by_metric = function(states) {
     states.sort(function(a, b) {
@@ -89,37 +84,26 @@ gerry_app.calculate_metrics = function() {
     });
 }
 
-gerry_app.set_metric_function = function() {
-    var metric_param = location.search.split('metric=')[1];
-    var metric_function = ""
-    if (metric_param !== undefined) {
-        metric_function = base64.decode(metric_param);
-    }
-    else {
-        metric_function = default_metric
-    }
-    $('#metric-function').val(metric_function);    
-}
-
 gerry_app.display_input_data = function(state_data) {
     $("#state-data-area").val(JSON.stringify(state_data, undefined, 4));
 }
 
-gerry_app.load_iframe = function() {
-    var iframe = document.createElement('iframe');
-    iframe.setAttribute('sandbox', 'allow-scripts');
-    iframe.id = 'js-sandbox';
-    iframe.onload = function() { 
-        gerry_app.iframe_loaded = true;
-    };
-    iframe.src = './js-sandbox.html'; 
-    document.body.appendChild(iframe);
+gerry_app.initialize_sandbox = function() {
+  let component = <MetricFunctionSandbox
+                    states={gerry_app.house_json.states}
+                    onCalculate={gerry_app.updateWithMetricData} />
+  ReactDOM.render(component, document.getElementById('metric-sandbox'));
+}
+
+gerry_app.initialize_link_generator = function() {
+  ReactDOM.render(<ShareableLinkGenerator />, document.getElementById('link-generator'));
 }
 
 $(function() {
-    gerry_app.load_iframe();
-    gerry_app.set_metric_function();
     gerry_app.house_json = house_data;
+    gerry_app.initialize_sandbox();
+    gerry_app.initialize_link_generator();
+
     var calculate_button = $('#calculate-metric');
     calculate_button.click(gerry_app.calculate_metrics);
     gerry_app.display_input_data(gerry_app.house_json.states)

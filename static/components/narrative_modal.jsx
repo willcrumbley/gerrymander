@@ -18,6 +18,7 @@ class NarrativeModal extends React.Component {
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.prev = this.prev.bind(this);
         this.next = this.next.bind(this);
+        debugger;
     }
 
     handleCloseModal() {
