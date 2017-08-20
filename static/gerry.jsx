@@ -8,7 +8,6 @@ import wait_until from 'wait-until';
 
 import house_data from '../data/house_by_state.json';
 import default_metric from './default_metric.js';
-import shortener from './utils/shortener.js';
 import Navigation from './components/navigation.jsx';
 import StateTable from './components/state_table.jsx';
 import render_map from './utils/render_map.js';
@@ -18,24 +17,6 @@ import ShareableLinkGenerator from './components/link_generator.jsx';
 window.gerry_app = {
     iframe_loaded: false
 };
-
-gerry_app.display_social_buttons = function(short_url) {
-    var share_buttons = document.getElementById('share-buttons');
-    while (share_buttons.firstChild) {
-        share_buttons.removeChild(share_buttons.firstChild);
-    }
-    var tweet_text = 'A plausible algorithm to measure partisan gerrymandering?';
-    window.twttr.widgets.createShareButton(short_url, share_buttons, { text: tweet_text });
-    var fb = '<div class="fb-share-button" data-href="' + short_url + '" data-layout="button"></div>';
-    $(share_buttons).append(fb);
-    window.FB.XFBML.parse();    
-}
-
-gerry_app.update_short_url = function(short_url) {
-    $('#share').removeAttr('hidden');
-    $('#short-url').val(short_url);
-    gerry_app.display_social_buttons(short_url);
-}
 
 gerry_app.updateWithMetricData = function (states) {
   gerry_app.sort_by_metric(states);
@@ -105,6 +86,7 @@ $(function() {
     gerry_app.initialize_link_generator();
 
     var calculate_button = $('#calculate-metric');
+    // TODO Wait, why is this here
     calculate_button.click(gerry_app.calculate_metrics);
     render_map(gerry_app.house_json.states, '#map', 900);
     gerry_app.display_input_data(gerry_app.house_json.states)
