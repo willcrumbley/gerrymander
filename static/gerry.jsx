@@ -40,29 +40,12 @@ gerry_app.sort_by_metric = function(states) {
 gerry_app.filter_states = function(states) {
     return states.filter(function(state) {
         return state.include;
-    })    
+    })
 }
 
 gerry_app.display_state_metrics = function(states) {
     ReactDOM.render(<StateTable states={states} />, document.getElementById('states-table'));
     render_map(states, '#map', 900);
-}
-
-gerry_app.calculate_metrics = function() {
-    var frame = document.getElementById('js-sandbox');
-    var data = {
-        "states": gerry_app.house_json.states,
-        "algorithm": $('#metric-function').val()
-    }
-    wait_until()
-        .interval(500)
-        .times(10)
-        .condition(function() {
-            return (gerry_app.iframe_loaded);
-        })
-        .done(function(result) {
-            frame.contentWindow.postMessage(data, '*');
-    });
 }
 
 gerry_app.display_input_data = function(state_data) {
@@ -85,14 +68,8 @@ $(function() {
     gerry_app.initialize_sandbox();
     gerry_app.initialize_link_generator();
 
-    var calculate_button = $('#calculate-metric');
-    // TODO Wait, why is this here
-    calculate_button.click(gerry_app.calculate_metrics);
     render_map(gerry_app.house_json.states, '#map', 900);
     gerry_app.display_input_data(gerry_app.house_json.states)
-    if (window.location.search === "") {
-        calculate_button.click();
-    }
 });
 
 ReactDOM.render(<Navigation />, document.getElementById('navigation'));
