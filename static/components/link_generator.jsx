@@ -55,10 +55,10 @@ class ShareableLinkGenerator extends React.Component {
       return (
         <div>
           <div>
-            Link: <code>{this.state.shareableLink}</code>
+            Shareable URL: <code>{this.state.shareableLink}</code>
           </div>
           <div>
-            Shortened Link: <code>{this.state.shortLink}</code>
+            Shortened URL: <code>{this.state.shortLink}</code>
           </div>
           <span className="fb-share-button" data-href={this.state.shortLink} data-layout="button"></span>
           <span id='twttr-share-button' ref={(input) => this.twttrButtonContainer = input}></span>
