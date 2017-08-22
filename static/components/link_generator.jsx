@@ -17,7 +17,7 @@ class ShareableLinkGenerator extends React.Component {
     return (
       <div>
         <form className='form-inline'>
-          <label className='mr-sm-2' for='gistUrlInput'>Gist URL:</label>
+          <label className='mr-sm-2' htmlFor='gistUrlInput'>Gist URL:</label>
           <input
             type="text"
             className="form-control mr-sm-2" 

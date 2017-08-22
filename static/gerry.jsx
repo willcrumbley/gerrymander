@@ -7,7 +7,6 @@ import $ from 'jquery';
 import wait_until from 'wait-until';
 
 import default_metric from './default_metric.js';
-import shortener from './utils/shortener.js';
 import Navigation from './components/navigation.jsx';
 import StateTable from './components/state_table.jsx';
 import StateMap from './components/state_map.jsx';
@@ -66,10 +65,10 @@ gerry_app.display_state_metrics = function(states) {
     ReactDOM.render(<StateMap states={states} width={900}/>, document.getElementById('map'));
 }
 
-gerry_app.calculate_metrics = function(states) {
+gerry_app.calculate_metrics = function() {
     var frame = document.getElementById('js-sandbox');
     var data = {
-        "states": states,
+        "states": gerry_app.house_json.states,
         "algorithm": $('#metric-function').val()
     }
     wait_until()
@@ -102,6 +101,7 @@ $(function() {
     $.get('data/house_by_state.json').then(function(house_data) {
         gerry_app.initialize_sandbox(house_data);
         gerry_app.initialize_link_generator();
+        gerry_app.house_json = house_data;
 
         var calculate_button = $('#calculate-metric');
         calculate_button.click(gerry_app.calculate_metrics);
@@ -109,7 +109,7 @@ $(function() {
         if (window.location.search === "") {
             calculate_button.click();
         }
+
+        ReactDOM.render(<Navigation states={house_data.states}/>, document.getElementById('navigation'));
     });
 });
-
-ReactDOM.render(<Navigation />, document.getElementById('navigation'));
