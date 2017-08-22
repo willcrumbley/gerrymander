@@ -6,7 +6,6 @@ import base64 from 'base-64';
 import $ from 'jquery';
 import wait_until from 'wait-until';
 
-import house_data from '../data/house_by_state.json';
 import default_metric from './default_metric.js';
 import Navigation from './components/navigation.jsx';
 import StateTable from './components/state_table.jsx';
@@ -64,12 +63,14 @@ gerry_app.initialize_link_generator = function() {
 }
 
 $(function() {
-    gerry_app.house_json = house_data;
-    gerry_app.initialize_sandbox();
-    gerry_app.initialize_link_generator();
+    $.get('data/house_by_state.json').then(function(house_data) {
+        gerry_app.house_json = house_data;
+        gerry_app.initialize_sandbox();
+        gerry_app.initialize_link_generator();
 
-    render_map(gerry_app.house_json.states, '#map', 900);
-    gerry_app.display_input_data(gerry_app.house_json.states)
+        render_map(gerry_app.house_json.states, '#map', 900);
+        gerry_app.display_input_data(gerry_app.house_json.states)
+    });
 });
 
 ReactDOM.render(<Navigation />, document.getElementById('navigation'));
