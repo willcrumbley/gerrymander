@@ -1,6 +1,8 @@
 import React from 'react';
 import URI from 'urijs';
 
+import shortener from '../utils/shortener.js';
+
 
 class ShareableLinkGenerator extends React.Component {
   constructor(props) {
@@ -24,12 +26,20 @@ class ShareableLinkGenerator extends React.Component {
             id="gistUrlInput" 
             ref={(input) => {this.gistUrlInput = input}}
           />
-          <button className="btn btn-primary" onClick={this.calculateLink}>Submit</button>
+          <button className="btn btn-primary" onClick={this.calculateLink}>Generate</button>
         </form>
         {this.renderError()}
         {this.renderLink()}
       </div>
     )
+  }
+
+  componentDidMount() {
+    this.initializeShareButtons();
+  }
+
+  componentDidUpdate() {
+    this.initializeShareButtons();
   }
 
   renderError() {
@@ -41,13 +51,32 @@ class ShareableLinkGenerator extends React.Component {
   }
 
   renderLink() {
-    if(this.state.shareableLink) {
+    if(this.shouldRenderShareInfo()) {
       return (
         <div>
-          Link: <code>{this.state.shareableLink}</code>
+          <div>
+            Shareable URL: <code>{this.state.shareableLink}</code>
+          </div>
+          <div>
+            Shortened URL: <code>{this.state.shortLink}</code>
+          </div>
+          <span className="fb-share-button" data-href={this.state.shortLink} data-layout="button"></span>
+          <span id='twttr-share-button' ref={(input) => this.twttrButtonContainer = input}></span>
         </div>
       )
     }
+  }
+
+  initializeShareButtons() {
+    if(this.shouldRenderShareInfo()) {
+      let tweetText = 'A plausible algorithm to measure partisan gerrymandering?';
+      window.twttr.widgets.createShareButton(this.state.shortLink, this.twttrButtonContainer, {text: tweetText});
+      window.FB.XFBML.parse();
+    }
+  }
+
+  shouldRenderShareInfo() {
+    return this.state.shareableLink;
   }
 
   /**
@@ -63,9 +92,13 @@ class ShareableLinkGenerator extends React.Component {
     if(match) {
       let uri = new URI(window.location.href);
       uri.query({gist: match[1]});
-      this.setState({
-        shareableLink: uri.toString(),
-        error: false
+
+      shortener.shorten(uri.toString(), (shortUrl) => {
+        this.setState({
+          shareableLink: uri.toString(),
+          shortLink: shortUrl,
+          error: false
+        });
       });
     } else {
       this.setState({
