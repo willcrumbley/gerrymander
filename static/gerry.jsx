@@ -65,10 +65,9 @@ gerry_app.initialize_link_generator = function() {
 $(function() {
     $.get('data/house_by_state.json').then(function(house_data) {
         gerry_app.house_json = house_data;
-        gerry_app.initialize_sandbox();
+        gerry_app.initialize_sandbox(house_data);
         gerry_app.initialize_link_generator();
 
-        render_map(gerry_app.house_json.states, '#map', 900);
         gerry_app.display_input_data(gerry_app.house_json.states)
         ReactDOM.render(<Navigation states={house_data.states}/>, document.getElementById('navigation'));
     });
