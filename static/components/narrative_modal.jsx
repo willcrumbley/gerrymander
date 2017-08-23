@@ -75,6 +75,8 @@ class NarrativeModal extends React.Component {
         if (directive === '@map-ge-8') {
             return <div className="mx-auto d-block">
                     <StateMap states={this.state.stateData.ge_8} width={550}/>
+                    <p> States with fewer than 8 districts shown in gray. Red states are gerrymandered to 
+                        favor Republicans, blue states Democrats.</p>
                    </div>
         } 
         else if (directive === '@map-lt-8') {
@@ -106,11 +108,11 @@ class NarrativeModal extends React.Component {
                     >
                     <div className='container'>
                         <div className='row'>
-                            <h4>An exploration of the efficiency gap and other measures of partisan gerrymandering</h4>
+                            <h4>{this.getIllustration(narrative_data[this.state.index].title)}</h4>
                         </div>
                         <div className='row m-5'>
-                            <div className='col-3'>{narrative_data[this.state.index].context}</div>
-                            <div id='illustration' className='col-9'>
+                            <div className='col-5'>{narrative_data[this.state.index].context}</div>
+                            <div id='illustration' className='col-7'>
                                 {this.getIllustration(narrative_data[this.state.index].illustration)}
                             </div>
                         </div>
