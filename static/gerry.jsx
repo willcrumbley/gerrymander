@@ -6,7 +6,7 @@ import base64 from 'base-64';
 import $ from 'jquery';
 import wait_until from 'wait-until';
 
-import default_metric from './default_metric.js';
+import efficiency_gap_ge_8 from './efficiency_gap_ge_8.js';
 import Navigation from './components/navigation.jsx';
 import StateTable from './components/state_table.jsx';
 import StateMap from './components/state_map.jsx';

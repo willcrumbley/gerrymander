@@ -1,7 +1,7 @@
 import React from 'react';
 import URI from 'urijs';
 
-import default_metric from '../default_metric.js';
+import efficiency_gap_ge_8 from '../efficiency_gap_ge_8.js';
 
 
 class JavascriptSandbox extends React.Component {
@@ -132,7 +132,7 @@ class MetricFunctionSandbox extends React.Component {
     } else {
       return new Promise((resolve) => {
         this.setState({runOnMount: true})
-        resolve(default_metric);
+        resolve(efficiency_gap_ge_8);
       })
     }
   }

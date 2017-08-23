@@ -5,8 +5,13 @@ import ReactDOM from 'react-dom';
 
 class StateMap extends React.Component {
     drawMap() {
+        var geofile = './lib/topojson/countries/USA.json'
+        if (this.props.mapType === 'CD') {
+            geofile = './lib/topojson/countries/cd113.json';
+        }
+
         var map = d3.geomap.choropleth()
-            .geofile('./lib/topojson/countries/USA.json')
+            .geofile(geofile)
             .colors(colorbrewer.RdBu[9])
             .projection(d3.geoAlbersUsa)
             .column('metric')
@@ -34,7 +39,6 @@ class StateMap extends React.Component {
             container.removeChild(child);
         }
     }
-
 
     render() {
         return <div ref='container'></div>

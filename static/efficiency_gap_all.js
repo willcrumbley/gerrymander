@@ -8,7 +8,7 @@ var d_wasted = 0;
 var r_wasted = 0;
 
 for (let dist of state.house_districts) {
-  // Tally up all votes
+  // Impute data from Presidential races for uncontested elections
   for (let year of ["y2016", "y2014", "y2012"]) {
     for (let party of ["dem", "rep"]) {
       if (dist.votes[year][party + "_votes_house"] === null) {
@@ -41,12 +41,11 @@ for (let dist of state.house_districts) {
   }
 };
 
-// Calculate the efficiency-gap
-var include = state.house_districts.length >= 8 ? true : false;
+// Calculate the efficiency gap
 var metric = (r_wasted - d_wasted) / state_total;
 return {
  metric: metric,
- include: include,
+ include: true,
  seats_flipped: metric * state.house_districts.length
 }
 `

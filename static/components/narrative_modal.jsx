@@ -5,6 +5,9 @@ import ReactModal from 'react-modal';
 
 import StateMap from './state_map.jsx';
 import narrative_data from './narrative.jsx';
+import efficiency_gap_ge_8 from '../efficiency_gap_ge_8.js';
+import efficiency_gap_lt_8 from '../efficiency_gap_lt_8.js';
+import efficiency_gap_all from '../efficiency_gap_all.js';
 
 class NarrativeModal extends React.Component {
     constructor(props) {
@@ -14,6 +17,11 @@ class NarrativeModal extends React.Component {
             index: 0,
             skipIntroHidden: false,
             nextButtonText: "Next",
+            stateData: {
+                ge_8: this.calculateForNarrativeMap(props.states, efficiency_gap_ge_8),
+                lt_8: this.calculateForNarrativeMap(props.states, efficiency_gap_lt_8),
+                all: this.calculateForNarrativeMap(props.states, efficiency_gap_all)
+            }
         };
 
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -48,17 +56,53 @@ class NarrativeModal extends React.Component {
         }
     }
 
-    render() {
-        var illustration = narrative_data[this.state.index].illustration
-        if (illustration === '@map8') {
-            illustration = <StateMap states={this.props.states} width={550}/>
-        }
+    calculateForNarrativeMap(states, algorithm) {
+        for (let statex of states) {
+            var options = {"state": statex}
+            let fn = new Function("options", algorithm);
+            let result = fn(options)
 
+            statex.metric = result.metric.toFixed(2);
+            statex.include = result.include;
+            statex.seats_flipped = result.seats_flipped.toFixed(1);
+        }
+        return states.filter(function(state) {
+            return state.include;
+        });
+    }
+
+    getIllustration(directive) {
+        if (directive === '@map-ge-8') {
+            return <div className="mx-auto d-block">
+                    <StateMap states={this.state.stateData.ge_8} width={550}/>
+                   </div>
+        } 
+        else if (directive === '@map-lt-8') {
+            return <div className="mx-auto d-block">
+                    <StateMap states={this.state.stateData.lt_8} width={550}/>
+                   </div>
+        } 
+        else if (directive === '@map-all') {
+            return <div className="mx-auto d-block">
+                    <StateMap states={this.state.stateData.all} width={550}/>
+                   </div>
+        }
+        else if (directive === '@nh-map') {
+            return <div className="mx-auto d-block">
+                    <StateMap mapType={'CD'} states={this.state.stateData.all} width={550}/>
+                   </div>
+        }
+        return directive;
+    }
+
+    render() {
+        var style = {overlay: { backgroundColor: 'rgba(255, 255, 255, 1)'}}
         return (
             <div>
                 <ReactModal 
                     isOpen={this.state.showModal}
                     contentLabel="Efficiency Gap Narrative"
+                    style={style}
                     >
                     <div className='container'>
                         <div className='row'>
@@ -66,7 +110,9 @@ class NarrativeModal extends React.Component {
                         </div>
                         <div className='row m-5'>
                             <div className='col-3'>{narrative_data[this.state.index].context}</div>
-                            <div id='illustration' className='col-9'>{illustration}</div>
+                            <div id='illustration' className='col-9'>
+                                {this.getIllustration(narrative_data[this.state.index].illustration)}
+                            </div>
                         </div>
                         <div className='row float-left'>
                             <button onClick={this.handleCloseModal} className="btn btn btn-outline-secondary" 
