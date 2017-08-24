@@ -6,7 +6,7 @@ import base64 from 'base-64';
 import $ from 'jquery';
 import wait_until from 'wait-until';
 
-import default_metric from './default_metric.js';
+import efficiency_gap_ge_8 from './efficiency_gap_ge_8.js';
 import Navigation from './components/navigation.jsx';
 import StateTable from './components/state_table.jsx';
 import render_map from './utils/render_map.js';
@@ -39,7 +39,7 @@ gerry_app.sort_by_metric = function(states) {
 gerry_app.filter_states = function(states) {
     return states.filter(function(state) {
         return state.include;
-    })
+    });
 }
 
 gerry_app.display_state_metrics = function(states) {
@@ -51,9 +51,9 @@ gerry_app.display_input_data = function(state_data) {
     $("#state-data-area").val(JSON.stringify(state_data, undefined, 4));
 }
 
-gerry_app.initialize_sandbox = function() {
+gerry_app.initialize_sandbox = function(house_data) {
   let component = <MetricFunctionSandbox
-                    states={gerry_app.house_json.states}
+                    states={house_data.states}
                     onCalculate={gerry_app.updateWithMetricData} />
   ReactDOM.render(component, document.getElementById('metric-sandbox'));
 }
@@ -65,12 +65,10 @@ gerry_app.initialize_link_generator = function() {
 $(function() {
     $.get('data/house_by_state.json').then(function(house_data) {
         gerry_app.house_json = house_data;
-        gerry_app.initialize_sandbox();
+        gerry_app.initialize_sandbox(house_data);
         gerry_app.initialize_link_generator();
 
-        render_map(gerry_app.house_json.states, '#map', 900);
         gerry_app.display_input_data(gerry_app.house_json.states)
+        ReactDOM.render(<Navigation states={house_data.states}/>, document.getElementById('navigation'));
     });
 });
-
-ReactDOM.render(<Navigation />, document.getElementById('navigation'));

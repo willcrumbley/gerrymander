@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 
-import narrative from '../utils/narrative.js';
+import narrative_data from './narrative.jsx';
 
 class NarrativeModal extends React.Component {
     constructor(props) {
@@ -36,33 +36,35 @@ class NarrativeModal extends React.Component {
 
     next() {
         var nextIndex = this.state.index + 1;
-        if (nextIndex < narrative.length) {
+        if (nextIndex < narrative_data.length) {
             this.setState({ index: nextIndex });
         } else {
             this.handleCloseModal();
         }
-        if (nextIndex === narrative.length - 1) {
+        if (nextIndex === narrative_data.length - 1) {
             this.setState({ skipIntroHidden: true });
             this.setState({ nextButtonText: "Explore the Algorithm" });
         }
     }
 
     render() {
+        var style = {overlay: { backgroundColor: 'rgba(255, 255, 255, 1)'}}
         return (
             <div>
                 <ReactModal 
                     isOpen={this.state.showModal}
                     contentLabel="Efficiency Gap Narrative"
+                    style={style}
                     >
                     <div className='container'>
                         <div className='row'>
-                            <h4>An exploration of the efficiency gap and other measures of partisan gerrymandering</h4>
+                            <h4>{narrative_data[this.state.index].title}</h4>
                         </div>
                         <div className='row m-5'>
-                            <div className='col-3' 
-                                dangerouslySetInnerHTML={{__html: narrative[this.state.index].context}}></div>
-                            <div id='illustration' className='col-9' 
-                                dangerouslySetInnerHTML={{__html: narrative[this.state.index].illustration}}></div>
+                            <div className='col-6'>{narrative_data[this.state.index].context}</div>
+                            <div id='illustration' className='col-6'>
+                                {narrative_data[this.state.index].illustration}
+                            </div>
                         </div>
                         <div className='row float-left'>
                             <button onClick={this.handleCloseModal} className="btn btn btn-outline-secondary" 
