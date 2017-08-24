@@ -27,7 +27,8 @@ class Navigation extends React.Component {
                 <div id='nav' hidden={this.state.hideNav}>
                     <nav className="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
                       <a className="navbar-brand" href="#">
-                        <img src='./static/img/gerrymander-500.png' width="30" height="30" alt=""/>
+                        <img src='./static/img/gerrymander-500.png' width="30" height="30" 
+                            alt="Original 1812 Gerrymander cartoon"/>
                       </a>
                       <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">

@@ -69,7 +69,7 @@ class ShareableLinkGenerator extends React.Component {
 
   initializeShareButtons() {
     if(this.shouldRenderShareInfo()) {
-      let tweetText = 'A plausible algorithm to measure partisan gerrymandering?';
+      let tweetText = 'Explore the efficiency gap, a measure of partisan gerrymandering.';
       window.twttr.widgets.createShareButton(this.state.shortLink, this.twttrButtonContainer, {text: tweetText});
       window.FB.XFBML.parse();
     }
