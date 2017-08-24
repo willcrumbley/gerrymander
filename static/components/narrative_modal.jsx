@@ -3,11 +3,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 
-import StateMap from './state_map.jsx';
 import narrative_data from './narrative.jsx';
-import efficiency_gap_ge_8 from '../efficiency_gap_ge_8.js';
-import efficiency_gap_lt_8 from '../efficiency_gap_lt_8.js';
-import efficiency_gap_all from '../efficiency_gap_all.js';
 
 class NarrativeModal extends React.Component {
     constructor(props) {
@@ -16,12 +12,7 @@ class NarrativeModal extends React.Component {
             showModal: props.show,
             index: 0,
             skipIntroHidden: false,
-            nextButtonText: "Next",
-            stateData: {
-                ge_8: this.calculateForNarrativeMap(props.states, efficiency_gap_ge_8),
-                lt_8: this.calculateForNarrativeMap(props.states, efficiency_gap_lt_8),
-                all: this.calculateForNarrativeMap(props.states, efficiency_gap_all)
-            }
+            nextButtonText: "Next"
         };
 
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -56,47 +47,6 @@ class NarrativeModal extends React.Component {
         }
     }
 
-    calculateForNarrativeMap(states, algorithm) {
-        for (let statex of states) {
-            var options = {"state": statex}
-            let fn = new Function("options", algorithm);
-            let result = fn(options)
-
-            statex.metric = result.metric.toFixed(2);
-            statex.include = result.include;
-            statex.seats_flipped = result.seats_flipped.toFixed(1);
-        }
-        return states.filter(function(state) {
-            return state.include;
-        });
-    }
-
-    getIllustration(directive) {
-        if (directive === '@map-ge-8') {
-            return <div className="mx-auto d-block">
-                    <StateMap states={this.state.stateData.ge_8} width={550}/>
-                    <p> States with fewer than 8 districts shown in gray. Red states are gerrymandered to 
-                        favor Republicans, blue states Democrats.</p>
-                   </div>
-        } 
-        else if (directive === '@map-lt-8') {
-            return <div className="mx-auto d-block">
-                    <StateMap states={this.state.stateData.lt_8} width={550}/>
-                   </div>
-        } 
-        else if (directive === '@map-all') {
-            return <div className="mx-auto d-block">
-                    <StateMap states={this.state.stateData.all} width={550}/>
-                   </div>
-        }
-        else if (directive === '@nh-map') {
-            return <div className="mx-auto d-block">
-                    <StateMap mapType={'CD'} states={this.state.stateData.all} width={550}/>
-                   </div>
-        }
-        return directive;
-    }
-
     render() {
         var style = {overlay: { backgroundColor: 'rgba(255, 255, 255, 1)'}}
         return (
@@ -108,12 +58,12 @@ class NarrativeModal extends React.Component {
                     >
                     <div className='container'>
                         <div className='row'>
-                            <h4>{this.getIllustration(narrative_data[this.state.index].title)}</h4>
+                            <h4>{narrative_data[this.state.index].title}</h4>
                         </div>
                         <div className='row m-5'>
-                            <div className='col-5'>{narrative_data[this.state.index].context}</div>
-                            <div id='illustration' className='col-7'>
-                                {this.getIllustration(narrative_data[this.state.index].illustration)}
+                            <div className='col-6'>{narrative_data[this.state.index].context}</div>
+                            <div id='illustration' className='col-6'>
+                                {narrative_data[this.state.index].illustration}
                             </div>
                         </div>
                         <div className='row float-left'>

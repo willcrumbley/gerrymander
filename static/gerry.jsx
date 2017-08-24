@@ -9,7 +9,7 @@ import wait_until from 'wait-until';
 import efficiency_gap_ge_8 from './efficiency_gap_ge_8.js';
 import Navigation from './components/navigation.jsx';
 import StateTable from './components/state_table.jsx';
-import StateMap from './components/state_map.jsx';
+import render_map from './utils/render_map.js';
 import MetricFunctionSandbox from './components/sandbox.jsx';
 import ShareableLinkGenerator from './components/link_generator.jsx';
 
@@ -44,7 +44,7 @@ gerry_app.filter_states = function(states) {
 
 gerry_app.display_state_metrics = function(states) {
     ReactDOM.render(<StateTable states={states} />, document.getElementById('states-table'));
-    ReactDOM.render(<StateMap states={states} width={900}/>, document.getElementById('map'));
+    render_map(states, '#map', 900);
 }
 
 gerry_app.display_input_data = function(state_data) {
