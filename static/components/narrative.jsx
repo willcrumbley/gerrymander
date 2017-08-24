@@ -4,7 +4,7 @@ import React from 'react';
 
 module.exports = [
     {
-        title: <p>An exploration of the efficiency gap and other measures of partisan gerrymandering</p>,
+        title: <p>The efficiency gap, a proposed measure of unconstitutional partisan gerrymandering.</p>,
         context: <div>
                     <p>The practice of gerrymandering, or drawing electoral districts to give an advantage to 
                         a party or group, has been a part of democratic politics for at least two centuries.</p>
@@ -13,7 +13,7 @@ module.exports = [
                         boundaries.</p>
                 </div>,
         illustration: <img src="./static/img/gerrymander.png" width="300"
-                        alt="gerrymander image" className="mx-auto d-block"/>
+                        alt="Original 1812 Gerrymander cartoon" className="mx-auto d-block"/>
     },
     {
         title: <p>Why should I care?</p>,
@@ -25,7 +25,7 @@ module.exports = [
                         have been rejected.</p>
                  </div>,
         illustration: <img src="./static/img/Efficiency Gap Over Time.png" width="400"
-                        alt="efficiency gap over time image" className="mx-auto d-block"/>
+                        alt="Graph of Efficiency Gap getting worse over time" className="mx-auto d-block"/>
     },
     {
         title: <p>What's the Efficiency Gap?</p>,
@@ -65,7 +65,7 @@ module.exports = [
                     <p>But what would be a 'fair' outcome in this situation?</p>
                 </div>,
         illustration: <img src="https://nationalmap.gov/small_scale/printable/images/preview/congdist/pagecgd113_nh.gif" 
-                        width="400" alt="Wisconsin Congressional District Map, 113th Congress" className="mx-auto d-block"/>,
+                        width="400" alt="New Hampshire Congressional District Map, 113th Congress" className="mx-auto d-block"/>,
     },
     {
         title: <p>Try it yourself!</p>,

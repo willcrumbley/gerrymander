@@ -23,7 +23,7 @@ class TableRow extends React.Component {
                 <td>{num_rep_seats}</td>
                 <td>
                     <a href = 'https://nationalmap.gov/small_scale/printable/congress.html' target='_blank'>
-                        <img className='state-map' src={map_url}/>
+                        <img className='state-map' src={map_url} alt='Congressional district map for {state.name}'/>
                     </a>
                 </td>
                 <td>
