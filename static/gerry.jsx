@@ -44,7 +44,14 @@ gerry_app.filter_states = function(states) {
 
 gerry_app.display_state_metrics = function(states) {
     ReactDOM.render(<StateTable states={states} />, document.getElementById('states-table'));
-    render_map(states, '#map', 900);
+    var window_width = $(window).width();
+    var map_size = 900;
+    var show_legend = true;
+    if (window_width < 900) {
+      map_size = window_width * 0.9;
+      show_legend = false;
+    }
+    render_map(states, '#map', map_size, show_legend);
 }
 
 gerry_app.display_input_data = function(state_data) {

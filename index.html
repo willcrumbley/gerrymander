@@ -1,14 +1,17 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <title>The efficiency gap, Gill v. Whitford's proposed measure of unconstitutional partisan gerrymandering</title>
+        <title>The efficiency gap: the measure of unconstitutional partisan gerrymandering used in Gill v. Whitford.</title>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' nationalmap.gov syndication.twitter.com www.facebook.com www.google-analytics.com; script-src 'self' 'unsafe-eval' 'unsafe-inline' platform.twitter.com connect.facebook.net www.google-analytics.com; style-src 'self' 'unsafe-inline'; frame-src 'self' platform.twitter.com staticxx.facebook.com www.facebook.com; connect-src 'self' www.googleapis.com gist.githubusercontent.com"> 
         <meta property="og:url"           content="http://www.efficiency-gap.com" />
         <meta property="og:type"          content="website" />
-        <meta property="og:title"         content="An exploration of the efficiency gap and other measures of partisan gerrymandering" />
+        <meta property="og:title"         content="The efficiency gap: the measure of unconstitutional partisan gerrymandering used in Gill v. Whitford." />
         <meta property="og:description"   content="Explore the efficiency gap, a measure of partisan gerrymandering, used in Gill v. Whitford, the Supreme Court case evaluating Wisconsin Congressional redistricting."/>
         <meta property="og:image"         content="http://www.efficiency-gap.com/static/img/gerrymander-250.png" />
-        <meta name="description" content="Explore the efficiency gap, a measure of partisan gerrymandering, used in Gill v. Whitford, the Supreme Court case evaluating Wisconsin Congressional redistricting." />
+        <meta name="description" content="Explore the efficiency gap, a measure of partisan gerrymandering used in Gill v. Whitford, the Supreme Court case evaluating Wisconsin Congressional redistricting." />
         <script src="./node_modules/tether/dist/js/tether.js"></script>
         <script src="./node_modules/d3/build/d3.js"></script>
         <script src="./node_modules/d3-geo-projection/build/d3-geo-projection.js"></script>
@@ -23,29 +26,30 @@
         <div id='main' class='container'>
             <div id='navigation'>
             </div>
-            <div class="row ml-5 mr-5">
-                <div class="m-5">
+            <div class="row">
+                <div class="col col-12 p-5 mt-sm-5">
                     <h1>The efficiency gap, a proposed measure of unconstitutional partisan gerrymandering.</h1>
                 </div>
             </div>
-            <div class="row ml-5 mr-5">
-                <div class="content">
-                    <div id="blurb" class="row m-5">
+            <div class="row">
+                <div class="content col col-12 px-3">
+                    <div id="blurb" class="col col-12">
+                        <div class='alert alert-warning hidden-md-up'>Note: most of this site's functionality is disabled on mobile screen sizes. Feel free to explore then return with a larger device.</div>
                         <p>This site exists to allow interested users to explore the <a href="/">algorithm underlying the efficiency gap</a>, and then to create and share their own variant.</p>
                         <p>To report problems, or to propose that we add new data to the input dataset, please log an issue (or even better, make a pull request) at the project's <a href="https://github.com/willcrumbley/gerrymander/issues">Github repo</a>.</p>
                     </div>
-                    <div class="row m-5" id="map-row">
-                        <h2>US States By Calculated Metric, as of 2016</h2>
-                        <h5>States in red are most gerrymandered to favor Republicans, states in blue are gerrymandered to favor Democrats.</h5>
+                    <div id="map-row" class="col col-12 py-sm-4">
+                        <h2>US States By Calculated Metric (as of 2016)</h2>
+                        <p>States in red are most gerrymandered to favor Republicans, states in blue are gerrymandered to favor Democrats.</p>
                         <div id="map"></div>
                         <div id='map-disclaimer' class='alert alert-info'>For security reasons, the map will not display the metric until you review the algorithm and click the 'Calculate' button below.</div>
                     </div>
-                    <div class="row m-5" id="code">
+                    <div id="code" class="col col-12 hidden-sm-down py-sm-4">
                         <h2>Algorithm to Calculate Gerrymandering Metric</h2>
                         <div class='row'>
                             <div id="metric-sandbox">
                             </div>
-                            <div class="row m-4">
+                            <div class="col col-12">
                               <p>
                                 The preceding JavaScript function should calculate a metric of partisan gerrymandering and return
                                 an object containing: 
@@ -80,7 +84,7 @@
                                 </table>
                               </p>
                             </div>
-                            <div id="share" class="row m-4" >
+                            <div id="share" class="col col-12" >
                                 <h3>Share your own Algorithm</h3>
                                 <div class="col col-12">
                                     <div class="row">
@@ -93,24 +97,28 @@
                             </div>
                         </div>
                     </div>
-                    <div id='state-table'>
+                    <div id='state-table' class='col col-12 py-sm-4'>
                         <div id='states-table'></div>
                     </div>
-                    <div class='row m-5' id='state-data'> 
+                    <div id='state-data' class='col col-12 hidden-sm-down py-sm-4'> 
                         <h2>Explore the State Data Used as Input</h2>
                         <div class='code'>
                             <textarea name="state-data-area" id="state-data-area" rows=20 cols=100 readonly class="code"></textarea>
                         </div>
                     </div>
-                    <div id='notes' class='row m-5'>
-                        <div class="row">
+                    <div id='notes' class='col col-12 py-sm-4'>
+                        <div class='hidden-sm-down'>
                             <h2>Is this safe?</h2>
                             <p>This site allows the user to run arbitrary JavaScript from the textarea
                             above. If you believe that this site introduces any unaddressed security vulnerabilities, please file an issue at <a href='https://github.com/willcrumbley/gerrymander'>https://github.com/willcrumbley/gerrymander</a> and we will address the issue.</p>
+                        </div>
+                        <div class='hidden-sm-down'>
                             <h2>What about XSS and other kinds of malicious JavaScript?</h2>
                             <p>We are aware of the potential danger of sharing links with malicious 
                             JavaScript encoded, so (except for the default algorithm) the site does not automatically execute the decoded JavaScript, instead asking users to inspect the decoded script and execute it themselves. JavaScript
                             is also executed in a sandboxed iframe, and this page has a strict Content Security Policy.</p>
+                        </div>
+                        <div>
                             <h2>Data source</h2>
                             <p>"115th Congress Members Guide with Elections and Demographic Data by District", <a href="https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit">https://docs.google.com/spreadsheets/d/1oRl7vxEJUUDWJCyrjo62cELJD2ONIVl-D9TSUKiK9jk/edit</a></p>
                         </div>

@@ -31,7 +31,7 @@ class JavascriptSandbox extends React.Component {
   render() {
     return (
       <div>
-        <div>
+        <div className='col col-12'>
             <span className='code'>{'function(options) {'}</span>
             <textarea value={this.state.fnString} rows={30} cols={120}
               className="metric-function" onChange={this.setFnString}/>

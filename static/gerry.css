@@ -1,6 +1,7 @@
 body {
-    margin: 5%;
+    margin: auto;
     position: relative;
+    max-width: 900px;
 }
 .code {
   font-family: monospace; 
@@ -22,15 +23,10 @@ body {
     margin-right: 10%;
 }
 
- #js-sandbox {
+#js-sandbox {
     border: 0; 
     width: 0px; 
     height: 0px;
-}
-
-
-.clippy {
-  width: 13px;
 }
 
 .head-image {
@@ -40,4 +36,22 @@ body {
 
 .modal-button {
   margin: 5px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 800px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
 }

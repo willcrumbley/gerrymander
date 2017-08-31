@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-var render_map = function(states, element_selector, width) {
+var render_map = function(states, element_selector, width, show_legend) {
     var map = d3.geomap.choropleth()
         .geofile('./lib/topojson/countries/USA.json')
         .colors(colorbrewer.RdBu[9])
@@ -8,7 +8,7 @@ var render_map = function(states, element_selector, width) {
         .column('metric')
         .unitId('fips')
         .scale(width)
-        .legend(true)
+        .legend(show_legend)
         .width(width)
         .domain([-0.25,0.25])
         .zoomFactor(1);

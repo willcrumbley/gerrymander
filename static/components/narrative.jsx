@@ -13,7 +13,7 @@ module.exports = [
                         boundaries.</p>
                 </div>,
         illustration: <img src="./static/img/gerrymander.png" width="300"
-                        alt="Original 1812 Gerrymander cartoon" className="mx-auto d-block"/>
+                        alt="Original 1812 Gerrymander cartoon" className="mx-auto d-block img-fluid"/>
     },
     {
         title: <p>Why should I care?</p>,
@@ -25,7 +25,7 @@ module.exports = [
                         have been rejected.</p>
                  </div>,
         illustration: <img src="./static/img/Efficiency Gap Over Time.png" width="400"
-                        alt="Graph of Efficiency Gap getting worse over time" className="mx-auto d-block"/>
+                        alt="Graph of Efficiency Gap getting worse over time" className="mx-auto d-block img-fluid"/>
     },
     {
         title: <p>What's the Efficiency Gap?</p>,
@@ -38,7 +38,7 @@ module.exports = [
                     <i> Gill v. Whitford</i>, the 2017-18 case challenging the 2011 Wisconsin redistricting plan.</p>
                 </div>,
         illustration: <img src="https://nationalmap.gov/small_scale/printable/images/preview/congdist/pagecgd113_wi.gif" 
-                        width="400" alt="Wisconsin Congressional District Map, 113th Congress" className="mx-auto d-block"/>
+                        width="400" alt="Wisconsin Congressional District Map, 113th Congress" className="mx-auto d-block img-fluid"/>
     },
     {
         title: <p>A limitation</p>,
@@ -52,7 +52,7 @@ module.exports = [
                 </div>,
         illustration: <div>
                         <img src="./static/img/efficiency-gap-ge-8.png" width="450"
-                            alt="Map of US States with calculated efficiency gap" className="mx-auto d-block"/>
+                            alt="Map of US States with calculated efficiency gap" className="mx-auto d-block img-fluid"/>
                         <div className='text-center'>
                             <p> States with fewer than 8 districts shown in gray. Red states are gerrymandered to 
                                 favor Republicans, blue states Democrats.</p>
@@ -72,7 +72,7 @@ module.exports = [
                     <p>But what would be a 'fair' map of New Hampshire?</p>
                 </div>,
         illustration: <img src="https://nationalmap.gov/small_scale/printable/images/preview/congdist/pagecgd113_nh.gif" 
-                        width="400" alt="New Hampshire Congressional District Map, 113th Congress" className="mx-auto d-block"/>,
+                        width="400" alt="New Hampshire Congressional District Map, 113th Congress" className="mx-auto d-block img-fluid"/>,
     },
     {
         title: <p>Try it yourself!</p>,
@@ -86,6 +86,6 @@ module.exports = [
                     <p>Good Luck!</p>
                 </div>,
         illustration: <img src="./static/img/instructions-400.png" height="300"
-                        alt="instructions for using site" className="mx-auto d-block"/>
+                        alt="instructions for using site" className="mx-auto d-block img-fluid"/>
     }
 ]
