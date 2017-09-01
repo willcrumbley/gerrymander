@@ -10,6 +10,7 @@ class NarrativeModal extends React.Component {
     constructor(props) {
         super();
         this.state = {
+            // showModal: props.show,
             showModal: props.show,
             index: 0,
             skipIntroHidden: false,

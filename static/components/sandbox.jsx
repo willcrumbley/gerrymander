@@ -1,5 +1,8 @@
+"use strict"
+
 import React from 'react';
 import URI from 'urijs';
+import $ from 'jquery';
 
 import efficiency_gap_ge_8 from '../efficiency_gap_ge_8.js';
 
@@ -26,6 +29,7 @@ class JavascriptSandbox extends React.Component {
     this.calculateMetric = this.calculateMetric.bind(this);
     this.setFnString = this.setFnString.bind(this);
     this.onIframeLoaded = this.onIframeLoaded.bind(this);
+    this.clickCalculate = this.clickCalculate.bind(this);
   }
 
   render() {
@@ -43,7 +47,7 @@ class JavascriptSandbox extends React.Component {
             Warning! Clicking this button will execute the JavaScript in the black text area above.
             If you have any uncertainty about what this code will do, please do not execute it!
           </p>
-          <button id='calculate-metric' type="button" className="btn btn-primary" onClick={this.calculateMetric}>
+          <button id='calculate-metric' type="button" className="btn btn-primary" onClick={this.clickCalculate}>
             Calculate the Metric
           </button>
         </div>
@@ -62,6 +66,14 @@ class JavascriptSandbox extends React.Component {
     if(this.props.runOnMount) {
       this.calculateMetric();
     }
+  }
+
+  clickCalculate() {
+    this.calculateMetric();
+    // Scroll to the map
+    $('html, body').animate({
+      scrollTop: $("#map-row").offset().top
+    }, 1000);
   }
 
   calculateMetric() {
