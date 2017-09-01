@@ -24,10 +24,6 @@ gerry_app.updateWithMetricData = function (states) {
   gerry_app.display_state_metrics(filtered_states);
 
   $('#map-disclaimer').text('Excluded states shown in grey.');
-  // Scroll to the map
-  $('html, body').animate({
-    scrollTop: $("#map-row").offset().top
-  }, 1000);
 }
 
 gerry_app.sort_by_metric = function(states) {
