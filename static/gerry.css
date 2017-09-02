@@ -38,6 +38,35 @@ body {
   margin: 5px;
 }
 
+.red {
+  background-color: crimson;
+  color: #fff;
+  text-align: center;
+  min-height: 50px;
+}
+
+.blue {
+  background-color: dodgerblue;
+  color: #fff;
+  text-align: center;
+  min-height: 50px;
+}
+
+.deemphasize {
+  background-color: lightgrey;
+  color: #fff;
+  text-align: center;
+  min-height: 50px;
+}
+
+.wasted {
+  opacity: 0.2;
+}
+
+div.smaller {
+  font-size: .75rem;
+}
+
 h1 {
   font-size: 2rem;
 }
