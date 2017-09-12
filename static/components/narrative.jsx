@@ -187,9 +187,10 @@ module.exports = [
                     </ul>
                     <p>Across this hypothetical state, there are 34 wasted R votes and 82 wasted D votes. The
                         difference in wasted votes between the parties (82 - 34 = 48), divided by the total votes in
-                        the state (250), gives the state's efficiency gap of 0.192.</p>
-                    <p>Stephanopoulos and McGhee suggest that efficiency gaps greater than 0.2 should be considered
-                        presumptively unconstitutional.</p>
+                        the state (250), gives the state's efficiency gap of 0.192. Multiplying by the number of 
+                        total districts (5) gives an estimate of 0.96 seats gained through gerrymandering.</p>
+                    <p>Stephanopoulos and McGhee suggest that efficiency gaps that result in a gain of 2 seats for 
+                        Congressional districting plans should be considered presumptively unconstitutional.</p>
                 </div>,
         illustration:   <div className='row'>
                             <div className='col-1 col-sm-2 mb-2'>1</div>
