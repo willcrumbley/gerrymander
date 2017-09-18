@@ -12,6 +12,7 @@ import StateTable from './components/state_table.jsx';
 import render_map from './utils/render_map.js';
 import MetricFunctionSandbox from './components/sandbox.jsx';
 import ShareableLinkGenerator from './components/link_generator.jsx';
+import NarrativeCarousel from './components/narrative_carousel.jsx';
 
 window.gerry_app = {
     iframe_loaded: false
@@ -73,5 +74,6 @@ $(function() {
 
         gerry_app.display_input_data(gerry_app.house_json.states)
         ReactDOM.render(<Navigation states={house_data.states}/>, document.getElementById('navigation'));
+        ReactDOM.render(<NarrativeCarousel />, document.getElementsByClassName('narrative-carousel')[0]);
     });
 });
