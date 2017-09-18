@@ -18,6 +18,9 @@ window.gerry_app = {
     iframe_loaded: false
 };
 
+// Required for Bootstrap
+window.jQuery = $;
+
 gerry_app.updateWithMetricData = function (states) {
   gerry_app.sort_by_metric(states);
 
