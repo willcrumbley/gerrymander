@@ -11,16 +11,18 @@ function NarrativeCarouselSlide({title, context, illustration, active}) {
 
   return (
     <div className={`carousel-item ${activeClass}`}>
-      <div className='col col-12'>
-        <div className='row'>
-          <div className='col col-12'>
-            <h4>{title}</h4>
+      <div className="container">
+        <div className='col col-12'>
+          <div className='row'>
+            <div className='col col-12'>
+              <h4>{title}</h4>
+            </div>
           </div>
-        </div>
-        <div className='row'>
-          <div className='col col-12 col-md-6 px-md-4'>{context}</div>
-          <div className='col-12 col-md-6'>
-            {illustration}
+          <div className='row'>
+            <div className='col col-12 col-md-6 px-md-4'>{context}</div>
+            <div className='col-12 col-md-6'>
+              {illustration}
+            </div>
           </div>
         </div>
       </div>
@@ -34,15 +36,15 @@ function NarrativeCarousel(props) {
   });
 
   return (
-    <div className="carousel slide" data-ride="carousel">
+    <div id='narrative-carousel' className="carousel slide" data-ride="carousel">
       <div className="carousel-inner" role="listbox">
         {slides}
       </div>
-      <a className="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+      <a className="carousel-control-prev" href="#narrative-carousel" role="button" data-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
         <span className="sr-only">Previous</span>
       </a>
-      <a className="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+      <a className="carousel-control-next" href="#narrative-carousel" role="button" data-slide="next">
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="sr-only">Next</span>
       </a>

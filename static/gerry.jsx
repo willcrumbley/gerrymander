@@ -77,6 +77,6 @@ $(function() {
 
         gerry_app.display_input_data(gerry_app.house_json.states)
         ReactDOM.render(<Navigation states={house_data.states}/>, document.getElementById('navigation'));
-        ReactDOM.render(<NarrativeCarousel />, document.getElementsByClassName('narrative-carousel')[0]);
+        ReactDOM.render(<NarrativeCarousel />, document.getElementById('narrative-carousel-container'));
     });
 });
