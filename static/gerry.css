@@ -1,7 +1,6 @@
 body {
     margin: auto;
     position: relative;
-    max-width: 900px;
 }
 .code {
   font-family: monospace; 
