@@ -30,14 +30,31 @@ function NarrativeCarouselSlide({title, context, illustration, active}) {
   );
 }
 
+function NarrativeCarouselIndicator({active, index}) {
+  let activeClass = active ? "active" : "";
+  return (<li data-target="#narrative-carousel" data-slide-to={`${index}`} className={`${activeClass}`}></li>);
+}
+
 function NarrativeCarousel(props) {
   let slides = narrative_data.map((data, index) => {
     return NarrativeCarouselSlide(Object.assign({active: (index == 0)}, data));
   });
 
+  let indicators = narrative_data.map((data, index) => {
+    return NarrativeCarouselIndicator(Object.assign({active: (index == 0), index: index}));
+  });
+
   return (
     <div id='narrative-carousel' className="carousel slide" data-ride="carousel">
-      <div className="carousel-inner" role="listbox">
+      <div className="container">
+        <div className="pt-5 mt-sm-5 ml-3">
+          <h1>The efficiency gap, a proposed measure of unconstitutional partisan gerrymandering.</h1>
+        </div>
+      </div>
+      <ol className="carousel-indicators">
+        {indicators}
+      </ol>
+      <div className="carousel-inner mt-5" role="listbox">
         {slides}
       </div>
       <a className="carousel-control-prev" href="#narrative-carousel" role="button" data-slide="prev">
