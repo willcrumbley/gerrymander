@@ -4,9 +4,9 @@ import React from 'react';
 
 module.exports = [
     {
-        title: <p>The efficiency gap, a proposed measure of unconstitutional partisan gerrymandering</p>,
+        title: <span></span>,
         context: <div>
-                    <p>The practice of gerrymandering, drawing electoral districts to give an advantage to 
+                    <p>Gerrymandering, the practice of drawing electoral districts to give an advantage to 
                         a party or group, has been a part of U.S. politics for at least two centuries.</p>
                     <p>The <a href='https://en.wikipedia.org/wiki/Gerrymandering'> Gerry-mander cartoon </a>
                         from 1812 satirized the appearance of one district with particularly creative 
@@ -16,29 +16,81 @@ module.exports = [
                         alt="Original 1812 Gerrymander cartoon" className="mx-auto d-block img-fluid"/>
     },
     {
-        title: <p>Why should I care?</p>,
+        title: <p>Unconstitutional?</p>,
         context: <div>
-                    <p>Excessive partisan gerrymandering can lead to extreme partisanship, as
-                        it reduces the competitiveness of elections.</p>
-                    <p>Partisan gerrymandering has become significantly worse in recent years.</p>
-                    <p>All previous legal tests for unconstitutional gerrymandering brought before the Supreme Court 
-                        have been rejected.</p>
+                    <p>In extreme cases, partisan gerrymandering can be used to decrease electoral competition,
+                       or to grant one party a disproportionate number of seats in state legislatures</p>
+                    <p>This has raised the question of whether there is an extent of gerrymandering that should
+                       be considered unconstitutional under the Equal Protection clause of the constitution. However, there is no
+                       agreed-upon standard on how to measure it.</p>
+                    <p>There have been several attempts to propose legal tests for unconstitutional gerrymandering,
+                       but the Supreme Court has rejected all of them to date.</p>
                  </div>,
         illustration:   <div>
-                            <img src="./static/img/Efficiency Gap Over Time.png" width="400"
-                            alt="Graph of Efficiency Gap getting worse over time" className="mx-auto d-block img-fluid"/>
-                            <div className='text-center smaller'>Source: Stephanopoulos and McGhee (2014), <i>Partisan Gerrymandering and the Efficiency Gap.</i></div>
+                          <div className='row'>
+                            <div className='col-1 col-sm-2 '></div>
+                            <div className='col-2 yellow'>10 Y</div>
+                            <div className='col-2 yellow'>10 Y</div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 green'>10 G</div>
+                          </div>
+
+                          <div className='row mt-2'>
+                            <div className='col-1 col-sm-2 '></div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 yellow'>10 Y</div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 yellow'>10 Y</div>
+                            <div className='col-2 green'>10 G</div>
+                          </div>
+
+                          <div className='row mt-2'>
+                            <div className='col-1 col-sm-2 '></div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 yellow'>10 Y</div>
+                            <div className='col-2 yellow'>10 Y</div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 green'>10 G</div>
+                          </div>
+
+                          <div className='row mt-2'>
+                            <div className='col-1 col-sm-2 '></div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 yellow'>10 Y</div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 yellow'>10 Y</div>
+                          </div>
+
+                          <div className='row mt-2'>
+                            <div className='col-1 col-sm-2 '></div>
+                            <div className='col-2 yellow'>10 Y</div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 green'>10 G</div>
+                            <div className='col-2 yellow'>10 Y</div>
+                            <div className='col-2 green'>10 G</div>
+                          </div>
+                          <div className="row">
+                            <div className='col-10 offset-2 text-center'>
+                              Green won 60% of the votes, but 100% of the seats.
+                            </div>
+                          </div>
                         </div>
     },
     {
-        title: <p>What's the efficiency gap?</p>,
+        title: <p>The Efficiency Gap</p>,
         context: <div>
-                    <p>In <a href="https://poseidon01.ssrn.com/delivery.php?ID=177005005066088069091100071103013007009025023051035024067126120026003114011105087081043118057101052027117102030078116010113102021057038082085070005123074018074123007073048112122124116112031089025065116020110087030100066076106120018103082067121125106&EXT=pdf">
-                    "Partisan Gerrymandering and the Efficiency Gap" (2014)</a>, Stephanopoulos
-                    and McGhee proposed the "efficiency gap" as an impartial measure of a political party's 
+                    <p>In 2014, Nicholas Stephanopoulos and Eric McGhee
+                      <a href="https://poseidon01.ssrn.com/delivery.php?ID=177005005066088069091100071103013007009025023051035024067126120026003114011105087081043118057101052027117102030078116010113102021057038082085070005123074018074123007073048112122124116112031089025065116020110087030100066076106120018103082067121125106&EXT=pdf">
+                        proposed the "efficiency gap"
+                      </a>
+                    as a quantifiable measure of a political party's 
                     advantage in the way a state's electoral districts are drawn.</p>
-                    <p>The efficiency gap is central to the U.S. Supreme Court's consideration of
-                    <i> Gill v. Whitford</i>, the 2017-18 case challenging the 2011 Wisconsin redistricting plan.</p>
+                    <p>This algorithm has become central to the U.S. Supreme Court's consideration of
+                    <i>Gill v. Whitford</i>, the 2017-18 case challenging the 2011 Wisconsin redistricting plan.</p>
+                    <p>If the court rules the plan unconstitutional, it would set a landmark precedent that will heavily
+                       impact future elections.</p>
                 </div>,
         illustration: <img src="https://nationalmap.gov/small_scale/printable/images/preview/congdist/pagecgd113_wi.gif" 
                         width="400" alt="Wisconsin Congressional District Map, 113th Congress" className="mx-auto d-block img-fluid"/>
