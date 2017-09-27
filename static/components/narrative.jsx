@@ -28,7 +28,7 @@ module.exports = [
                  </div>,
         illustration:   <div>
                           <div className="row">
-                            <div className='col-10 offset-2 text-center font-weight-bold mb-2'>
+                            <div className='col-10 offset-2 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
                               Gerrymandering Green vs Yellow
                             </div>
                           </div>
@@ -77,7 +77,7 @@ module.exports = [
                             <div className='col-2 green'>10 </div>
                           </div>
                           <div className="row">
-                            <div className='col-10 offset-2 text-center'>
+                            <div className='col-10 offset-2 text-center font-italic mt-2'>
                               Green won 60% of the votes, but 100% of the seats.
                             </div>
                           </div>
