@@ -70,6 +70,20 @@ body {
   min-height: 50px;
 }
 
+.green {
+  background-color: darkgreen;
+  color: #fff;
+  text-align: center;
+  min-height: 50px;
+}
+
+.yellow {
+  background-color: goldenrod;
+  color: #fff;
+  text-align: center;
+  min-height: 50px;
+}
+
 .deemphasize {
   background-color: lightgrey;
   color: #fff;
