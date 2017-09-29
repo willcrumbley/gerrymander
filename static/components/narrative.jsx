@@ -2,6 +2,51 @@
 
 import React from 'react';
 
+// Array of [marginOfVictory, totalVotes] pairs. Margin is from red's perspective.
+// Data retrieved from https://ballotpedia.org/Redistricting_in_Wisconsin
+const WISCONSIN_RESULTS = [
+  [34.8, 353990],
+  [-37.6, 397581],
+  [-99.9, 257570],
+  [-65.3, 285858],
+  [37.4, 390507],
+  [19.9, 356935],
+  [23.4, 362061],
+  [25.4, 363592]
+];
+
+const VOTES_RED = WISCONSIN_RESULTS.reduce((acc, val) => {return acc + (50 + val[0] / 2) / 100 * val[1]}, 0);
+const TOTAL_VOTES = WISCONSIN_RESULTS.reduce((acc, val) => {return acc + val[1]}, 0);
+const PERCENTAGE_RED_VOTES = (VOTES_RED / TOTAL_VOTES * 100).toFixed(2);
+const PERCENTAGE_RED_SEATS = (5.0 / 8.0 * 100).toFixed(2);
+
+
+/**
+ * Render a single Wisconsin district for visualization.
+ *
+ * @param districtNum - Number of the district to render
+ * @param marginOfVictory - Percentage margin of victory (0-100)
+ * @param winner - Either 'red' or 'blue'
+ */
+function renderWisconsinDistrict(districtNum, marginOfVictory, winner) {
+  let winPercent = 50 + marginOfVictory / 2;
+  let losePercent = 50 - marginOfVictory / 2;
+  let percentages = {
+    red: (winner == 'red') ? winPercent : losePercent,
+    blue: (winner == 'blue') ? winPercent : losePercent
+  };
+
+  return (
+    <div className='row mt-1'>
+      <div className='col-sm-2 text-center' style={{height: '30px'}}>{districtNum}</div>
+      <div className='col-10' style={{height: '30px'}}>
+        <div className='red d-inline-block' style={{width: `${percentages.red}%`}}>{percentages.red}%</div>
+        <div className='blue d-inline-block' style={{width: `${percentages.blue}%`}}>{percentages.blue}%</div>
+      </div>
+    </div>
+  );
+};
+
 module.exports = [
     {
         title: <span></span>,
@@ -97,8 +142,35 @@ module.exports = [
                     <p>If the court rules the plan unconstitutional, it would set a landmark precedent that will heavily
                        impact future elections.</p>
                 </div>,
-        illustration: <img src="https://nationalmap.gov/small_scale/printable/images/preview/congdist/pagecgd113_wi.gif" 
-                        width="400" alt="Wisconsin Congressional District Map, 113th Congress" className="mx-auto d-block img-fluid"/>
+        illustration:   <div>
+                          <div className="row">
+                            <div className='col-10 offset-2 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
+                              2016 Wisconsin House of Representatives Election Results
+                            </div>
+                          </div>
+                          {renderWisconsinDistrict(1, 34.8, 'red')}
+
+                          {renderWisconsinDistrict(2, 37.6, 'blue')}
+
+                          {renderWisconsinDistrict(3, 99.9, 'blue')}
+
+                          {renderWisconsinDistrict(4, 65.3, 'blue')}
+
+                          {renderWisconsinDistrict(5, 37.4, 'red')}
+
+                          {renderWisconsinDistrict(6, 19.9, 'red')}
+
+                          {renderWisconsinDistrict(7, 23.4, 'red')}
+
+                          {renderWisconsinDistrict(8, 25.4, 'red')}
+
+                          <div className="row">
+                            <div className='col-10 offset-2 text-center font-italic mt-2'>
+                              Republicans won {PERCENTAGE_RED_VOTES}% of the votes, but {PERCENTAGE_RED_SEATS}% of the seats.
+                              (<a href="https://ballotpedia.org/Redistricting_in_Wisconsin#State_legislative_maps" target='_blank'>data</a>)
+                            </div>
+                          </div>
+                        </div>
     },
     {
         title: <p>How is the efficiency gap calculated? (1/4)</p>,
