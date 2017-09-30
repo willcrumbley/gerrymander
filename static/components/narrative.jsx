@@ -131,14 +131,14 @@ module.exports = [
     {
         title: <p>The Efficiency Gap</p>,
         context: <div>
-                    <p>In 2014, Nicholas Stephanopoulos and Eric McGhee
+                    <p>In 2014, Nicholas Stephanopoulos and Eric McGhee &nbsp;
                       <a href="https://poseidon01.ssrn.com/delivery.php?ID=177005005066088069091100071103013007009025023051035024067126120026003114011105087081043118057101052027117102030078116010113102021057038082085070005123074018074123007073048112122124116112031089025065116020110087030100066076106120018103082067121125106&EXT=pdf">
                         proposed the "efficiency gap"
-                      </a>
+                      </a>&nbsp;
                     as a quantifiable measure of a political party's 
                     advantage in the way a state's electoral districts are drawn.</p>
-                    <p>This algorithm has become central to the U.S. Supreme Court's consideration of
-                    <i>Gill v. Whitford</i>, the 2017-18 case challenging the 2011 Wisconsin redistricting plan.</p>
+                    <p>This algorithm has become central to the U.S. Supreme Court's consideration of <i>Gill v. Whitford</i>,
+                       the 2017-18 case challenging the 2011 Wisconsin redistricting plan.</p>
                     <p>If the court rules the plan unconstitutional, it would set a landmark precedent that will heavily
                        impact future elections.</p>
                 </div>,
