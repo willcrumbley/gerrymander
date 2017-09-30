@@ -2,6 +2,9 @@
 
 import React from 'react';
 
+const WISCONSIN_RESULTS = require('../data/wisconsin_results')
+
+
 /**
  * @param marginOfVictory [Float] - Percentage margin of victory, 0-100
  * @param winner [Boolean] - Whether to return the winner's vote percentage or the loser's
@@ -10,8 +13,6 @@ function _getVotePercent(marginOfVictory, winner) {
   let margin = winner ? marginOfVictory : -marginOfVictory;
   return 50 + margin / 2;
 }
-
-const WISCONSIN_RESULTS = require('../data/wisconsin_results')
 
 const VOTES_RED = WISCONSIN_RESULTS.reduce((acc, val) => {
   let percent = _getVotePercent(val.marginOfVictory, val.winner == 'red');
