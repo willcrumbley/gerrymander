@@ -2,17 +2,25 @@
 
 import React from 'react';
 
-// Array of [marginOfVictory, totalVotes] pairs. Margin is from red's perspective.
-// Data retrieved from https://ballotpedia.org/Redistricting_in_Wisconsin
+/**
+ * @param marginOfVictory [Float] - Percentage margin of victory, 0-100
+ * @param winner [Boolean] - Whether to return the winner's vote percentage or the loser's
+ */
+function _getVotePercent(marginOfVictory, winner) {
+  let margin = winner ? marginOfVictory : -marginOfVictory;
+  return 50 + margin / 2;
+}
+
 const WISCONSIN_RESULTS = require('../data/wisconsin_results')
 
 const VOTES_RED = WISCONSIN_RESULTS.reduce((acc, val) => {
-  let margin = val.winner == 'red' ? val.marginOfVictory : -val.marginOfVictory;
-  return acc + (50 + margin / 2) / 100 * val.totalVotes}, 0
-);
+  let percent = _getVotePercent(val.marginOfVictory, val.winner == 'red');
+  return acc + percent / 100 * val.totalVotes
+} , 0);
+
 const TOTAL_VOTES = WISCONSIN_RESULTS.reduce((acc, val) => {
-  return acc + val.totalVotes}, 0
-);
+  return acc + val.totalVotes
+}, 0);
 const PERCENTAGE_RED_VOTES = (VOTES_RED / TOTAL_VOTES * 100).toFixed(2);
 const PERCENTAGE_RED_SEATS = (5.0 / 8.0 * 100).toFixed(2);
 
@@ -25,11 +33,9 @@ const PERCENTAGE_RED_SEATS = (5.0 / 8.0 * 100).toFixed(2);
  * @param winner - Either 'red' or 'blue'
  */
 function renderWisconsinDistrict(districtNum, marginOfVictory, winner) {
-  let winPercent = 50 + marginOfVictory / 2;
-  let losePercent = 50 - marginOfVictory / 2;
   let percentages = {
-    red: (winner == 'red') ? winPercent : losePercent,
-    blue: (winner == 'blue') ? winPercent : losePercent
+    red: _getVotePercent(marginOfVictory, (winner == 'red')),
+    blue: _getVotePercent(marginOfVictory, (winner == 'blue'))
   };
 
   return (
