@@ -19,7 +19,7 @@ function NarrativeCarouselSlide({title, context, illustration, active}) {
             </div>
           </div>
           <div className='row'>
-            <div className='col col-12 col-md-6 px-md-4'>{context}</div>
+            <div className='col col-12 col-md-6'>{context}</div>
             <div className='col-12 col-md-6'>
               {illustration}
             </div>
