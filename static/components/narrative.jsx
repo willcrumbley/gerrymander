@@ -4,19 +4,15 @@ import React from 'react';
 
 // Array of [marginOfVictory, totalVotes] pairs. Margin is from red's perspective.
 // Data retrieved from https://ballotpedia.org/Redistricting_in_Wisconsin
-const WISCONSIN_RESULTS = [
-  [34.8, 353990],
-  [-37.6, 397581],
-  [-99.9, 257570],
-  [-65.3, 285858],
-  [37.4, 390507],
-  [19.9, 356935],
-  [23.4, 362061],
-  [25.4, 363592]
-];
+const WISCONSIN_RESULTS = require('../data/wisconsin_results')
 
-const VOTES_RED = WISCONSIN_RESULTS.reduce((acc, val) => {return acc + (50 + val[0] / 2) / 100 * val[1]}, 0);
-const TOTAL_VOTES = WISCONSIN_RESULTS.reduce((acc, val) => {return acc + val[1]}, 0);
+const VOTES_RED = WISCONSIN_RESULTS.reduce((acc, val) => {
+  let margin = val.winner == 'red' ? val.marginOfVictory : -val.marginOfVictory;
+  return acc + (50 + margin / 2) / 100 * val.totalVotes}, 0
+);
+const TOTAL_VOTES = WISCONSIN_RESULTS.reduce((acc, val) => {
+  return acc + val.totalVotes}, 0
+);
 const PERCENTAGE_RED_VOTES = (VOTES_RED / TOTAL_VOTES * 100).toFixed(2);
 const PERCENTAGE_RED_SEATS = (5.0 / 8.0 * 100).toFixed(2);
 
