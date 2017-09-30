@@ -50,6 +50,15 @@ function renderWisconsinDistrict(districtNum, marginOfVictory, winner) {
   );
 };
 
+function renderAllWisconsinDistricts() {
+  return (<div>
+      {WISCONSIN_RESULTS.map((obj, index) => {
+        return renderWisconsinDistrict(index + 1, obj.marginOfVictory, obj.winner);
+      })}
+    </div>
+  );
+}
+
 module.exports = [
     {
         title: <span></span>,
@@ -151,22 +160,7 @@ module.exports = [
                               2016 Wisconsin House of Representatives Election Results
                             </div>
                           </div>
-                          {renderWisconsinDistrict(1, 34.8, 'red')}
-
-                          {renderWisconsinDistrict(2, 37.6, 'blue')}
-
-                          {renderWisconsinDistrict(3, 99.9, 'blue')}
-
-                          {renderWisconsinDistrict(4, 65.3, 'blue')}
-
-                          {renderWisconsinDistrict(5, 37.4, 'red')}
-
-                          {renderWisconsinDistrict(6, 19.9, 'red')}
-
-                          {renderWisconsinDistrict(7, 23.4, 'red')}
-
-                          {renderWisconsinDistrict(8, 25.4, 'red')}
-
+                          {renderAllWisconsinDistricts()}
                           <div className="row">
                             <div className='col-10 offset-2 text-center font-italic mt-2'>
                               Republicans won {PERCENTAGE_RED_VOTES}% of the votes, but {PERCENTAGE_RED_SEATS}% of the seats.
