@@ -172,42 +172,80 @@ module.exports = [
     {
         title: <p>How is the efficiency gap calculated? (1/4)</p>,
         context: <div>
-                    <p>Imagine a state containing 250 voters, arranged geographically like this diagram.</p>
-                    <p>Say we wanted to create 5 Congressional districts in this state. The voters 
-                        could be grouped together in a number of ways that could easily advantage one party 
-                        or another in elections. This is how a party gains an advantage through gerrymandering.</p>
+                    <p>Imagine a state containing 400 voters, which we want to split into 8 districts.
+                        The districts can be gerrymandered in a number of ways that could easily advantage one party 
+                        or another in elections.
+                    </p>
+                    <p>This is done by <strong>cracking</strong> a party's voters into districts where they lose
+                        by small margins, and <strong>packing</strong> that party's voters into districts where
+                        they win by large margins.
+                    </p>
+                    <p>This combination of <strong>cracking</strong> and <strong>packing</strong> allows a party to gain a disproportionate share of the
+                        seats in a state and protect their seats from being challenged.
+                    </p>
                 </div>,
-        illustration:   <div className='row'>
-                            <div className='col-1 col-sm-2 '></div>
-                            <div className='col-2 red'>10 R</div>
-                            <div className='col-2 red'>10 R</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 red'>10 R</div>
-                            <div className='col-2 red'>10 R</div>
-                            <div className='col-1 col-sm-2 '></div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 red'>10 R</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-1 col-sm-2 '></div>
-                            <div className='col-2 red'>10 R</div>
-                            <div className='col-2 red'>10 R</div>
-                            <div className='col-2 red'>10 R</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-1 col-sm-2 '></div>
-                            <div className='col-2 red'>10 R</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-1 col-sm-2 '></div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 blue'>10 D</div>
-                            <div className='col-2 blue'>10 D</div>
+        illustration:   <div>
+                          <div className='row' style={{height: '30px'}}>
+                            <div className='col-2 text-center'> 1 </div>
+                            <div className='col-10'>
+                              <div className='green d-inline-block' style={{width: '100%'}}>50</div>
+                              <div className='yellow d-inline-block'></div>
+                            </div>
+                          </div>
+                          <div className='row mt-2' style={{height: '30px'}}>
+                            <div className='col-2 text-center'> 2 </div>
+                            <div className='col-10'>
+                              <div className='green d-inline-block' style={{width: '80%'}}>40</div>
+                              <div className='yellow d-inline-block' style={{width: '20%'}}>10</div>
+                            </div>
+                          </div>
+                          <div className='row mt-2' style={{height: '30px'}}>
+                            <div className='col-2 text-center'> 3 </div>
+                            <div className='col-10'>
+                              <div className='green d-inline-block' style={{width: '70%'}}>35</div>
+                              <div className='yellow d-inline-block' style={{width: '30%'}}>15</div>
+                            </div>
+                          </div>
+                          <div className='row mt-2' style={{height: '30px'}}>
+                            <div className='col-2 text-center'> 4 </div>
+                            <div className='col-10'>
+                              <div className='green d-inline-block' style={{width: '40%'}}>20</div>
+                              <div className='yellow d-inline-block' style={{width: '60%'}}>30</div>
+                            </div>
+                          </div>
+                          <div className='row mt-2' style={{height: '30px'}}>
+                            <div className='col-2 text-center'> 5 </div>
+                            <div className='col-10'>
+                              <div className='green d-inline-block' style={{width: '40%'}}>20</div>
+                              <div className='yellow d-inline-block' style={{width: '60%'}}>30</div>
+                            </div>
+                          </div>
+                          <div className='row mt-2' style={{height: '30px'}}>
+                            <div className='col-2 text-center'> 6 </div>
+                            <div className='col-10'>
+                              <div className='green d-inline-block' style={{width: '40%'}}>20</div>
+                              <div className='yellow d-inline-block' style={{width: '60%'}}>30</div>
+                            </div>
+                          </div>
+                          <div className='row mt-2' style={{height: '30px'}}>
+                            <div className='col-2 text-center'> 7 </div>
+                            <div className='col-10'>
+                              <div className='green d-inline-block' style={{width: '40%'}}>20</div>
+                              <div className='yellow d-inline-block' style={{width: '60%'}}>30</div>
+                            </div>
+                          </div>
+                          <div className='row mt-2' style={{height: '30px'}}>
+                            <div className='col-2 text-center'> 8 </div>
+                            <div className='col-10'>
+                              <div className='green d-inline-block' style={{width: '30%'}}>15</div>
+                              <div className='yellow d-inline-block' style={{width: '70%'}}>35</div>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className='col-10 offset-2 text-center font-italic mt-2'>
+                              Yellow won 45% of the votes, but 62.5% of the seats.
+                            </div>
+                          </div>
                         </div>
     },
     {
