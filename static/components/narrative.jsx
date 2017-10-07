@@ -312,7 +312,7 @@ module.exports = [
     {
         title: <p>How is the efficiency gap calculated? (3/3)</p>,
         context: <div>
-                    <p>We can find the efficiency gap by calculting the net wasted votes across all districts,
+                    <p>We can find the efficiency gap by calculating the net wasted votes across all districts,
                         then dividing by the total number of votes.</p>
                     <p>In this example, there are 92 net wasted votes. Divided by the 400 total votes, we
                         find that for this election <strong>the efficiency gap is 0.23</strong></p>
@@ -342,45 +342,56 @@ module.exports = [
                         </div>
     },
     {
-        title: <p>Small states</p>,
+        title: <p>Ineffective on small states</p>,
         context: <div>
-                    <p>The authors avoid using the efficiency gap on states with fewer than eight Congressional districts,
+                    <p>The authors avoid using the efficiency gap on states with <strong>fewer than eight Congressional districts</strong>,
                         stating that "redistricting in smaller states has only a minor influence on the national balance of power".</p>
+                    <p>Consider New Hampshire, with two Congressional districts, both narrowly held by Democrats.  
+                        The efficiency gap calculation in NH is <strong>0.46</strong>, since it counts all ~300,000 Republican voters 
+                        as "packed" into uncompetitive districts.</p>
+                    <p>But what would be a "fair" map of New Hampshire? A districting plan with one relatively safe 
+                        seat for each party would have a much lower efficiency gap. But would that be
+                        a more "fair" representation in a state like NH, which has more Democratic voters?</p>
                 </div>,
         illustration: <div>
-                        <img src="./static/img/efficiency-gap-ge-8.png" width="450"
-                            alt="Map of US States with calculated efficiency gap" className="mx-auto d-block img-fluid"/>
-                        <div className='text-center smaller'>
-                            <p> States with fewer than eight Congressional districts shown in gray. Red states are gerrymandered to 
-                                favor Republicans, blue states Democrats.</p>
+                        <img src="https://nationalmap.gov/small_scale/printable/images/preview/congdist/pagecgd113_nh.gif" 
+                          width="400" alt="New Hampshire Congressional District Map, 113th Congress" className="mx-auto d-block img-fluid"/>
+                        <div className="row">
+                          <div className='col-10 offset-1 text-center font-italic mt-2'>
+                            New Hampshire technically has an efficiency gap of 0.46
+                          </div>
                         </div>
-                      </div>,
-    },
-    {
-        title: <p>What is 'fair' in a small state?</p>,
-        context: <div>
-                    <p>Consider New Hampshire, with two Congressional districts, both narrowly held by Democrats.  
-                        The efficiency gap calculation in NH is 0.46, since it counts all ~300,000 Republican voters 
-                        as "packed" into uncompetitive districts.</p>
-                    <p>But what would be a 'fair' map of New Hampshire? A districting plan with one relatively safe 
-                        seat for each party would have a much lower efficiency gap. But would that be
-                        a more 'fair' representation in a state like NH, which has more Democratic voters?</p>
-                </div>,
-        illustration: <img src="https://nationalmap.gov/small_scale/printable/images/preview/congdist/pagecgd113_nh.gif" 
-                        width="400" alt="New Hampshire Congressional District Map, 113th Congress" className="mx-auto d-block img-fluid"/>,
+                      </div>
     },
     {
         title: <p>Try it yourself!</p>,
         context: <div>
                     <p>If the efficiency gap is the constitutional test of partisan 
-                    gerrymandering, smaller states' maps would be unable to be evaluated. Does this mean it is
-                    impossible to gerrymander small states?</p>
-                    <p>Do you think you can improve on the efficiency gap calculation? On this site, you can 
-                    (1) update or create your own algorithm, (2) see how severe gerrymandering is, according to 
-                    that algorithm, and (3) share it on Twitter and Facebook.</p>
+                    gerrymandering, it would not be possible to evaluate smaller states. Does this mean it is
+                    impossible to unfairly gerrymander them?</p>
+                    <p>Do you think you can improve on the efficiency gap calculation?
+                      <br />
+                      On this site, you can 
+                      <ol>
+                        <li>See how severe gerrymandering is across the country</li>
+                        <li>Update or create your own algorithm</li>
+                        <li>Share it on Twitter and Facebook</li>
+                      </ol>
+                    </p>
                     <p>Have fun!</p>
                 </div>,
-        illustration: <img src="./static/img/instructions-400.png" height="300"
-                        alt="instructions for using site" className="mx-auto d-block img-fluid"/>
+        illustration: <div>
+                        <img src="./static/img/most-gerrymandered-districts.png" width="500"
+                          alt="Most gerrymandered districts" className="mx-auto d-block img-fluid"/>
+                        <div className="row">
+                          <div className='col-10 offset-1 text-center font-italic mt-2'>
+                            America's most gerrymandered districts (
+                              <a href={'https://www.washingtonpost.com/news/wonk/wp/2014/05/15/americas-most-gerrymandered-congressional-districts'}>
+                              Source
+                              </a>
+                            )
+                          </div>
+                        </div>
+                      </div>
     }
 ]
