@@ -37,11 +37,11 @@ function NarrativeCarouselIndicator({active, index}) {
 
 function NarrativeCarousel(props) {
   let slides = narrative_data.map((data, index) => {
-    return NarrativeCarouselSlide(Object.assign({active: (index == 0)}, data));
+    return <NarrativeCarouselSlide key={index} active={index == 0} {...data} />
   });
 
   let indicators = narrative_data.map((data, index) => {
-    return NarrativeCarouselIndicator(Object.assign({active: (index == 0), index: index}));
+    return <NarrativeCarouselIndicator key={index} active={index == 0} index={index} />
   });
 
   return (

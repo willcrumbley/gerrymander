@@ -121,7 +121,7 @@ function GYAbsoluteDistrictWasted({districtNum, numGreenVotes, numYellowVotes}) 
 function WisconsinDistricts() {
   return (<div>
       {WISCONSIN_RESULTS.map((obj, index) => {
-        return <BRPercentageDistrict districtNum={index + 1} marginOfVictory={obj.marginOfVictory} winner={obj.winner} />
+        return <BRPercentageDistrict key={index} districtNum={index + 1} marginOfVictory={obj.marginOfVictory} winner={obj.winner} />
       })}
     </div>
   );
