@@ -80,6 +80,11 @@ body {
   text-align: center;
 }
 
+.fat-district-bar {
+  height: 50px;
+  line-height: 50px;
+}
+
 .deemphasize {
   background-color: lightgrey;
   color: #fff;
@@ -88,7 +93,7 @@ body {
 }
 
 .wasted {
-  opacity: 0.2;
+  opacity: 0.4;
 }
 
 div.smaller {

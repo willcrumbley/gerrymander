@@ -251,49 +251,31 @@ module.exports = [
     {
         title: <p>How is the efficiency gap calculated? (2/4)</p>,
         context: <div>
-                    <p>For the sake of simpliclity, let's divide the state horizontally into 5 districts. In this grouping,
-                        Democrats would have won three seats to the Republicans' two.</p>
-                    <p>The efficiency gap attempts to <strong>compare</strong> the number of 'wasted votes' 
-                        <strong> for the two parties</strong>, across a state.  Wasted votes are either:
+                    <p>The efficiency gap attempts to compare the number of <strong>'wasted votes'</strong> across
+                        a state. Wasted votes in a district are either:
                         <ul>
-                            <li>Votes for the winning party in a district, in excess of the 50% + 1 needed to win.</li>
-                            <li>Votes for the losing party in a district.</li>
+                            <li className='mt-1'>Votes for the winning party in excess of the 50% + 1 <br /> needed to win.</li>
+                            <li className='mt-1'>Votes for the losing party</li>
                         </ul>
                     </p>
-                    <p>Let's see how this works in practice.</p>
+                    <p>These votes are considered 'wasted' because they could have been more effectively used in other districts.</p>
                 </div>,
-        illustration:   <div className='row'>
-                            <div className='col-1 col-sm-2 mb-2'>1</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-1 col-sm-2 mb-2'>2</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-1 col-sm-2 mb-2'>3</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-1 col-sm-2 mb-2'>4</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-1 col-sm-2 mb-2'>5</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
+        illustration: <div>
+                        <div className='row mt-2'>
+                          <div className='col-12'>
+                            <div className='green d-inline-block fat-district-bar wasted' style={{width: '20%'}}>10</div>
+                            <div className='yellow d-inline-block fat-district-bar wasted' style={{width: '28%', 'border-right': 'black 3px dashed'}}>14</div>
+                            <div className='yellow d-inline-block fat-district-bar' style={{width: '52%'}}>26</div>
+                          </div>
                         </div>
+                        <div className="row">
+                          <div className='col-12 text-center font-italic mt-2'>
+                            Green wasted all 10 votes, but Yellow wasted 14 votes.
+                            <br />
+                            There were -4 net wasted votes, giving Green an advantage.
+                          </div>
+                        </div>
+                      </div>
     },
     {
         title: <p>How is the efficiency gap calculated? (3/4)</p>,
