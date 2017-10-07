@@ -160,47 +160,47 @@ module.exports = [
                           </div>
                           <div className='row'>
                             <div className='col-1 col-sm-2 text-center'>District 1</div>
-                            <div className='col-2 yellow'>10 </div>
-                            <div className='col-2 yellow'>10 </div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 green'>10 </div>
+                            <div className='col-2 yellow fat-district-bar'>10 </div>
+                            <div className='col-2 yellow fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
                           </div>
 
                           <div className='row mt-2'>
-                            <div className='col-1 col-sm-2 text-center'>District 2</div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 yellow'>10 </div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 yellow'>10 </div>
-                            <div className='col-2 green'>10 </div>
+                            <div className='col-1 col-sm-2 text-center fat-district-bar'>2</div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 yellow fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 yellow fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
                           </div>
 
                           <div className='row mt-2'>
-                            <div className='col-1 col-sm-2 text-center'>District 3</div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 yellow'>10 </div>
-                            <div className='col-2 yellow'>10 </div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 green'>10 </div>
+                            <div className='col-1 col-sm-2 text-center fat-district-bar'>3</div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 yellow fat-district-bar'>10 </div>
+                            <div className='col-2 yellow fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
                           </div>
 
                           <div className='row mt-2'>
-                            <div className='col-1 col-sm-2 text-center'>District 4</div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 yellow'>10 </div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 yellow'>10 </div>
+                            <div className='col-1 col-sm-2 text-center fat-district-bar'>4</div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 yellow fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 yellow fat-district-bar'>10 </div>
                           </div>
 
                           <div className='row mt-2'>
-                            <div className='col-1 col-sm-2 text-center'>District 5</div>
-                            <div className='col-2 yellow'>10 </div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 green'>10 </div>
-                            <div className='col-2 yellow'>10 </div>
-                            <div className='col-2 green'>10 </div>
+                            <div className='col-1 col-sm-2 text-center fat-district-bar'>5</div>
+                            <div className='col-2 yellow fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
+                            <div className='col-2 yellow fat-district-bar'>10 </div>
+                            <div className='col-2 green fat-district-bar'>10 </div>
                           </div>
                           <div className="row">
                             <div className='col-10 offset-2 text-center font-italic mt-2'>
