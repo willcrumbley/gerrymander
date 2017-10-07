@@ -50,6 +50,7 @@ function BRPercentageDistrict({districtNum, marginOfVictory, winner}) {
   );
 };
 
+
 /**
  * Render a single green-yellow district for visualization, displaying absolute votes.
  *
@@ -69,6 +70,53 @@ function GYAbsoluteDistrict({districtNum, numGreenVotes, numYellowVotes}) {
     </div>
   )
 }
+
+
+/**
+ * Render a single green-yellow district for visualization, displaying absolute and wasted votes.
+ *
+ * @prop districtNum - Number of the district to render
+ * @prop numGreenVotes - The number of votes for the Green party
+ * @prop numYellowVotes - The number of votes for the Yellow party
+ */
+function GYAbsoluteDistrictWasted({districtNum, numGreenVotes, numYellowVotes}) {
+  let winner = (numGreenVotes > numYellowVotes) ? 'green' : 'yellow';
+  let minVotesToWin = (numGreenVotes + numYellowVotes) / 2.0 + 1;
+
+  let green = (winner == 'green') ? minVotesToWin : 0;
+  let yellow = (winner == 'yellow') ? minVotesToWin : 0;
+
+  let greenWasted = (winner == 'green') ? numGreenVotes - minVotesToWin : numGreenVotes;
+  let yellowWasted = (winner == 'yellow') ? numYellowVotes - minVotesToWin : numYellowVotes;
+
+  // Get the style to use on each segment of the vote
+  let getStyle = (votes) => {
+    return {
+      width: `${votes / (numGreenVotes + numYellowVotes) * 100}%`
+    }
+  }
+
+  return (
+    <div className='row' style={{height: '30px'}}>
+      <div className='col-2 text-center'> {districtNum} </div>
+      <div className='col-10'>
+        <div className='green d-inline-block' style={getStyle(green)}>
+          {green || ''}
+        </div>
+        <div className='green d-inline-block wasted' style={getStyle(greenWasted)}>
+          {greenWasted || ''}
+        </div>
+        <div className='yellow d-inline-block wasted' style={getStyle(yellowWasted)}>
+          {yellowWasted || ''}
+        </div>
+        <div className='yellow d-inline-block' style={getStyle(yellow)}>
+          {yellow || ''}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 
 function WisconsinDistricts() {
   return (<div>
@@ -191,7 +239,7 @@ module.exports = [
                         </div>
     },
     {
-        title: <p>How is the efficiency gap calculated? (1/4)</p>,
+        title: <p>How is the efficiency gap calculated? (1/3)</p>,
         context: <div>
                     <p>Imagine a state containing 400 voters, which we want to split into 8 districts.
                         The districts can be gerrymandered in a number of ways that could easily advantage one party 
@@ -222,7 +270,7 @@ module.exports = [
                         </div>
     },
     {
-        title: <p>How is the efficiency gap calculated? (2/4)</p>,
+        title: <p>How is the efficiency gap calculated? (2/3)</p>,
         context: <div>
                     <p>The efficiency gap attempts to compare the number of <strong>'wasted votes'</strong> across
                         a state. Wasted votes in a district are either:
@@ -251,102 +299,30 @@ module.exports = [
                       </div>
     },
     {
-        title: <p>How is the efficiency gap calculated? (3/4)</p>,
+        title: <p>How is the efficiency gap calculated? (3/3)</p>,
         context: <div>
-                    <p>In district 1, all 10 Democratic votes are counted as 'wasted', since they are votes 
-                        for the losing party.</p>
-                    <p>Similarly, since the Republican candidate only needed 50% + 1 votes, or 26, votes to win,
-                        we count 40 - 26 = 14 of the Republican votes as wasted.</p>
-                </div>,
-        illustration:   <div className='row'>
-                            <div className='col-1 col-sm-2 mb-2'>1</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 blue wasted'>10 D</div>
-                            <div className='col-1 mb-2 red'>6 R</div>
-                            <div className='col-1 mb-2 red wasted'>4 R</div>
-                            <div className='col-2 mb-2 red wasted'>10 R</div>
-                            <div className='col-1 col-sm-2 mb-2'>2</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 R</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-1 col-sm-2 mb-2'>3</div>
-                            <div className='col-2 mb-2 deemphasize'>10 R</div>
-                            <div className='col-2 mb-2 deemphasize'>10 R</div>
-                            <div className='col-2 mb-2 deemphasize'>10 R</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-1 col-sm-2 mb-2'>4</div>
-                            <div className='col-2 mb-2 deemphasize'>10 R</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-1 col-sm-2 mb-2'>5</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                            <div className='col-2 mb-2 deemphasize'>10 D</div>
-                        </div>
-    },
-    {
-        title: <p>How is the efficiency gap calculated? (4/4)</p>,
-        context: <div>
-                    <p>We apply the same calculation across all the districts in the state, and then sum
-                        wasted votes for each party across the whole state.</p>
-                    <ul>
-                        <li>District 1: 14R, 10D</li>
-                        <li>District 2: 10R, 14D</li>
-                        <li>District 3:  4R, 20D</li>
-                        <li>District 4: 10R, 14D</li>
-                        <li>District 5:  0R, 24D</li>
-                    </ul>
-                    <p>Across this hypothetical state, there are 34 wasted R votes and 82 wasted D votes. The
-                        difference in wasted votes between the parties (82 - 34 = 48), divided by the total votes in
-                        the state (250), gives the state's efficiency gap of 0.192. Multiplying by the number of 
-                        total districts (5) gives an estimate of 0.96 seats gained through gerrymandering.</p>
+                    <p>We can find the efficiency gap by calculting the net wasted votes across all districts,
+                        then dividing by the total number of votes.</p>
+                    <p>In this example, there are 92 net wasted votes. Divided by the 400 total votes, we
+                        find that for this election <strong>the efficiency gap is 0.23</strong></p>
+                    <p>This implies that Yellow gained <strong>23% more seats</strong> through gerrymandering. </p>
                     <p>Stephanopoulos and McGhee suggest that efficiency gaps that result in a gain of 2 seats for 
                         Congressional districting plans should be considered presumptively unconstitutional.</p>
                 </div>,
-        illustration:   <div className='row'>
-                            <div className='col-1 col-sm-2 mb-2'>1</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 blue wasted'>10 D</div>
-                            <div className='col-1 mb-2 red'>6 R</div>
-                            <div className='col-1 mb-2 red wasted'>4 R</div>
-                            <div className='col-2 mb-2 red wasted'>10 R</div>
-                            <div className='col-1 col-sm-2 mb-2'>2</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 red wasted'>10 R</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-1 mb-2 blue'>6 D</div>
-                            <div className='col-1 mb-2 blue wasted'>4 D</div>
-                            <div className='col-2 mb-2 blue wasted'>10 D</div>
-                            <div className='col-1 col-sm-2 mb-2'>3</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-2 mb-2 red'>10 R</div>
-                            <div className='col-1 mb-2 red'>6 R</div>
-                            <div className='col-1 mb-2 red wasted'>4 R</div>
-                            <div className='col-2 mb-2 blue wasted'>10 D</div>
-                            <div className='col-2 mb-2 blue wasted'>10 D</div>
-                            <div className='col-1 col-sm-2 mb-2'>4</div>
-                            <div className='col-2 mb-2 red wasted'>10 R</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-1 mb-2 blue'>6 D</div>
-                            <div className='col-1 mb-2 blue wasted'>4 D</div>
-                            <div className='col-2 mb-2 blue wasted'>10 D</div>
-                            <div className='col-1 col-sm-2 mb-2'>5</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-2 mb-2 blue'>10 D</div>
-                            <div className='col-1 mb-2 blue'>6 D</div>
-                            <div className='col-1 mb-2 blue wasted'>4 D</div>
-                            <div className='col-2 mb-2 blue wasted'>10 D</div>
-                            <div className='col-2 mb-2 blue wasted'>10 D</div>
+        illustration:   <div>
+                          <GYAbsoluteDistrictWasted districtNum={1} numGreenVotes={50} numYellowVotes={0} />
+                          <GYAbsoluteDistrictWasted districtNum={2} numGreenVotes={40} numYellowVotes={10} />
+                          <GYAbsoluteDistrictWasted districtNum={3} numGreenVotes={35} numYellowVotes={15} />
+                          <GYAbsoluteDistrictWasted districtNum={4} numGreenVotes={20} numYellowVotes={30} />
+                          <GYAbsoluteDistrictWasted districtNum={5} numGreenVotes={20} numYellowVotes={30} />
+                          <GYAbsoluteDistrictWasted districtNum={6} numGreenVotes={20} numYellowVotes={30} />
+                          <GYAbsoluteDistrictWasted districtNum={7} numGreenVotes={20} numYellowVotes={30} />
+                          <GYAbsoluteDistrictWasted districtNum={8} numGreenVotes={15} numYellowVotes={35} />
+                          <div className="row">
+                            <div className='col-10 offset-2 text-center font-italic mt-2'>
+                              Yellow has an electoral advantage with an efficiency gap of 23%.
+                            </div>
+                          </div>
                         </div>
     },
     {
