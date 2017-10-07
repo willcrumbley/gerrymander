@@ -254,6 +254,11 @@ module.exports = [
                     </p>
                 </div>,
         illustration:   <div>
+                          <div className="row">
+                            <div className='col-10 offset-2 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
+                              Gerrymandering Green vs Yellow
+                            </div>
+                          </div>
                           <GYAbsoluteDistrict districtNum={1} numGreenVotes={50} numYellowVotes={0} />
                           <GYAbsoluteDistrict districtNum={2} numGreenVotes={40} numYellowVotes={10} />
                           <GYAbsoluteDistrict districtNum={3} numGreenVotes={35} numYellowVotes={15} />
@@ -272,7 +277,8 @@ module.exports = [
     {
         title: <p>How is the efficiency gap calculated? (2/3)</p>,
         context: <div>
-                    <p>The efficiency gap attempts to compare the number of <strong>'wasted votes'</strong> across
+                    <p>The efficiency gap attempts to measure all of that cracking and packing and reduce it to a single number.
+                        It does this by calculating the number of <strong>'wasted votes'</strong> across
                         a state. Wasted votes in a district are either:
                         <ul>
                             <li className='mt-1'>Votes for the winning party in excess of the 50% + 1 <br /> needed to win.</li>
@@ -282,6 +288,11 @@ module.exports = [
                     <p>These votes are considered 'wasted' because they could have been more effectively used in other districts.</p>
                 </div>,
         illustration: <div>
+                        <div className="row">
+                          <div className='col-12 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
+                            Gerrymandering Green vs Yellow
+                          </div>
+                        </div>
                         <div className='row mt-2'>
                           <div className='col-12'>
                             <div className='green d-inline-block fat-district-bar wasted' style={{width: '20%'}}>10</div>
@@ -310,6 +321,11 @@ module.exports = [
                         Congressional districting plans should be considered presumptively unconstitutional.</p>
                 </div>,
         illustration:   <div>
+                          <div className="row">
+                            <div className='col-10 offset-2 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
+                              Visualizing Wasted Votes
+                            </div>
+                          </div>
                           <GYAbsoluteDistrictWasted districtNum={1} numGreenVotes={50} numYellowVotes={0} />
                           <GYAbsoluteDistrictWasted districtNum={2} numGreenVotes={40} numYellowVotes={10} />
                           <GYAbsoluteDistrictWasted districtNum={3} numGreenVotes={35} numYellowVotes={15} />
