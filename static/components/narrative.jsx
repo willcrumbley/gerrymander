@@ -50,6 +50,26 @@ function BRPercentageDistrict({districtNum, marginOfVictory, winner}) {
   );
 };
 
+/**
+ * Render a single green-yellow district for visualization, displaying absolute votes.
+ *
+ * @prop districtNum - Number of the district to render
+ * @prop numGreenVotes - The number of votes for the Green party
+ * @prop numYellowVotes - The number of votes for the Yellow party
+ */
+function GYAbsoluteDistrict({districtNum, numGreenVotes, numYellowVotes}) {
+  let gPercent = numGreenVotes / (numGreenVotes + numYellowVotes) * 100;
+  return (
+    <div className='row' style={{height: '30px'}}>
+      <div className='col-2 text-center'> {districtNum} </div>
+      <div className='col-10'>
+        <div className='green d-inline-block' style={{width: `${gPercent}%`}}>{numGreenVotes}</div>
+        <div className='yellow d-inline-block' style={{width: `${100 - gPercent}%`}}>{numYellowVotes || ''}</div>
+      </div>
+    </div>
+  )
+}
+
 function WisconsinDistricts() {
   return (<div>
       {WISCONSIN_RESULTS.map((obj, index) => {
@@ -186,62 +206,14 @@ module.exports = [
                     </p>
                 </div>,
         illustration:   <div>
-                          <div className='row' style={{height: '30px'}}>
-                            <div className='col-2 text-center'> 1 </div>
-                            <div className='col-10'>
-                              <div className='green d-inline-block' style={{width: '100%'}}>50</div>
-                              <div className='yellow d-inline-block'></div>
-                            </div>
-                          </div>
-                          <div className='row mt-2' style={{height: '30px'}}>
-                            <div className='col-2 text-center'> 2 </div>
-                            <div className='col-10'>
-                              <div className='green d-inline-block' style={{width: '80%'}}>40</div>
-                              <div className='yellow d-inline-block' style={{width: '20%'}}>10</div>
-                            </div>
-                          </div>
-                          <div className='row mt-2' style={{height: '30px'}}>
-                            <div className='col-2 text-center'> 3 </div>
-                            <div className='col-10'>
-                              <div className='green d-inline-block' style={{width: '70%'}}>35</div>
-                              <div className='yellow d-inline-block' style={{width: '30%'}}>15</div>
-                            </div>
-                          </div>
-                          <div className='row mt-2' style={{height: '30px'}}>
-                            <div className='col-2 text-center'> 4 </div>
-                            <div className='col-10'>
-                              <div className='green d-inline-block' style={{width: '40%'}}>20</div>
-                              <div className='yellow d-inline-block' style={{width: '60%'}}>30</div>
-                            </div>
-                          </div>
-                          <div className='row mt-2' style={{height: '30px'}}>
-                            <div className='col-2 text-center'> 5 </div>
-                            <div className='col-10'>
-                              <div className='green d-inline-block' style={{width: '40%'}}>20</div>
-                              <div className='yellow d-inline-block' style={{width: '60%'}}>30</div>
-                            </div>
-                          </div>
-                          <div className='row mt-2' style={{height: '30px'}}>
-                            <div className='col-2 text-center'> 6 </div>
-                            <div className='col-10'>
-                              <div className='green d-inline-block' style={{width: '40%'}}>20</div>
-                              <div className='yellow d-inline-block' style={{width: '60%'}}>30</div>
-                            </div>
-                          </div>
-                          <div className='row mt-2' style={{height: '30px'}}>
-                            <div className='col-2 text-center'> 7 </div>
-                            <div className='col-10'>
-                              <div className='green d-inline-block' style={{width: '40%'}}>20</div>
-                              <div className='yellow d-inline-block' style={{width: '60%'}}>30</div>
-                            </div>
-                          </div>
-                          <div className='row mt-2' style={{height: '30px'}}>
-                            <div className='col-2 text-center'> 8 </div>
-                            <div className='col-10'>
-                              <div className='green d-inline-block' style={{width: '30%'}}>15</div>
-                              <div className='yellow d-inline-block' style={{width: '70%'}}>35</div>
-                            </div>
-                          </div>
+                          <GYAbsoluteDistrict districtNum={1} numGreenVotes={50} numYellowVotes={0} />
+                          <GYAbsoluteDistrict districtNum={2} numGreenVotes={40} numYellowVotes={10} />
+                          <GYAbsoluteDistrict districtNum={3} numGreenVotes={35} numYellowVotes={15} />
+                          <GYAbsoluteDistrict districtNum={4} numGreenVotes={20} numYellowVotes={30} />
+                          <GYAbsoluteDistrict districtNum={5} numGreenVotes={20} numYellowVotes={30} />
+                          <GYAbsoluteDistrict districtNum={6} numGreenVotes={20} numYellowVotes={30} />
+                          <GYAbsoluteDistrict districtNum={7} numGreenVotes={20} numYellowVotes={30} />
+                          <GYAbsoluteDistrict districtNum={8} numGreenVotes={15} numYellowVotes={35} />
                           <div className="row">
                             <div className='col-10 offset-2 text-center font-italic mt-2'>
                               Yellow won 45% of the votes, but 62.5% of the seats.
