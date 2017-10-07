@@ -27,13 +27,13 @@ const PERCENTAGE_RED_SEATS = (5.0 / 8.0 * 100).toFixed(2);
 
 
 /**
- * Render a single Wisconsin district for visualization.
+ * Render a single blue-red district for visualization.
  *
- * @param districtNum - Number of the district to render
- * @param marginOfVictory - Percentage margin of victory (0-100)
- * @param winner - Either 'red' or 'blue'
+ * @prop districtNum - Number of the district to render
+ * @prop marginOfVictory - Percentage margin of victory (0-100)
+ * @prop winner - Either 'red' or 'blue'
  */
-function renderWisconsinDistrict(districtNum, marginOfVictory, winner) {
+function BRPercentageDistrict({districtNum, marginOfVictory, winner}) {
   let percentages = {
     red: _getVotePercent(marginOfVictory, (winner == 'red')),
     blue: _getVotePercent(marginOfVictory, (winner == 'blue'))
@@ -50,14 +50,15 @@ function renderWisconsinDistrict(districtNum, marginOfVictory, winner) {
   );
 };
 
-function renderAllWisconsinDistricts() {
+function WisconsinDistricts() {
   return (<div>
       {WISCONSIN_RESULTS.map((obj, index) => {
-        return renderWisconsinDistrict(index + 1, obj.marginOfVictory, obj.winner);
+        return <BRPercentageDistrict districtNum={index + 1} marginOfVictory={obj.marginOfVictory} winner={obj.winner} />
       })}
     </div>
   );
 }
+
 
 module.exports = [
     {
@@ -160,7 +161,7 @@ module.exports = [
                               2016 Wisconsin House of Representatives Election Results
                             </div>
                           </div>
-                          {renderAllWisconsinDistricts()}
+                          <WisconsinDistricts />
                           <div className="row">
                             <div className='col-10 offset-2 text-center font-italic mt-2'>
                               Republicans won {PERCENTAGE_RED_VOTES}% of the votes, but {PERCENTAGE_RED_SEATS}% of the seats.
