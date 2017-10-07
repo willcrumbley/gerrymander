@@ -326,14 +326,10 @@ module.exports = [
                         </div>
     },
     {
-        title: <p>The calculation excludes small states</p>,
+        title: <p>Small states</p>,
         context: <div>
-                    <p>The efficiency gap calculation has gained significant attention as a legal
-                        test for partisan gerrymandering, as it purports to calculate "all of the packing and cracking
-                        decisions that go into a district plan" used for gerrymandering.</p>
-                    <p>However, the authors limit their calculations to those states
-                        with at least eight Congressional districts, stating that "redistricting in smaller states has
-                        only a minor influence on the national balance of power".</p>
+                    <p>The authors avoid using the efficiency gap on states with fewer than eight Congressional districts,
+                        stating that "redistricting in smaller states has only a minor influence on the national balance of power".</p>
                 </div>,
         illustration: <div>
                         <img src="./static/img/efficiency-gap-ge-8.png" width="450"
@@ -366,7 +362,7 @@ module.exports = [
                     <p>Do you think you can improve on the efficiency gap calculation? On this site, you can 
                     (1) update or create your own algorithm, (2) see how severe gerrymandering is, according to 
                     that algorithm, and (3) share it on Twitter and Facebook.</p>
-                    <p>Good Luck!</p>
+                    <p>Have fun!</p>
                 </div>,
         illustration: <img src="./static/img/instructions-400.png" height="300"
                         alt="instructions for using site" className="mx-auto d-block img-fluid"/>
