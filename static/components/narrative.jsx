@@ -277,14 +277,14 @@ module.exports = [
     {
         title: <p>How is the efficiency gap calculated? (2/3)</p>,
         context: <div>
-                    <p>The efficiency gap attempts to measure all of that cracking and packing and reduce it to a single number.
+                    <div>The efficiency gap attempts to measure all of that cracking and packing and reduce it to a single number.
                         It does this by calculating the number of <strong>'wasted votes'</strong> across
                         a state. Wasted votes in a district are either:
                         <ul>
                             <li className='mt-1'>Votes for the winning party in excess of the 50% + 1 <br /> needed to win.</li>
                             <li className='mt-1'>Votes for the losing party</li>
                         </ul>
-                    </p>
+                    </div>
                     <p>These votes are considered 'wasted' because they could have been more effectively used in other districts.</p>
                 </div>,
         illustration: <div>
@@ -296,7 +296,7 @@ module.exports = [
                         <div className='row mt-2'>
                           <div className='col-12'>
                             <div className='green d-inline-block fat-district-bar wasted' style={{width: '20%'}}>10</div>
-                            <div className='yellow d-inline-block fat-district-bar wasted' style={{width: '28%', 'border-right': 'black 3px dashed'}}>14</div>
+                            <div className='yellow d-inline-block fat-district-bar wasted' style={{width: '28%', borderRight: 'black 3px dashed'}}>14</div>
                             <div className='yellow d-inline-block fat-district-bar' style={{width: '52%'}}>26</div>
                           </div>
                         </div>
@@ -369,15 +369,15 @@ module.exports = [
                     <p>If the efficiency gap is the constitutional test of partisan 
                     gerrymandering, it would not be possible to evaluate smaller states. Does this mean it is
                     impossible to unfairly gerrymander them?</p>
-                    <p>Do you think you can improve on the efficiency gap calculation?
+                    <div>Do you think you can improve on the efficiency gap calculation?
                       <br />
                       On this site, you can 
-                      <ol>
+                      <ol className='mt-2'>
                         <li>See how severe gerrymandering is across the country</li>
                         <li>Update or create your own algorithm</li>
                         <li>Share it on Twitter and Facebook</li>
                       </ol>
-                    </p>
+                    </div>
                     <p>Have fun!</p>
                 </div>,
         illustration: <div>
