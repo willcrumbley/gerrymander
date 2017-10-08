@@ -1,10 +1,8 @@
 "use strict"
 
-import React from 'react';
-import ReactModal from 'react-modal';
-import $ from 'jquery';
-
 import narrative_data from './narrative.jsx';
+import React from 'react';
+
 
 function NarrativeCarouselSlide({title, context, illustration, active}) {
   let activeClass = active ? "active" : "";

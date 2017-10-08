@@ -2,7 +2,6 @@
 
 import React from 'react';
 
-import NarrativeModal from './narrative_modal.jsx';
 
 class Navigation extends React.Component {
     constructor() {
