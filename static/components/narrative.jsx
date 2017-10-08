@@ -134,18 +134,26 @@ module.exports = [
         context: <div>
                     <p>Gerrymandering, the practice of drawing electoral districts to give an advantage to 
                         a party or group, has been a part of U.S. politics for at least two centuries.</p>
-                    <p>The <a href='https://en.wikipedia.org/wiki/Gerrymandering'> Gerry-mander cartoon </a>
-                        from 1812 satirized the appearance of one district with particularly creative 
-                        boundaries.</p>
+                    <p>The efficiency gap is a recently developed approach for quantifying the amount of gerrymandering
+                        in a state.</p>
+                    <p>Use the arrows to learn more about gerrymandering and the efficiency gap, or scroll down to
+                        start playing with the algorithm.</p>
                 </div>,
-        illustration: <img src="./static/img/gerrymander.png" width="300"
-                        alt="Original 1812 Gerrymander cartoon" className="mx-auto d-block img-fluid"/>
+        illustration: <div>
+                        <img src="./static/img/gerrymander.png" width="300"
+                          alt="Original 1812 Gerrymander cartoon" className="mx-auto d-block img-fluid"/>
+                        <div className="row">
+                          <div className='col-12 text-center font-italic mt-2'>
+                            Original 1812 Gerry-mander cartoon satirizing a district
+                          </div>
+                        </div>
+                      </div>
     },
     {
         title: <p>Unconstitutional?</p>,
         context: <div>
-                    <p>In extreme cases, partisan gerrymandering can be used to decrease electoral competition,
-                       or to grant one party a disproportionate number of seats in state legislatures</p>
+                    <p>In extreme cases, partisan gerrymandering can be used to <strong>decrease electoral competition</strong>,
+                       or to grant one party <strong>a disproportionate number of seats</strong> in state legislatures</p>
                     <p>This has raised the question of whether there is an extent of gerrymandering that should
                        be considered unconstitutional under the Equal Protection clause of the constitution. However, there is no
                        agreed-upon standard on how to measure it.</p>
@@ -153,61 +161,18 @@ module.exports = [
                        but the Supreme Court has rejected all of them to date.</p>
                  </div>,
         illustration:   <div>
-                          <div className="row">
-                            <div className='col-10 offset-2 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
-                              Gerrymandering Green vs Yellow
-                            </div>
-                          </div>
-                          <div className='row'>
-                            <div className='col-1 col-sm-2 text-center'>District 1</div>
-                            <div className='col-2 yellow fat-district-bar'>10 </div>
-                            <div className='col-2 yellow fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                          </div>
-
-                          <div className='row mt-2'>
-                            <div className='col-1 col-sm-2 text-center fat-district-bar'>2</div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 yellow fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 yellow fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                          </div>
-
-                          <div className='row mt-2'>
-                            <div className='col-1 col-sm-2 text-center fat-district-bar'>3</div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 yellow fat-district-bar'>10 </div>
-                            <div className='col-2 yellow fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                          </div>
-
-                          <div className='row mt-2'>
-                            <div className='col-1 col-sm-2 text-center fat-district-bar'>4</div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 yellow fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 yellow fat-district-bar'>10 </div>
-                          </div>
-
-                          <div className='row mt-2'>
-                            <div className='col-1 col-sm-2 text-center fat-district-bar'>5</div>
-                            <div className='col-2 yellow fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                            <div className='col-2 yellow fat-district-bar'>10 </div>
-                            <div className='col-2 green fat-district-bar'>10 </div>
-                          </div>
-                          <div className="row">
-                            <div className='col-10 offset-2 text-center font-italic mt-2'>
-                              Green won 60% of the votes, but 100% of the seats.
-                            </div>
+                        <img src="./static/img/most-gerrymandered-districts.png" width="500"
+                          alt="Most gerrymandered districts" className="mx-auto d-block img-fluid"/>
+                        <div className="row">
+                          <div className='col-10 offset-1 text-center font-italic mt-2'>
+                            America's most gerrymandered districts (
+                              <a href={'https://www.washingtonpost.com/news/wonk/wp/2014/05/15/americas-most-gerrymandered-congressional-districts'} target='_blank'>
+                              Source
+                              </a>
+                            )
                           </div>
                         </div>
+                      </div>
     },
     {
         title: <p>The Efficiency Gap</p>,
@@ -226,7 +191,7 @@ module.exports = [
         illustration:   <div>
                           <div className="row">
                             <div className='col-10 offset-2 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
-                              2016 Wisconsin House of Representatives Election Results
+                              2016 Wisconsin House Election Results by District
                             </div>
                           </div>
                           <WisconsinDistricts />
@@ -304,7 +269,7 @@ module.exports = [
                           <div className='col-12 text-center font-italic mt-2'>
                             Green wasted all 10 votes, but Yellow wasted 14 votes.
                             <br />
-                            There were -4 net wasted votes, giving Green an advantage.
+                            There were -4 net wasted votes, giving Green a slight advantage.
                           </div>
                         </div>
                       </div>
@@ -381,15 +346,11 @@ module.exports = [
                     <p>Have fun!</p>
                 </div>,
         illustration: <div>
-                        <img src="./static/img/most-gerrymandered-districts.png" width="500"
+                        <img src="./static/img/efficiency_gap_us.png" width="500"
                           alt="Most gerrymandered districts" className="mx-auto d-block img-fluid"/>
                         <div className="row">
                           <div className='col-10 offset-1 text-center font-italic mt-2'>
-                            America's most gerrymandered districts (
-                              <a href={'https://www.washingtonpost.com/news/wonk/wp/2014/05/15/americas-most-gerrymandered-congressional-districts'}>
-                              Source
-                              </a>
-                            )
+                            Visualization of the efficiency gap algorithm
                           </div>
                         </div>
                       </div>
