@@ -1,8 +1,42 @@
 body {
     margin: auto;
     position: relative;
-    max-width: 900px;
 }
+
+#navigation {
+  padding-bottom: 56px;
+}
+
+#narrative-carousel-container {
+  background-color: #777;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+#narrative-carousel a {
+  color: hsl(208, 98%, 70%);
+}
+
+#narrative-carousel a:focus {
+  color: hsl(208, 98%, 53%);
+}
+
+#narrative-carousel a:hover {
+  color: hsl(208, 98%, 53%);
+}
+
+.carousel-inner {
+  height: 500px;
+}
+
+.carousel-control-prev {
+  background-image: linear-gradient(to right,rgba(0,0,0,.5) 0,rgba(0,0,0,.0001) 100%);
+}
+
+.carousel-control-next {
+  background-image: linear-gradient(to left,rgba(0,0,0,.5) 0,rgba(0,0,0,.0001) 100%);
+}
+
 .code {
   font-family: monospace; 
 }
@@ -34,22 +68,33 @@ body {
   height: 105px;
 }
 
-.modal-button {
-  margin: 5px;
-}
-
 .red {
   background-color: crimson;
   color: #fff;
   text-align: center;
-  min-height: 50px;
 }
 
 .blue {
   background-color: dodgerblue;
   color: #fff;
   text-align: center;
-  min-height: 50px;
+}
+
+.green {
+  background-color: darkgreen;
+  color: #fff;
+  text-align: center;
+}
+
+.yellow {
+  background-color: goldenrod;
+  color: #fff;
+  text-align: center;
+}
+
+.fat-district-bar {
+  height: 50px;
+  line-height: 50px;
 }
 
 .deemphasize {
@@ -60,7 +105,7 @@ body {
 }
 
 .wasted {
-  opacity: 0.2;
+  opacity: 0.4;
 }
 
 div.smaller {

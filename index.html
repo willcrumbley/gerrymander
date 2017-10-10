@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' nationalmap.gov syndication.twitter.com www.facebook.com www.google-analytics.com; script-src 'self' 'unsafe-eval' 'unsafe-inline' platform.twitter.com connect.facebook.net www.google-analytics.com; style-src 'self' 'unsafe-inline'; frame-src 'self' platform.twitter.com staticxx.facebook.com www.facebook.com; connect-src 'self' www.googleapis.com gist.githubusercontent.com"> 
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' nationalmap.gov syndication.twitter.com www.facebook.com www.google-analytics.com data: http://www.w3.org; script-src 'self' 'unsafe-eval' 'unsafe-inline' platform.twitter.com connect.facebook.net www.google-analytics.com; style-src 'self' 'unsafe-inline'; frame-src 'self' platform.twitter.com staticxx.facebook.com www.facebook.com; connect-src 'self' www.googleapis.com gist.githubusercontent.com"> 
         <meta property="og:url"           content="http://www.efficiency-gap.com" />
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="The efficiency gap: the measure of unconstitutional partisan gerrymandering used in Gill v. Whitford." />
@@ -23,15 +23,10 @@
         <link href="./static/gerry.css" rel="stylesheet">
     </head>
     <body>
+        <div id='navigation'></div>
+        <div id="narrative-carousel-container" class="hidden-md-down"></div>
         <div id='main' class='container'>
-            <div id='navigation'>
-            </div>
-            <div class="row">
-                <div class="col col-12 p-5 mt-sm-5">
-                    <h1>The efficiency gap, a proposed measure of unconstitutional partisan gerrymandering.</h1>
-                </div>
-            </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="content col col-12 px-3">
                     <div id="blurb" class="col col-12">
                         <div class='alert alert-warning hidden-md-up'>Note: most of this site's functionality is disabled on mobile screen sizes. Feel free to explore then return with a larger device.</div>
@@ -138,5 +133,6 @@
           ga('send', 'pageview');
         </script>
         <script src="./static/bin/bundle.js" type="text/javascript"></script>
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
     </body>
 </html>

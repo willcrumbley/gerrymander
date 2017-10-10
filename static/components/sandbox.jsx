@@ -36,11 +36,11 @@ class JavascriptSandbox extends React.Component {
     return (
       <div>
         <div className='col col-12'>
-            <span className='code'>{'function(options) {'}</span>
+            <div className='code'>{'function(options) {'}</div>
             <textarea value={this.state.fnString} rows={30} cols={120}
               className="metric-function" onChange={this.setFnString}/>
             <br />
-            <span className='code'>}</span>
+            <div className='code'>}</div>
         </div>
         <div className="alert alert-warning row m-4">
           <p>
