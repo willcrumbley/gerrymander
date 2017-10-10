@@ -45,7 +45,7 @@ function NarrativeCarousel(props) {
   return (
     <div id='narrative-carousel' className="carousel slide" data-ride="carousel" data-interval="false">
       <div className="container">
-        <div className="pt-5 mt-sm-5 ml-3">
+        <div className="pt-5 ml-3">
           <h1>The efficiency gap, a proposed measure of unconstitutional partisan gerrymandering.</h1>
         </div>
       </div>

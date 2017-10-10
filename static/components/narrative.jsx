@@ -144,7 +144,7 @@ module.exports = [
                           alt="Original 1812 Gerrymander cartoon" className="mx-auto d-block img-fluid"/>
                         <div className="row">
                           <div className='col-12 text-center font-italic mt-2'>
-                            Original 1812 Gerry-mander cartoon satirizing a district
+                            Original 1812 Gerry-mander cartoon satirizing a district's shape
                           </div>
                         </div>
                       </div>

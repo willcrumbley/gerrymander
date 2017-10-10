@@ -3,6 +3,10 @@ body {
     position: relative;
 }
 
+#navigation {
+  padding-bottom: 56px;
+}
+
 #narrative-carousel-container {
   background-color: #777;
   color: #fff;
