@@ -13,18 +13,18 @@ const Introduction = (props) => {
         <h2>
           {section.title}
         </h2>
-        <div>
-          {section.context}
+        <div className='my-5'>
+          {section.illustration}
         </div>
         <div>
-          {section.illustration}
+          {section.context}
         </div>
       </div>
     )
   }
 
   return (
-    <div>
+    <div className='col-md-12'>
       {sections}
     </div>
   )
