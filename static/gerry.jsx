@@ -8,6 +8,7 @@ import $ from 'jquery';
 import wait_until from 'wait-until';
 
 import efficiency_gap_ge_8 from './efficiency_gap_ge_8.js';
+import HomePage from './components/home.jsx'
 import Navigation from './components/navigation.jsx';
 import StateTable from './components/state_table.jsx';
 import render_map from './utils/render_map.js';
@@ -75,18 +76,21 @@ function App(props) {
   return (
     <div>
       <Navigation />
+      <div className='container'>
+        <Route path='/' component={HomePage} />
+      </div>
     </div>
   )
 }
 
 
 $(function() {
-    $.get('data/house_by_state.json').then(function(house_data) {
-        gerry_app.house_json = house_data;
-        gerry_app.initialize_sandbox(house_data);
-        gerry_app.initialize_link_generator();
+    $.get('/data/house_by_state.json').then(function(house_data) {
+        //gerry_app.house_json = house_data;
+        //gerry_app.initialize_sandbox(house_data);
+        //gerry_app.initialize_link_generator();
 
-        gerry_app.display_input_data(gerry_app.house_json.states)
+        //gerry_app.display_input_data(gerry_app.house_json.states)
         ReactDOM.render((
           <BrowserRouter>
             <App />
