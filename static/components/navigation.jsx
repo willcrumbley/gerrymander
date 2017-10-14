@@ -21,7 +21,7 @@ class Navigation extends React.Component {
     render() {
         return (
             <div>
-                <div id='nav' className='hidden-sm-down'>
+                <div id='navigation'>
                     <nav className="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
                       <a className="navbar-brand" href="#">
                         <img src='./static/img/gerrymander-500.png' width="30" height="30" 
