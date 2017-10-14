@@ -1,6 +1,7 @@
 "use strict"
 
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 class Navigation extends React.Component {
@@ -29,16 +30,7 @@ class Navigation extends React.Component {
                       <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
-                                <a className="nav-link" href="#map-row">Map</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#code">Calculations</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#state-table">State Maps and Results</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#state-data">Source Data</a>
+                                <Link className="nav-link" to="/introduction">Introduction</Link>
                             </li>
                         </ul>
                       </div>
