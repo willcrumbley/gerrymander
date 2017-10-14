@@ -130,10 +130,10 @@ function WisconsinDistricts() {
 
 module.exports = [
     {
-        title: <span></span>,
+        title: <span>Partisan Gerrymandering</span>,
         context: <div>
-                    <p>Gerrymandering, the practice of drawing electoral districts to give an advantage to 
-                        a party or group, has been a part of U.S. politics for at least two centuries.</p>
+                    <p>Gerrymandering is the practice of drawing electoral districts to give an advantage to 
+                        a party or group, and has been a part of U.S. politics for at least two centuries.</p>
                     <p>The efficiency gap is a recently developed approach for quantifying the amount of gerrymandering
                         in a state.</p>
                 </div>,

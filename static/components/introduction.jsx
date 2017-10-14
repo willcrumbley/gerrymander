@@ -13,18 +13,20 @@ const Introduction = (props) => {
         <h2>
           {section.title}
         </h2>
-        <div className='my-5'>
-          {section.illustration}
-        </div>
-        <div>
-          {section.context}
+        <div className='row'>
+          <div className='my-5 col-md-6 push-md-6'>
+            {section.illustration}
+          </div>
+          <div className='my-5 col-md-6 pull-md-6'>
+            {section.context}
+          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className='col-md-12'>
+    <div>
       {sections}
     </div>
   )
