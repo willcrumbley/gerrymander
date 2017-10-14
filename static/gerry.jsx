@@ -2,7 +2,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import base64 from 'base-64';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
+import base64 from 'base-64'
 import $ from 'jquery';
 import wait_until from 'wait-until';
 
@@ -69,6 +70,16 @@ gerry_app.initialize_link_generator = function() {
   ReactDOM.render(<ShareableLinkGenerator />, document.getElementById('link-generator'));
 }
 
+
+function App(props) {
+  return (
+    <div>
+      <Navigation />
+    </div>
+  )
+}
+
+
 $(function() {
     $.get('data/house_by_state.json').then(function(house_data) {
         gerry_app.house_json = house_data;
@@ -76,7 +87,10 @@ $(function() {
         gerry_app.initialize_link_generator();
 
         gerry_app.display_input_data(gerry_app.house_json.states)
-        ReactDOM.render(<Navigation states={house_data.states}/>, document.getElementById('navigation'));
-        ReactDOM.render(<NarrativeCarousel />, document.getElementById('narrative-carousel-container'));
+        ReactDOM.render((
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        ), document.getElementById('container'))
     });
 });
