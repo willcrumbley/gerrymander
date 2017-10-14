@@ -136,8 +136,6 @@ module.exports = [
                         a party or group, has been a part of U.S. politics for at least two centuries.</p>
                     <p>The efficiency gap is a recently developed approach for quantifying the amount of gerrymandering
                         in a state.</p>
-                    <p>Use the arrows to learn more about gerrymandering and the efficiency gap, or scroll down to
-                        start playing with the algorithm.</p>
                 </div>,
         illustration: <div>
                         <img src="./static/img/gerrymander.png" width="300"
@@ -204,7 +202,7 @@ module.exports = [
                         </div>
     },
     {
-        title: <p>How is the efficiency gap calculated? (1/3)</p>,
+        title: <p>How is the efficiency gap calculated?</p>,
         context: <div>
                     <p>Imagine a state containing 400 voters, which we want to split into 8 districts.
                         The districts can be gerrymandered in a number of ways that could easily advantage one party 
@@ -240,7 +238,7 @@ module.exports = [
                         </div>
     },
     {
-        title: <p>How is the efficiency gap calculated? (2/3)</p>,
+        title: null,
         context: <div>
                     <div>The efficiency gap attempts to measure all of that cracking and packing and reduce it to a single number.
                         It does this by calculating the number of <strong>'wasted votes'</strong> across
@@ -275,7 +273,7 @@ module.exports = [
                       </div>
     },
     {
-        title: <p>How is the efficiency gap calculated? (3/3)</p>,
+        title: null,
         context: <div>
                     <p>We can find the efficiency gap by calculating the net wasted votes across all districts,
                         then dividing by the total number of votes.</p>
