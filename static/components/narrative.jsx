@@ -130,7 +130,7 @@ function WisconsinDistricts() {
 
 module.exports = [
     {
-        title: <span>Partisan Gerrymandering</span>,
+        title: <span></span>,
         context: <div>
                     <p>Gerrymandering is the practice of drawing electoral districts to give an advantage to 
                         a party or group, and has been a part of U.S. politics for at least two centuries.</p>

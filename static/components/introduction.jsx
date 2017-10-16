@@ -27,6 +27,8 @@ const Introduction = (props) => {
 
   return (
     <div>
+      <div></div>
+      <h1>Measuring Partisan Gerrymandering</h1>
       {sections}
     </div>
   )
