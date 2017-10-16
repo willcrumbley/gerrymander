@@ -11,7 +11,6 @@ import efficiency_gap_ge_8 from './efficiency_gap_ge_8.js';
 import HomePage from './components/home.jsx'
 import Introduction from './components/introduction.jsx'
 import Navigation from './components/navigation.jsx';
-import NarrativeCarousel from './components/narrative_carousel.jsx';
 
 // Required for Bootstrap
 window.jQuery = $;
