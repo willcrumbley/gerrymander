@@ -8,7 +8,19 @@ body {
 }
 
 .container {
+  position: relative;
   background-color: #fff;
+  box-shadow: -3px 0px 5px hsla(0, 0%, 70%, 1);
+}
+
+.introduction-column {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+
+  box-shadow: inset 12px 0px 10px -10px hsla(0, 0%, 70%, 1)
 }
 
 #navigation {

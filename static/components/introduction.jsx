@@ -27,8 +27,8 @@ const Introduction = (props) => {
 
   return (
     <div>
-      <div></div>
-      <h1>Measuring Partisan Gerrymandering</h1>
+      <div className='introduction-column hidden-md-down'></div>
+      <h1>Partisan Gerrymandering</h1>
       {sections}
     </div>
   )
