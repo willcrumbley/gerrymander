@@ -41,8 +41,8 @@ function BRPercentageDistrict({districtNum, marginOfVictory, winner}) {
 
   return (
     <div className='row mt-1'>
-      <div className='col-sm-2 text-center' style={{height: '30px'}}>{districtNum}</div>
-      <div className='col-10' style={{height: '30px'}}>
+      <div className='col-1 text-center' style={{height: '30px'}}>{districtNum}</div>
+      <div className='col-11' style={{height: '30px'}}>
         <div className='red d-inline-block' style={{width: `${percentages.red}%`}}>{percentages.red}%</div>
         <div className='blue d-inline-block' style={{width: `${percentages.blue}%`}}>{percentages.blue}%</div>
       </div>
@@ -62,8 +62,8 @@ function GYAbsoluteDistrict({districtNum, numGreenVotes, numYellowVotes}) {
   let gPercent = numGreenVotes / (numGreenVotes + numYellowVotes) * 100;
   return (
     <div className='row' style={{height: '30px'}}>
-      <div className='col-2 text-center'> {districtNum} </div>
-      <div className='col-10'>
+      <div className='col-1 text-center'> {districtNum} </div>
+      <div className='col-11'>
         <div className='green d-inline-block' style={{width: `${gPercent}%`}}>{numGreenVotes}</div>
         <div className='yellow d-inline-block' style={{width: `${100 - gPercent}%`}}>{numYellowVotes || ''}</div>
       </div>
@@ -98,8 +98,8 @@ function GYAbsoluteDistrictWasted({districtNum, numGreenVotes, numYellowVotes}) 
 
   return (
     <div className='row' style={{height: '30px'}}>
-      <div className='col-2 text-center'> {districtNum} </div>
-      <div className='col-10'>
+      <div className='col-1 text-center'> {districtNum} </div>
+      <div className='col-11'>
         <div className='green d-inline-block' style={getStyle(green)}>
           {green || ''}
         </div>
@@ -148,7 +148,7 @@ module.exports = [
                       </div>
     },
     {
-        title: <p>Unconstitutional?</p>,
+        title: <p>Constitutionality</p>,
         context: <div>
                     <p>In extreme cases, partisan gerrymandering can be used to <strong>decrease electoral competition</strong>,
                        or to grant one party <strong>a disproportionate number of seats</strong> in state legislatures</p>
@@ -188,13 +188,13 @@ module.exports = [
                 </div>,
         illustration:   <div>
                           <div className="row">
-                            <div className='col-10 offset-2 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
+                            <div className='col-12 intro-chart-title mb-2'>
                               2016 Wisconsin House Election Results by District
                             </div>
                           </div>
                           <WisconsinDistricts />
                           <div className="row">
-                            <div className='col-10 offset-2 text-center font-italic mt-2'>
+                            <div className='col-12 text-center font-italic mt-2'>
                               Republicans won {PERCENTAGE_RED_VOTES}% of the votes, but {PERCENTAGE_RED_SEATS}% of the seats.
                               (<a href="https://ballotpedia.org/Redistricting_in_Wisconsin#State_legislative_maps" target='_blank'>data</a>)
                             </div>
@@ -202,7 +202,7 @@ module.exports = [
                         </div>
     },
     {
-        title: <p>How is the efficiency gap calculated?</p>,
+        title: <p>Calculating the Efficiency Gap</p>,
         context: <div>
                     <p>Imagine a state containing 400 voters, which we want to split into 8 districts.
                         The districts can be gerrymandered in a number of ways that could easily advantage one party 
@@ -218,8 +218,8 @@ module.exports = [
                 </div>,
         illustration:   <div>
                           <div className="row">
-                            <div className='col-10 offset-2 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
-                              Gerrymandering Green vs Yellow
+                            <div className='col-12 intro-chart-title mb-2'>
+                              Example Gerrymandered Election
                             </div>
                           </div>
                           <GYAbsoluteDistrict districtNum={1} numGreenVotes={50} numYellowVotes={0} />
@@ -231,7 +231,7 @@ module.exports = [
                           <GYAbsoluteDistrict districtNum={7} numGreenVotes={20} numYellowVotes={30} />
                           <GYAbsoluteDistrict districtNum={8} numGreenVotes={15} numYellowVotes={35} />
                           <div className="row">
-                            <div className='col-10 offset-2 text-center font-italic mt-2'>
+                            <div className='col-12 text-center font-italic mt-2'>
                               Yellow won 45% of the votes, but 62.5% of the seats.
                             </div>
                           </div>
@@ -252,8 +252,8 @@ module.exports = [
                 </div>,
         illustration: <div>
                         <div className="row">
-                          <div className='col-12 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
-                            Gerrymandering Green vs Yellow
+                          <div className='col-12 intro-chart-title mb-2'>
+                            Wasted Votes in a District
                           </div>
                         </div>
                         <div className='row mt-2'>
@@ -285,8 +285,8 @@ module.exports = [
                 </div>,
         illustration:   <div>
                           <div className="row">
-                            <div className='col-10 offset-2 text-center font-weight-bold mb-2' style={{fontSize: '20px'}}>
-                              Visualizing Wasted Votes
+                            <div className='col-12 intro-chart-title mb-2'>
+                              Example Election with Wasted Votes
                             </div>
                           </div>
                           <GYAbsoluteDistrictWasted districtNum={1} numGreenVotes={50} numYellowVotes={0} />
@@ -298,7 +298,7 @@ module.exports = [
                           <GYAbsoluteDistrictWasted districtNum={7} numGreenVotes={20} numYellowVotes={30} />
                           <GYAbsoluteDistrictWasted districtNum={8} numGreenVotes={15} numYellowVotes={35} />
                           <div className="row">
-                            <div className='col-10 offset-2 text-center font-italic mt-2'>
+                            <div className='col-12 text-center font-italic mt-2'>
                               Yellow has an electoral advantage with an efficiency gap of 23%.
                             </div>
                           </div>
@@ -347,7 +347,7 @@ module.exports = [
                         <img src="./static/img/efficiency_gap_us.png" width="500"
                           alt="Most gerrymandered districts" className="mx-auto d-block img-fluid"/>
                         <div className="row">
-                          <div className='col-10 offset-1 text-center font-italic mt-2'>
+                          <div className='col-12 text-center font-italic mt-2'>
                             Visualization of the efficiency gap algorithm
                           </div>
                         </div>
