@@ -3,6 +3,14 @@ body {
     position: relative;
 }
 
+#application {
+  background-color: #d9d9d9;
+}
+
+.container {
+  background-color: #fff;
+}
+
 #navigation {
   padding-bottom: 56px;
 }

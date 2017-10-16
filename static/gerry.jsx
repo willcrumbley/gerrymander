@@ -37,6 +37,6 @@ $(function() {
           <HashRouter>
             <App />
           </HashRouter>
-        ), document.getElementById('container'))
+        ), document.getElementById('application'))
     });
 });
