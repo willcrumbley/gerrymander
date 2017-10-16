@@ -25,6 +25,7 @@ body {
   left: 50%;
   right: 0;
 
+  background-color: hsla(0, 0%, 98%, 1);
   box-shadow: inset 12px 0px 10px -10px hsla(0, 0%, 70%, 1)
 }
 
