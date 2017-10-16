@@ -21,8 +21,10 @@ function App(props) {
     <div>
       <Navigation />
       <div className='container'>
-        <Route exact={true} path='/' component={HomePage} />
-        <Route path='/introduction' component={Introduction} />
+        <div className='pt-5'>
+          <Route exact={true} path='/' component={HomePage} />
+          <Route path='/introduction' component={Introduction} />
+        </div>
       </div>
     </div>
   )
