@@ -38,6 +38,10 @@ body {
   padding-bottom: 56px;
 }
 
+.navbar {
+  box-shadow: 0px -5px 10px 0px black;
+}
+
 .code {
   font-family: monospace; 
 }
