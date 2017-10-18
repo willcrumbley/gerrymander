@@ -1,10 +1,11 @@
 "use strict"
 
 import React from 'react';
-import URI from 'urijs';
 import $ from 'jquery';
 
+import {getCustomGistName, fetchGist} from '../utils/gist'
 import efficiency_gap_ge_8 from '../efficiency_gap_ge_8.js';
+
 
 
 class JavascriptSandbox extends React.Component {
@@ -133,23 +134,13 @@ class MetricFunctionSandbox extends React.Component {
    * @returns [Promise] Promise that resolves to the code to display, or rejects if unable to fetch.
    */
   fetch_metric_function() {
-    let uri = new URI(window.location.href);
-    let gist = uri.query(true).gist;
-
+    let gist = getCustomGistName(window.location.href);
     if(gist) {
-      let gist_url = `https://gist.githubusercontent.com/${gist}/raw`;
-
-      return fetch(gist_url, {mode: 'cors'})
-        .then((response) => {
-          if(response.ok) {
-            return response.text();
-          } else {
-            throw Error(response);
-          }
-        })
+      return fetchGist(gist);
     } else {
+      this.setState({runOnMount: true});
+
       return new Promise((resolve) => {
-        this.setState({runOnMount: true})
         resolve(efficiency_gap_ge_8);
       })
     }
