@@ -126,6 +126,12 @@ class MetricFunctionSandbox extends React.Component {
   }
 
 
+  /**
+   * Fetch the metric function to display in the textbox from a github gist.
+   * If no gist is provided, default to the efficiency gap and run the metric automatically (trusted)
+   *
+   * @returns [Promise] Promise that resolves to the code to display, or rejects if unable to fetch.
+   */
   fetch_metric_function() {
     let uri = new URI(window.location.href);
     let gist = uri.query(true).gist;
