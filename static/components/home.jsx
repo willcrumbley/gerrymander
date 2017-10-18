@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import $ from 'jquery';
 
 import render_map from '../utils/render_map.js';
+import {getCustomGistName} from '../utils/gist.js'
 import ShareableLinkGenerator from './link_generator.jsx';
 import MetricFunctionSandbox from './sandbox.jsx';
 import StateTable from './state_table.jsx';
@@ -15,6 +16,7 @@ class HomePage extends React.Component {
       houseData: null
     }
 
+    this.customMetric = getCustomGistName(window.location.href) != undefined;
     this.updateWithMetricData = this.updateWithMetricData.bind(this);
   }
 
@@ -79,22 +81,21 @@ class HomePage extends React.Component {
             To report problems, or to propose that we add new data to the input dataset, please log an issue (or even better, make a pull request) at the project's <a href="https://github.com/willcrumbley/gerrymander/issues">Github repo</a>.</p>
           </div>
           <div id="map-row" className="col col-12 py-sm-4">
-            <h2>US States By Calculated Metric (as of 2016)</h2>
+            <h2>Visualizing {this.customMetric ? 'Custom Gerrymandering Metric' : 'the Effiency Gap'} across the United States (as of 2016)</h2>
             <p>States in red are most gerrymandered to favor Republicans, states in blue are gerrymandered to favor Democrats.</p>
             <div id="map"></div>
             <div ref={(input) => this.refMapDisclaimer = input} id='map-disclaimer' className='alert alert-info'>For security reasons, the map will not display the metric until you review the algorithm and click the 'Calculate' button below.</div>
           </div>
           <div id="code" className="col col-12 hidden-sm-down py-sm-4">
-            <h2>Algorithm to Calculate Gerrymandering Metric</h2>
+            <h2>Algorithm to Calculate {this.customMetric ? 'Custom Gerrymandering Metric' : 'the Efficiency Gap'}</h2>
             <div className='row'>
               <div id="metric-sandbox">
                 {this.renderSandbox()}
               </div>
               <div className="col col-12">
                 <div>
-                  The preceding JavaScript function should calculate a metric of partisan gerrymandering and return
-                  an object containing: 
-                  <table className='table table-striped table-bordered'>
+                  The preceding JavaScript function should calculate a measure of gerrymandering by taking a state's data and returning an object containing:
+                  <table className='table table-striped table-bordered mt-2'>
                     <thead>
                       <tr>
                         <th>Key</th>
@@ -126,7 +127,7 @@ class HomePage extends React.Component {
                 </div>
               </div>
               <div id="share" className="col col-12" >
-                <h3>Share your own Algorithm</h3>
+                <h5>Share your own Algorithm</h5>
                 <div className="col col-12">
                   <div className="row">
                     Create a&nbsp;<a target='_blank' href="https://gist.github.com/">Github gist</a>&nbsp;with just the body of
