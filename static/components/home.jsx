@@ -13,7 +13,8 @@ class HomePage extends React.Component {
   constructor() {
     super();
     this.state = {
-      houseData: null
+      houseData: null,
+      displayMap: false
     }
 
     this.customMetric = getCustomGistName(window.location.href) != undefined;
@@ -28,6 +29,7 @@ class HomePage extends React.Component {
       map_size = window_width * 0.9;
       show_legend = false;
     }
+    this.setState({displayMap: true})
     render_map(states, '#map', map_size, show_legend);
   }
 
@@ -67,6 +69,17 @@ class HomePage extends React.Component {
     }
   }
 
+  renderMapSection() {
+    if(this.state.displayMap) {
+      return (
+        <div>
+          <h2>Visualizing {this.customMetric ? 'a Custom Gerrymandering Metric' : 'the Effiency Gap'} across the United States (as of 2016)</h2>
+          <p>States in red are most gerrymandered to favor Republicans, states in blue are gerrymandered to favor Democrats.</p>
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div className="row mt-3">
@@ -81,8 +94,7 @@ class HomePage extends React.Component {
             To report problems, or to propose that we add new data to the input dataset, please log an issue (or even better, make a pull request) at the project's <a href="https://github.com/willcrumbley/gerrymander/issues">Github repo</a>.</p>
           </div>
           <div id="map-row" className="col col-12 py-sm-4">
-            <h2>Visualizing {this.customMetric ? 'Custom Gerrymandering Metric' : 'the Effiency Gap'} across the United States (as of 2016)</h2>
-            <p>States in red are most gerrymandered to favor Republicans, states in blue are gerrymandered to favor Democrats.</p>
+            {this.renderMapSection()}
             <div id="map"></div>
             <div ref={(input) => this.refMapDisclaimer = input} id='map-disclaimer' className='alert alert-info'>For security reasons, the map will not display the metric until you review the algorithm and click the 'Calculate' button below.</div>
           </div>
