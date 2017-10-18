@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import $ from 'jquery';
 
 import render_map from '../utils/render_map.js';
@@ -68,10 +69,14 @@ class HomePage extends React.Component {
     return (
       <div className="row mt-3">
         <div className="content col col-12 px-3">
+          <h1 className='col col-12'>The Efficiency Gap</h1>
           <div id="blurb" className="col col-12">
             <div className='alert alert-warning hidden-md-up'>Note: most of this site's functionality is disabled on mobile screen sizes. Feel free to explore then return with a larger device.</div>
-            <p>This site exists to allow interested users to explore the <a href="/">algorithm underlying the efficiency gap</a>, and then to create and share their own variant.</p>
-            <p>To report problems, or to propose that we add new data to the input dataset, please log an issue (or even better, make a pull request) at the project's <a href="https://github.com/willcrumbley/gerrymander/issues">Github repo</a>.</p>
+            <p>The efficiency gap is a proposed metric for measuring partisan gerrymandering across the United States. It is going to be used in the upcoming case <em>Gill v. Whitford</em> in the
+            Supreme Court for determining whether Wisconsin was unconstitutionally gerrymandered in 2011.</p>
+            <p>Not sure what gerrymandering or the efficiency gap is? <Link to='/introduction'>Check out the Introduction!</Link></p>
+            <p>This site exists to allow you to explore the algorithm underlying the efficiency gap, and then to create and share your own variant.
+            To report problems, or to propose that we add new data to the input dataset, please log an issue (or even better, make a pull request) at the project's <a href="https://github.com/willcrumbley/gerrymander/issues">Github repo</a>.</p>
           </div>
           <div id="map-row" className="col col-12 py-sm-4">
             <h2>US States By Calculated Metric (as of 2016)</h2>
