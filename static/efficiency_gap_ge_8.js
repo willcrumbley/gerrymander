@@ -1,7 +1,6 @@
 "use strict";
 
-module.exports = `
-/**
+module.exports = `/**
  * Calculating the efficiency gap for the 2016 House of Representatives Election
  */
 
@@ -30,7 +29,7 @@ for (let district of state.house_districts) {
 
   // Keep a running total of the total votes cast
   state_total_votes += total_votes;
-};
+}
 
 // Calculate the efficiency gap
 var metric = (r_wasted_votes - d_wasted_votes) / state_total_votes;
