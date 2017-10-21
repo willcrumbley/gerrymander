@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "base-64": "^0.1.0",
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "4.0.0-alpha.6",
     "brace": "^0.10.0",
     "clipboard": "^1.7.1",
     "d3": "^4.9.1",
@@ -25,6 +25,7 @@
     "react-d3-map-choropleth": "^0.5.1",
     "react-dom": "^15.6.1",
     "react-modal": "^2.2.3",
+    "react-router-dom": "^4.2.2",
     "tether": "^1.4.0",
     "topojson": "^3.0.0",
     "urijs": "^1.18.12",

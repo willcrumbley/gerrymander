@@ -1,13 +1,14 @@
 "use strict"
 
 import React from 'react';
-import URI from 'urijs';
 import $ from 'jquery';
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript'
 import 'brace/theme/monokai'
 
+import {getCustomGistName, fetchGist} from '../utils/gist'
 import efficiency_gap_ge_8 from '../efficiency_gap_ge_8.js';
+
 
 
 class JavascriptSandbox extends React.Component {
@@ -39,25 +40,25 @@ class JavascriptSandbox extends React.Component {
     return (
       <div>
         <div className='col col-12'>
-            <span className='code'>{'function(options) {'}</span>
-            <AceEditor
-              mode='javascript'
-              theme='monokai'
-              onChange={this.setFnString}
-              width={'100%'}
-              fontSize={14}
-              showGutter={true}
-              highlightActiveLine={true}
-              value={this.state.fnString}
-              editorProps={{
-                $blockScrolling: Infinity
-              }}
-              setOptions={{
-                showLineNumbers: true,
-                tabSize: 2,
-              }} />
-            <br />
-            <span className='code'>}</span>
+          <span className='code'>{'function(options) {'}</span>
+          <AceEditor
+            mode='javascript'
+            theme='monokai'
+            onChange={this.setFnString}
+            width={'100%'}
+            fontSize={14}
+            showGutter={true}
+            highlightActiveLine={true}
+            value={this.state.fnString}
+            editorProps={{
+              $blockScrolling: Infinity
+            }}
+            setOptions={{
+              showLineNumbers: true,
+              tabSize: 2,
+            }} />
+          <br />
+          <div className='code'>}</div>
         </div>
         <div className="alert alert-warning row m-4">
           <p>
@@ -143,24 +144,20 @@ class MetricFunctionSandbox extends React.Component {
   }
 
 
+  /**
+   * Fetch the metric function to display in the textbox from a github gist.
+   * If no gist is provided, default to the efficiency gap and run the metric automatically (trusted)
+   *
+   * @returns [Promise] Promise that resolves to the code to display, or rejects if unable to fetch.
+   */
   fetch_metric_function() {
-    let uri = new URI(window.location.href);
-    let gist = uri.query(true).gist;
-
+    let gist = getCustomGistName(window.location.href);
     if(gist) {
-      let gist_url = `https://gist.githubusercontent.com/${gist}/raw`;
-
-      return fetch(gist_url, {mode: 'cors'})
-        .then((response) => {
-          if(response.ok) {
-            return response.text();
-          } else {
-            throw Error(response);
-          }
-        })
+      return fetchGist(gist);
     } else {
+      this.setState({runOnMount: true});
+
       return new Promise((resolve) => {
-        this.setState({runOnMount: true})
         resolve(efficiency_gap_ge_8);
       })
     }
