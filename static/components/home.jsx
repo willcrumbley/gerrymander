@@ -172,7 +172,7 @@ class HomePage extends React.Component {
                 <div className="col col-12">
                   <div className="row">
                     Create a&nbsp;<a target='_blank' href="https://gist.github.com/">Github gist</a>&nbsp;with just the body of
-                    the function and enter its url below to generate a shareable link. <a href="https://gist.github.com/pbhavsar/c228879badcf21eb42bad78ceb6f1e4b" target="_blank">Here's an example.</a>
+                    the function and enter its url below to generate a shareable link. &nbsp; <a href="https://gist.github.com/pbhavsar/c228879badcf21eb42bad78ceb6f1e4b" target="_blank">Here's an example.</a>
                   </div>
                   <div id='link-generator' className="row mt-3">
                     <ShareableLinkGenerator />
