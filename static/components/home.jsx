@@ -14,6 +14,7 @@ class HomePage extends React.Component {
     super();
     this.state = {
       houseData: null,
+      stateMetrics: null,
       displayMap: false
     }
 
@@ -29,7 +30,10 @@ class HomePage extends React.Component {
       map_size = window_width * 0.9;
       show_legend = false;
     }
-    this.setState({displayMap: true})
+    this.setState({
+      stateMetrics: states,
+      displayMap: true
+    })
     render_map(states, '#map', map_size, show_legend);
   }
 
@@ -53,8 +57,8 @@ class HomePage extends React.Component {
   }
 
   renderStatesTable() {
-    if(this.state.houseData != null) {
-      return <StateTable states={this.state.houseData.states} />;
+    if(this.state.stateMetrics != null) {
+      return <StateTable states={this.state.stateMetrics} />;
     }
   }
 
