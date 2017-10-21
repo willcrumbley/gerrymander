@@ -60,7 +60,7 @@ class JavascriptSandbox extends React.Component {
           <br />
           <div className='code'>}</div>
         </div>
-        <div className="alert alert-warning row m-4">
+        <div className="alert alert-warning row">
           <p>
             Warning! Clicking this button will execute the JavaScript in the editor above.
             If you have any uncertainty about what this code will do, please do not execute it!
