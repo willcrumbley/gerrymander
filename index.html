@@ -84,6 +84,27 @@
                                 </table>
                               </p>
                             </div>
+                            <div id='state-data' class='col col-12 hidden-sm-down py-sm-4'> 
+                              <div id="state-data-accordion" role="tablist">
+                                <div class="card">
+                                  <div class="card-header" role="tab" id="headingStateData">
+                                    <h5 class="mb-0">
+                                      <a data-toggle="collapse" href="#collapseStateData" aria-expanded="true" aria-controls="collapseStateData">
+                                        Explore the state data used as input
+                                      </a>
+                                    </h5>
+                                  </div>
+
+                                  <div id="collapseStateData" class="collapse" role="tabpanel" aria-labelledby="headingStateData" data-parent="#state-data-accordion">
+                                    <div class="card-body">
+                                      <div class='code m-2'>
+                                          <textarea name="state-data-area" id="state-data-area" rows=20 cols=100 readonly class="code"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                             <div id="share" class="col col-12" >
                                 <h3>Share your own Algorithm</h3>
                                 <div class="col col-12">
@@ -99,12 +120,6 @@
                     </div>
                     <div id='state-table' class='col col-12 py-sm-4'>
                         <div id='states-table'></div>
-                    </div>
-                    <div id='state-data' class='col col-12 hidden-sm-down py-sm-4'> 
-                        <h2>Explore the State Data Used as Input</h2>
-                        <div class='code'>
-                            <textarea name="state-data-area" id="state-data-area" rows=20 cols=100 readonly class="code"></textarea>
-                        </div>
                     </div>
                     <div id='notes' class='col col-12 py-sm-4'>
                         <div class='hidden-sm-down'>
