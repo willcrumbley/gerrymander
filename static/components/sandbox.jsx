@@ -61,7 +61,7 @@ class JavascriptSandbox extends React.Component {
         </div>
         <div className="alert alert-warning row m-4">
           <p>
-            Warning! Clicking this button will execute the JavaScript in the black text area above.
+            Warning! Clicking this button will execute the JavaScript in the editor above.
             If you have any uncertainty about what this code will do, please do not execute it!
           </p>
           <button id='calculate-metric' type="button" className="btn btn-primary" onClick={this.clickCalculate}>
