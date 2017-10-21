@@ -5,6 +5,7 @@ body {
 }
 .code {
   font-family: monospace; 
+  font-size: 14px;
 }
 
 .metric-function {
