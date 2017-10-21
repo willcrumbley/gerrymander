@@ -3,6 +3,9 @@
 import React from 'react';
 import URI from 'urijs';
 import $ from 'jquery';
+import AceEditor from 'react-ace';
+import 'brace/mode/javascript'
+import 'brace/theme/monokai'
 
 import efficiency_gap_ge_8 from '../efficiency_gap_ge_8.js';
 
@@ -37,8 +40,20 @@ class JavascriptSandbox extends React.Component {
       <div>
         <div className='col col-12'>
             <span className='code'>{'function(options) {'}</span>
-            <textarea value={this.state.fnString} rows={30} cols={120}
-              className="metric-function" onChange={this.setFnString}/>
+            <AceEditor
+              mode='javascript'
+              theme='monokai'
+              onChange={this.setFnString}
+              width={'100%'}
+              fontSize={14}
+              showGutter={true}
+              highlightActiveLine={true}
+              value={this.state.fnString}
+              setOptions={{
+                enableBasicAutocompletion: true,
+                showLineNumbers: true,
+                tabSize: 2,
+              }} />
             <br />
             <span className='code'>}</span>
         </div>
@@ -86,7 +101,7 @@ class JavascriptSandbox extends React.Component {
   }
 
   setFnString(e) {
-    this.setState({fnString: e.target.value});
+    this.setState({fnString: e});
   }
 }
 
