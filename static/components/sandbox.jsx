@@ -49,8 +49,10 @@ class JavascriptSandbox extends React.Component {
               showGutter={true}
               highlightActiveLine={true}
               value={this.state.fnString}
+              editorProps={{
+                $blockScrolling: Infinity
+              }}
               setOptions={{
-                enableBasicAutocompletion: true,
                 showLineNumbers: true,
                 tabSize: 2,
               }} />
