@@ -133,7 +133,8 @@ class HomePage extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col col-12">
+              <div className="col col-12 mt-3">
+                <h4>Share your own Algorithm</h4>
                 <div>
                   The preceding JavaScript function should calculate a measure of gerrymandering by taking a state's data and returning an object containing:
                   <table className='table table-striped table-bordered mt-2'>
@@ -168,12 +169,10 @@ class HomePage extends React.Component {
                 </div>
               </div>
               <div id="share" className="col col-12" >
-                <h5>Share your own Algorithm</h5>
                 <div className="col col-12">
                   <div className="row">
                     Create a&nbsp;<a target='_blank' href="https://gist.github.com/">Github gist</a>&nbsp;with just the body of
-                    the function and enter its url below to generate a shareable link.
-                    <a href="https://gist.github.com/pbhavsar/c228879badcf21eb42bad78ceb6f1e4b" target="_blank">Here's an example.</a>
+                    the function and enter its url below to generate a shareable link. <a href="https://gist.github.com/pbhavsar/c228879badcf21eb42bad78ceb6f1e4b" target="_blank">Here's an example.</a>
                   </div>
                   <div id='link-generator' className="row mt-3">
                     <ShareableLinkGenerator />
