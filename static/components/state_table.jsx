@@ -45,7 +45,6 @@ class StateTable extends React.Component {
         });
         return (
           <div>
-            <h2>US States, Ranked by Absolute Value of Calculated Metric (as of 2016)</h2>
             <table className='table table-striped'>
                 <thead>
                     <tr>

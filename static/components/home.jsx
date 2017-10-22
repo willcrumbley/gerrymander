@@ -58,7 +58,13 @@ class HomePage extends React.Component {
 
   renderStatesTable() {
     if(this.state.stateMetrics != null) {
-      return <StateTable states={this.state.stateMetrics} />;
+      let text = this.customMetric ? 'Custom Metric' : 'Efficiency Gap'
+      return (
+        <div>
+          <h2>US States, Ranked by Absolute Value of {text} (as of 2016)</h2>
+          <StateTable states={this.state.stateMetrics} />;
+        </div>
+      )
     }
   }
 
