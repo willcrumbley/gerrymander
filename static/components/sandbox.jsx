@@ -2,6 +2,9 @@
 
 import React from 'react';
 import $ from 'jquery';
+import AceEditor from 'react-ace';
+import 'brace/mode/javascript'
+import 'brace/theme/monokai'
 
 import {getCustomGistName, fetchGist} from '../utils/gist'
 import efficiency_gap_ge_8 from '../efficiency_gap_ge_8.js';
@@ -37,15 +40,29 @@ class JavascriptSandbox extends React.Component {
     return (
       <div>
         <div className='col col-12'>
-            <div className='code'>{'function(options) {'}</div>
-            <textarea value={this.state.fnString} rows={30} cols={120}
-              className="metric-function" onChange={this.setFnString}/>
-            <br />
-            <div className='code'>}</div>
+          <span className='code'>{'function(options) {'}</span>
+          <AceEditor
+            mode='javascript'
+            theme='monokai'
+            onChange={this.setFnString}
+            width={'100%'}
+            fontSize={14}
+            showGutter={true}
+            highlightActiveLine={true}
+            value={this.state.fnString}
+            editorProps={{
+              $blockScrolling: Infinity
+            }}
+            setOptions={{
+              showLineNumbers: true,
+              tabSize: 2,
+            }} />
+          <br />
+          <div className='code'>}</div>
         </div>
-        <div className="alert alert-warning row m-4">
+        <div id='calculate-metric-warning' className="alert alert-warning">
           <p>
-            Warning! Clicking this button will execute the JavaScript in the black text area above.
+            Warning! Clicking this button will execute the JavaScript in the editor above.
             If you have any uncertainty about what this code will do, please do not execute it!
           </p>
           <button id='calculate-metric' type="button" className="btn btn-primary" onClick={this.clickCalculate}>
@@ -87,7 +104,7 @@ class JavascriptSandbox extends React.Component {
   }
 
   setFnString(e) {
-    this.setState({fnString: e.target.value});
+    this.setState({fnString: e});
   }
 }
 

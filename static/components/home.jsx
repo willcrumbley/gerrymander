@@ -114,7 +114,37 @@ class HomePage extends React.Component {
               <div id="metric-sandbox">
                 {this.renderSandbox()}
               </div>
-              <div className="col col-12">
+              <div id='state-data' className='col col-12 hidden-sm-down pb-sm-4'> 
+                <div id="state-data-accordion" role="tablist">
+                  <div className="card">
+                    <div className="card-header" role="tab" id="headingStateData">
+                      <h5 className="mb-0">
+                        <a data-toggle="collapse" href="#collapseStateData" aria-expanded="true" aria-controls="collapseStateData">
+                          Explore the state data used as input
+                        </a>
+                      </h5>
+                    </div>
+
+                    <div id="collapseStateData" className="collapse" role="tabpanel" aria-labelledby="headingStateData" data-parent="#state-data-accordion">
+                      <div className="card-body">
+                        <div className='code m-2'>
+                          <textarea
+                            name="state-data-area"
+                            value={(this.state.houseData) ? JSON.stringify(this.state.houseData.states, undefined, 4) : ''}
+                            id="state-data-area"
+                            rows={20}
+                            cols={100}
+                            readOnly
+                            className="code">
+                          </textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col col-12 mt-3">
+                <h4>Share your own Algorithm</h4>
                 <div>
                   The preceding JavaScript function should calculate a measure of gerrymandering by taking a state's data and returning an object containing:
                   <table className='table table-striped table-bordered mt-2'>
@@ -149,12 +179,10 @@ class HomePage extends React.Component {
                 </div>
               </div>
               <div id="share" className="col col-12" >
-                <h5>Share your own Algorithm</h5>
                 <div className="col col-12">
                   <div className="row">
                     Create a&nbsp;<a target='_blank' href="https://gist.github.com/">Github gist</a>&nbsp;with just the body of
-                    the function and enter its url below to generate a shareable link.
-                    <a href="https://gist.github.com/pbhavsar/c228879badcf21eb42bad78ceb6f1e4b" target="_blank">Here's an example.</a>
+                    the function and enter its url below to generate a shareable link. &nbsp; <a href="https://gist.github.com/pbhavsar/c228879badcf21eb42bad78ceb6f1e4b" target="_blank">Here's an example.</a>
                   </div>
                   <div id='link-generator' className="row mt-3">
                     <ShareableLinkGenerator />
@@ -166,20 +194,6 @@ class HomePage extends React.Component {
           <div id='state-table' className='col col-12 py-sm-4'>
             <div id='states-table'>
               {this.renderStatesTable()}
-            </div>
-          </div>
-          <div id='state-data' className='col col-12 hidden-sm-down py-sm-4'> 
-            <h2>Explore the State Data Used as Input</h2>
-            <div className='code'>
-              <textarea
-                name="state-data-area"
-                value={(this.state.houseData) ? JSON.stringify(this.state.houseData.states, undefined, 4) : ''}
-                id="state-data-area"
-                rows={20}
-                cols={100}
-                readOnly
-                className="code">
-              </textarea>
             </div>
           </div>
           <div id='notes' className='col col-12 py-sm-4'>

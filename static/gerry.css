@@ -44,6 +44,7 @@ body {
 
 .code {
   font-family: monospace; 
+  font-size: 14px;
 }
 
 .metric-function {
@@ -57,9 +58,11 @@ body {
 .state-map {
     max-width: 200px;
 }
-.alert-warning {
-    margin-left: 10%;
-    margin-right: 10%;
+
+#calculate-metric-warning {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 15px;
 }
 
 #js-sandbox {

@@ -19,11 +19,11 @@ class ShareableLinkGenerator extends React.Component {
     return (
       <div>
         <form className='form-inline'>
-          <label className='mr-sm-2' htmlFor='gistUrlInput'>Gist URL:</label>
           <input
             type="text"
             className="form-control mr-sm-2" 
             id="gistUrlInput" 
+            placeholder="Enter Gist URL"
             ref={(input) => {this.gistUrlInput = input}}
           />
           <button className="btn btn-primary" onClick={this.calculateLink}>Generate</button>
@@ -45,7 +45,7 @@ class ShareableLinkGenerator extends React.Component {
   renderError() {
     if(this.state.error) {
       return (
-        <div className="alert alert-danger"><strong>Oops!</strong> That doesn't look like a valid Github gist url.</div>
+        <div className="alert alert-danger mt-2"><strong>Oops!</strong> That doesn't look like a valid Github gist url.</div>
       )
     }
   }
