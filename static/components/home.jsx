@@ -83,7 +83,7 @@ class HomePage extends React.Component {
     if(this.state.displayMap) {
       return (
         <div>
-          <h2>Visualizing {this.customMetric ? 'a Custom Gerrymandering Metric' : 'the Effiency Gap'} across the United States (as of 2016)</h2>
+          <h2>Visualizing {this.customMetric ? 'a Custom Gerrymandering Metric' : 'the Efficiency Gap'} across the United States (as of 2016)</h2>
           <p>States in red are most gerrymandered to favor Republicans, states in blue are gerrymandered to favor Democrats.</p>
         </div>
       )
